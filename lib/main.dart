@@ -79,17 +79,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _signed = false;
-
   void signOutButton() async {
     final User user = auth.currentUser;
     if (user == null) {
-      _signed = false;
+      signed = false;
       return;
     }
     await auth.signOut();
     final String uid = user.uid;
-    _signed = false;
+    signed = false;
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(uid + ' has successfully signed out.'),
     ));
@@ -112,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'You are signed ',
                 ),
                 Text(
-                  _signed ? "IN" : "OUT",
+                  signed ? "IN" : "OUT",
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 Container(

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
+bool signed = false;
 
 class RegisterEmailSection extends StatefulWidget {
   final String title = 'Registration';
@@ -23,6 +24,7 @@ class RegisterEmailSectionState extends State<RegisterEmailSection> {
         .user;
     if (user != null) {
       setState(() {
+        signed = true;
         _success = true;
         _userEmail = user.email;
         user.sendEmailVerification();

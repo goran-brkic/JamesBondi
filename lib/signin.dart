@@ -85,6 +85,7 @@ class EmailPasswordFormState extends State<EmailPasswordForm> {
       setState(() {
         _success = true;
         _userEmail = user.email;
+        signed = true;
       });
     } else {
       setState(() {
