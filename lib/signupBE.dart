@@ -42,3 +42,14 @@ void addStudent(
       .then((value) => print("User (student) Added"))
       .catchError((error) => print("Failed to add user: $error"));
 }
+
+List getUserInfo(String inputUsername) {
+  List returnList;
+  FirebaseFirestore.instance
+      .collection('users')
+      .where('username', isEqualTo: inputUsername)
+      .get()
+      .then((QuerySnapshot querySnapshot) => {returnList = querySnapshot.docs});
+
+  return returnList;
+}
