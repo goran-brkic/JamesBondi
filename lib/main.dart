@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/rendering.dart';
 import 'signup.dart';
 import 'signin.dart';
 
@@ -60,21 +61,154 @@ class _AppState extends State<App> {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
-        title: 'Main Screen',
+        title: 'Main',
         home: Scaffold(
-          appBar: AppBar(
-            title: Text('James Bondi title'),
+            body: Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(width: 10.0, color: Color(0xFFFFFFFFFF)),
+              left: BorderSide(width: 5.0, color: Color(0xFFFFFFFFFF)),
+              right: BorderSide(width: 5.0, color: Color(0xFFFF000000)),
+              bottom: BorderSide(width: 10.0, color: Color(0xFFFF000000)),
+            ),
           ),
-          body: (Center(
-            child: Text('James Bondi'),
-          )),
-        ));
+          padding: const EdgeInsets.only(
+            left: 10.0,
+            top: 300.0,
+          ),
+          child: Column(
+            children: [
+              Center(
+                child: Container(
+                  color: Colors.blueGrey[1000],
+                  child: Container(
+                    child: Text("Mail"),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: 250.0,
+                height: 30.0,
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.purple[800], width: 3.0)),
+                      hintText: 'mail'),
+                  textAlignVertical: TextAlignVertical.bottom,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+
+              //drugi dio
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 30.0,
+                  ),
+                  color: Colors.blueGrey[1000],
+                  child: Container(
+                    child: Text("Username"),
+                  ),
+                ),
+              ),
+              Container(
+                width: 250.0,
+                height: 30.0,
+                child: new TextField(
+                    /*
+                    decoration: new InputDecoration(
+                        border: new OutlineInputBorder(
+                            borderSide: new BorderSide(
+                                color: Colors.purple[600], width: 5.0)),
+                        hintText: 'username',
+                        labelText: 'username',
+                        prefixText: ' ',
+                        suffixText: ' je gay'),
+
+                        */
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFF2F2F2),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(width: 1, color: Colors.red),
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(width: 1, color: Colors.orange),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(width: 1, color: Colors.green),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(
+                            width: 1,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide:
+                              BorderSide(width: 5, color: Colors.purple[800])),
+                      hintText: "username",
+                      hintStyle:
+                          TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
+                      errorText: 'error',
+                    ),
+                    textAlignVertical: TextAlignVertical.bottom,
+                    textAlign: TextAlign.left),
+              ),
+
+              //treci dio
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    top: 30.0,
+                  ),
+                  color: Colors.blueGrey[1000],
+                  child: Container(
+                    child: Text("Password"),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: 250.0,
+                height: 30.0,
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    alignLabelWithHint: true,
+                  ),
+                  textAlignVertical: TextAlignVertical.bottom,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            ],
+          ),
+        )));
 
     return materialApp;
   }
+}
+
+BoxDecoration myBoxDecoration() {
+  return BoxDecoration(
+    border: Border.all(
+      color: Colors.purple[800],
+      width: 5.0,
+    ),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
