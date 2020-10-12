@@ -62,14 +62,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Auth Demo',
+    var materialApp = MaterialApp(
+        title: 'Main Screen',
+        /*
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'James Bondi'),
-    );
+      */
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('James Bondi title'),
+          ),
+          body: (Center(
+            child: Text('James Bondi'),
+          )),
+        ));
+
+    return materialApp;
   }
 }
 
@@ -134,6 +145,35 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key key}) : super(key: key);
+
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+double _volume = 0.0; //volume
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.volume_up),
+          tooltip: 'Increase by one volume',
+          onPressed: () {
+            setState(() {
+              _volume += 1;
+            });
+          },
+        ),
+        Text('Volume : $_volume')
+      ],
     );
   }
 }
