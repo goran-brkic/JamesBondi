@@ -64,13 +64,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
         title: 'Main Screen',
-        /*
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'James Bondi'),
-      */
         home: Scaffold(
           appBar: AppBar(
             title: Text('James Bondi title'),
@@ -159,6 +152,32 @@ class MyStatefulWidget extends StatefulWidget {
 double _volume = 0.0; //volume
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.volume_up),
+          tooltip: 'Increase by one volume',
+          onPressed: () {
+            setState(() {
+              _volume += 1;
+            });
+          },
+        ),
+        Text('Volume : $_volume')
+      ],
+    );
+  }
+}
+
+class MyStatefulWdget extends StatefulWidget {
+  @override
+  _MyStatefulWdgetState createState() => _MyStatefulWdgetState();
+}
+
+class _MyStatefulWdgetState extends State<MyStatefulWdget> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
