@@ -68,6 +68,7 @@ class MyApp extends StatelessWidget {
         title: 'Main',
         home: Scaffold(
             body: Container(
+          /*
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(width: 10.0, color: Color(0xFFFFFFFFFF)),
@@ -76,6 +77,8 @@ class MyApp extends StatelessWidget {
               bottom: BorderSide(width: 10.0, color: Color(0xFFFF000000)),
             ),
           ),
+          */
+          color: Color(0xEEEEEE),
           padding: const EdgeInsets.only(
             left: 10.0,
             top: 300.0,
@@ -84,7 +87,7 @@ class MyApp extends StatelessWidget {
             children: [
               Center(
                 child: Container(
-                  color: Colors.blueGrey[1000],
+                  //color: Colors.blueGrey[100],
                   child: Container(
                     child: Text("Mail"),
                   ),
@@ -95,14 +98,38 @@ class MyApp extends StatelessWidget {
                 width: 250.0,
                 height: 30.0,
                 child: TextField(
-                  decoration: InputDecoration(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xF3F3F3),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
+                      ),
                       border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
                           borderSide: BorderSide(
-                              color: Colors.purple[800], width: 3.0)),
-                      hintText: 'mail'),
-                  textAlignVertical: TextAlignVertical.bottom,
-                  textAlign: TextAlign.left,
-                ),
+                            width: 1,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide: BorderSide(width: 5, color: Colors.red)),
+                      hintText: "mail",
+                      hintStyle:
+                          TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
+                      //errorText: 'username is already taken',
+                    ),
+                    textAlignVertical: TextAlignVertical.bottom,
+                    textAlign: TextAlign.left),
               ),
 
               //drugi dio
@@ -111,7 +138,7 @@ class MyApp extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: 30.0,
                   ),
-                  color: Colors.blueGrey[1000],
+                  //color: Colors.blueGrey[1000],
                   child: Container(
                     child: Text("Username"),
                   ),
@@ -121,49 +148,35 @@ class MyApp extends StatelessWidget {
                 width: 250.0,
                 height: 30.0,
                 child: new TextField(
-                    /*
-                    decoration: new InputDecoration(
-                        border: new OutlineInputBorder(
-                            borderSide: new BorderSide(
-                                color: Colors.purple[600], width: 5.0)),
-                        hintText: 'username',
-                        labelText: 'username',
-                        prefixText: ' ',
-                        suffixText: ' je gay'),
-
-                        */
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color(0xFFF2F2F2),
+                      fillColor: Color(0xF3F3F3),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 1, color: Colors.red),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 1, color: Colors.orange),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 1, color: Colors.green),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
                       ),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
                           borderSide: BorderSide(
                             width: 1,
                           )),
                       errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
                           borderSide:
                               BorderSide(width: 1, color: Colors.black)),
                       focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide:
-                              BorderSide(width: 5, color: Colors.purple[800])),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide: BorderSide(width: 5, color: Colors.red)),
                       hintText: "username",
                       hintStyle:
                           TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                      errorText: 'error',
+                      //errorText: 'username is already taken',
                     ),
                     textAlignVertical: TextAlignVertical.bottom,
                     textAlign: TextAlign.left),
@@ -175,7 +188,7 @@ class MyApp extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: 30.0,
                   ),
-                  color: Colors.blueGrey[1000],
+                  //color: Colors.blueGrey[1000],
                   child: Container(
                     child: Text("Password"),
                   ),
@@ -185,15 +198,83 @@ class MyApp extends StatelessWidget {
               Container(
                 width: 250.0,
                 height: 30.0,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    alignLabelWithHint: true,
-                  ),
-                  textAlignVertical: TextAlignVertical.bottom,
-                  textAlign: TextAlign.left,
-                ),
+                child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xF3F3F3),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide:
+                            BorderSide(width: 1, color: Colors.purple[800]),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide: BorderSide(
+                            width: 1,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide:
+                              BorderSide(width: 1, color: Colors.black)),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderSide: BorderSide(width: 5, color: Colors.red)),
+                      hintText: "password",
+                      hintStyle:
+                          TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
+                      //errorText: 'username is already taken',
+                    ),
+                    textAlignVertical: TextAlignVertical.bottom,
+                    textAlign: TextAlign.left),
               ),
+
+              Container(
+                  width: 200.0,
+                  height: 100.0,
+                  padding: const EdgeInsets.only(
+                    top: 50.0,
+                  ),
+                  child: new OutlineButton(
+                      //
+                      //treba "zaokruzit" button
+                      //
+                      /*
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(18.0),
+                        ),
+                      ),
+                      */
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () {},
+                      textColor: Colors.white,
+                      padding: const EdgeInsets.all(0.0),
+                      child: Container(
+                          width: 200.0,
+                          height: 50.0,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: <Color>[
+                                Color(0xFF8E24AA),
+                                Color(0xFFAB47BC),
+                                Color(0xFFBA68C8),
+                              ],
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(5.0),
+                          child: Center(
+                            child: const Text(
+                              'Sign up',
+                              style: TextStyle(fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
+                          ))))
             ],
           ),
         )));
