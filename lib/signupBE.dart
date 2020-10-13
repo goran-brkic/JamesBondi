@@ -13,8 +13,8 @@ void addLecturer(final String username, final String mail, final DateTime dob,
         'iban': iban,
         'lecturer': true
       })
-      .then((value) => print("User (lecturer) Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+      .then((value) => print('User (lecturer) Added'))
+      .catchError((error) => print('Failed to add user: $error'));
 }
 
 void addStudent(
@@ -39,17 +39,30 @@ void addStudent(
         'secCode': secCode,
         'lecturer': false
       })
-      .then((value) => print("User (student) Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+      .then((value) => print('User (student) Added'))
+      .catchError((error) => print('Failed to add user: $error'));
 }
 
-List getUserInfo(String inputUsername) {
-  List returnList;
-  FirebaseFirestore.instance
+Future<Map<String, dynamic>> getUserInfo(String inputUsername) async {
+  Map<String, dynamic> returnList = new Map();
+  return FirebaseFirestore.instance
       .collection('users')
       .where('username', isEqualTo: inputUsername)
       .get()
-      .then((QuerySnapshot querySnapshot) => {returnList = querySnapshot.docs});
-
-  return returnList;
+      .then((QuerySnapshot querySnapshot) => {
+            querySnapshot.docs.forEach((doc) {
+              print(doc['mail']);
+              returnList['dob'] = doc['dob'];
+              returnList['firstName'] = doc['firstName'];
+              returnList['iban'] = doc['iban'];
+              returnList['lastName'] = doc['lastName'];
+              returnList['lecturer'] = doc['lecturer'];
+              returnList['mail'] = doc['mail'];
+              returnList['username'] = doc['username'];
+              print('PRINTAM ' + returnList['firstName']);
+              //returnList = new Map<String, dynamic>.from(doc.data());
+            })
+          })
+      .then((value) => returnList);
+  //return returnList;
 }

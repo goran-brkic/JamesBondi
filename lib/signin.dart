@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signup.dart';
+import 'signupBE.dart';
 
 class EmailPasswordForm extends StatefulWidget {
   @override
@@ -51,6 +52,12 @@ class EmailPasswordFormState extends State<EmailPasswordForm> {
             child: RaisedButton(
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
+                  /*
+                  getUserInfo("test").then((value) =>
+                      print('CEKAM ' + value['firstName'].toString()));
+                      */
+                  Map<String, dynamic> printaj = await getUserInfo('test');
+                  print(printaj);
                   _signInWithEmailAndPassword();
                 }
               },

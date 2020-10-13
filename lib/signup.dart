@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'signupBE.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
@@ -28,6 +29,7 @@ class RegisterEmailSectionState extends State<RegisterEmailSection> {
         _success = true;
         _userEmail = user.email;
         user.sendEmailVerification();
+        addLecturer('test', user.email, null, 'Testno', 'Ime', 'Moneyyyy');
       });
     } else {
       setState(() {
