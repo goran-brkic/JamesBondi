@@ -68,16 +68,6 @@ class MyApp extends StatelessWidget {
         title: 'Main',
         home: Scaffold(
             body: Container(
-          /*
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(width: 10.0, color: Color(0xFFFFFFFFFF)),
-              left: BorderSide(width: 5.0, color: Color(0xFFFFFFFFFF)),
-              right: BorderSide(width: 5.0, color: Color(0xFFFF000000)),
-              bottom: BorderSide(width: 10.0, color: Color(0xFFFF000000)),
-            ),
-          ),
-          */
           color: Color(0xEEEEEE),
           padding: const EdgeInsets.only(
             left: 10.0,
@@ -232,29 +222,18 @@ class MyApp extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.bottom,
                     textAlign: TextAlign.left),
               ),
-
+              //button
               Container(
-                  width: 200.0,
-                  height: 100.0,
                   padding: const EdgeInsets.only(
                     top: 50.0,
                   ),
-                  child: new OutlineButton(
-                      //
-                      //treba "zaokruzit" button
-                      //
-                      /*
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(18.0),
-                        ),
-                      ),
-                      */
+                  child: OutlineButton(
                       shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
+                        borderRadius: new BorderRadius.circular(30.0),
+                      ),
                       onPressed: () {},
                       textColor: Colors.white,
-                      padding: const EdgeInsets.all(0.0),
+                      //padding: const EdgeInsets.all(0.0),
                       child: Container(
                           width: 200.0,
                           height: 50.0,
