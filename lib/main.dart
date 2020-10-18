@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
+
 import 'Screens/Signup/signup.dart';
-import 'Screens/Signin/signin.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,8 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Welcome',
       theme: ThemeData(
-        primaryColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+        backgroundColor: bgColor,
+        scaffoldBackgroundColor: bgColor,
       ),
 //      home: WelcomeScreen(),
       home: SignUpSection(),

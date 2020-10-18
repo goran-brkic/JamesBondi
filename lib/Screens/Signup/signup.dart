@@ -473,7 +473,7 @@ class SignUpState extends State<SignUpSection> {
                       ),
                     ]),
                   ],
-                )
+                ),
               ],
             )));
   }
