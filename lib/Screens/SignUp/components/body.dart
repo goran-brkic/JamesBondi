@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
-import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
 import '../../../components/addUser.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../components/uploadImage.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
@@ -38,6 +41,7 @@ class _Body extends State<Body> {
   final TextEditingController _secCodeController = TextEditingController();
   final TextEditingController _ibanController = TextEditingController();
   final TextEditingController _aboutYController = TextEditingController();
+  String imageURL;
   bool _success;
   String _userEmail;
 
@@ -60,7 +64,8 @@ class _Body extends State<Body> {
               _firstNameController.text,
               _lastNameController.text,
               _ibanController.text,
-              _aboutYController.text);
+              _aboutYController.text,
+              imageURL);
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
         } else {
@@ -89,6 +94,22 @@ class _Body extends State<Body> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  File _image;
+  String _uploadedFileURL;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
   @override
@@ -370,7 +391,11 @@ class _Body extends State<Body> {
                         border: Border.all(color: customPurple),
                         borderRadius: BorderRadius.circular(100)),
                     child: RawMaterialButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await getImage();
+                        imageURL = await uploadFile(_image);
+                        print(imageURL);
+                      },
                       elevation: 0,
                       fillColor: Color(0xFFF3F3F3),
                       child: Icon(

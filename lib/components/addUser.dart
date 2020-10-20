@@ -6,7 +6,8 @@ void addLecturer(
     final String firstName,
     final String lastName,
     final String iban,
-    final String aboutY) {
+    final String aboutY,
+    final String image) {
   FirebaseFirestore.instance
       .collection('users')
       .add({
@@ -19,7 +20,8 @@ void addLecturer(
         'cardExp': null,
         'secCode': null,
         'lecturer': true,
-        'about': aboutY
+        'about': aboutY,
+        'image': image
       })
       .then((value) => print('User (lecturer) Added'))
       .catchError((error) => print('Failed to add user: $error'));

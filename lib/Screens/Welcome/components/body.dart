@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
-import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
-import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/Screens/SignUp/signup.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../components/checkAvailable.dart';
 
 class Body extends StatefulWidget {
