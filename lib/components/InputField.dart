@@ -5,7 +5,9 @@ class InputField extends StatelessWidget {
   final String title;
   final double topValue;
   final TextEditingController controller;
-  const InputField({Key key, this.title, this.topValue, this.controller})
+  final bool enabledField;
+  const InputField(
+      {Key key, this.title, this.topValue, this.controller, this.enabledField})
       : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class InputField extends StatelessWidget {
                 border: Border.all(color: customPurple),
               ),
               child: TextFormField(
+                enabled: enabledField,
                 controller: controller,
                 obscureText: (title == "Password") ? true : false,
                 decoration: InputDecoration(

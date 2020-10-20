@@ -5,15 +5,28 @@ import 'package:jamesbondi/constants.dart';
 import 'components/body.dart';
 
 class SignUpScreen extends StatelessWidget {
+  final String emailAddressInput;
+  final String usernameInput;
+
+  SignUpScreen(
+      {@required this.emailAddressInput, @required this.usernameInput});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SignUpStatefull(),
+      body: SignUpStatefull(
+          emailAddressInput: this.emailAddressInput,
+          usernameInput: this.usernameInput),
     );
   }
 }
 
 class SignUpStatefull extends StatefulWidget {
+  final String emailAddressInput;
+  final String usernameInput;
+
+  SignUpStatefull(
+      {@required this.emailAddressInput, @required this.usernameInput});
   @override
   _SignUpStatefull createState() => _SignUpStatefull();
 }
@@ -22,7 +35,9 @@ class _SignUpStatefull extends State<SignUpStatefull> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(),
+      body: Body(
+          emailAddressInput: widget.emailAddressInput,
+          usernameInput: widget.usernameInput),
     );
   }
 }
