@@ -1,18 +1,36 @@
 \chapter{Opis projektnog zadatka}
 		
-		\textbf{\textit{dio 1. revizije}}\\
+		\text Cilj ovog projekta jest razviti platformu pomoću koje će se moći održavati online tečajevi. U ovo doba pandemije i izolacija, mnogi žele korisnije provesti svoje vrijeme za ekranom te naučiti neku novu vještinu. Ova aplikacija nudit će upravo to - mogućnost pohađanja tečajeva u raznim kategorijama (npr. IT, kuhanje, uređenje doma i vrta…) Tečajevi će obuhvaćati unaprijed pripremljene materijale poput skripti za polaznike, videosnimki i prezentacija, a unutar aplikacije postojat će i opcija konzultacija uživo putem video poziva.
 		
-		\textit{Na osnovi projektnog zadatka detaljno opisati korisničke zahtjeve. Što jasnije opisati cilj projektnog zadatka, razraditi problematiku zadatka, dodati nove aspekte problema i potencijalnih rješenja. Očekuje se minimalno 3, a poželjno 4-5 stranica opisa.	Teme koje treba dodatno razraditi u ovom poglavlju su:}
+		Pri pokretanju aplikacije, korisniku će se prikazati njen početni zaslon na kojem će moći odabrati opciju prijave s postojećim korisničkim računom ili registracije s novim korisničkim računom. Svi korisnici moraju biti registrirani kako bi mogli koristiti aplikaciju. 
+		
+		Neregistriranom korisniku nudi se opcija kreiranja korisničkog računa predavača ili polaznika. Jedni i drugi unose korisničko ime i lozinku za prijavu u sustav.
+		
+		Ukoliko se odabere opcija polaznika, korisnik mora unijeti:
 		\begin{packed_item}
-			\item \textit{potencijalna korist ovog projekta}
-			\item \textit{postojeća slična rješenja (istražiti i ukratko opisati razlike u odnosu na zadani zadatak). Dodajte slike koja predočavaju slična rješenja.}
-			\item \textit{skup korisnika koji bi mogao biti zainteresiran za ostvareno rješenje.}
-			\item \textit{mogućnost prilagodbe rješenja }
-			\item \textit{opseg projektnog zadatka}
-			\item \textit{moguće nadogradnje projektnog zadatka}
+			\item ime
+			\item prezime
+			\item e-mail
+			\item broj kartice za naplatu
 		\end{packed_item}
-		
-		\textit{Za pomoć pogledati reference navedene u poglavlju „Popis literature“, a po potrebi konzultirati sadržaj na internetu koji nudi dobre smjernice u tom pogledu.}
+	
+	Ako se korisnik želi registrirati kao predavač, potrebni podaci su:
+		\begin{packed_item}
+			\item ime
+			\item prezime
+			\item e-mail
+			\item IBAN
+			\item \textit{opcionalno:} fotografija i kratka biografija
+		\end{packed_item}
+	Korisnik prijavom daje suglasnost da \textit{Bond\&Learn} prikuplja, pohranjuje, elektronički obrađuje osobne podatke za potrebe registracije i korištenja aplikacije uz poštivanje odredbi Uredbe EU o zaštiti pojedinaca u vezi s obradom osobnih podataka i o slobodnom kretanju takvih podataka te Zakona o zaštiti osobnih podataka.
+	
+	Svi registrirani korisnici mogu pregledavati i mijenjati svoje osobne podatke.
+	
+	Korisnici registrirani kao \textbf{predavač} mogu stvoriti tečaj te ga nakon toga i modificirati (ukloniti). Tečaj se stvara tako da se najprije odabere jedna od ponuđenih kategorija: IT, kuhanje, uređenje doma i vrta, uljepšavanje ili razno. Nakon toga, odabire se razina zahtjevnosti tečaja koja može biti početnička, srednja ili napredna. Zatim se unosi naziv tečaja, kratki opis po želji (maksimalni kapacitet 1000 znakova) i cijena tečaja te se postavljaju materijali za učenje (PDF format do ukupno 50MB) koje je kasnije moguće dodatno uređivati. Korisnici koji prilikom registracije odaberu opciju predavača također imaju mogućnost pregledavanja polaznika svojih tečajeva te praćenja financija na pojedinom tečaju. Predavači mogu pregledavati recenzije na svojim tečajevima i odgovarati na njih.
+	
+	Korisnici koji odaberu registraciju kao \textbf{polaznik} tečaja mogu pregledavati dostupne tečajeve i njihove recenzije. Tečajeve mogu pretraživati prema kategorijama i ključnim riječima u samom nazivu tečaja. Kada pronađu tečaj koji odgovara njihovim željama i potrebama, mogu ga i upisati te nakon uspješne naplate, pristupiti svim materijalima koje je predavač postavio dostupnima za taj tečaj. Polaznicima tečajeva dana je mogućnost slanja zahtjeva za konzultacijama, koje predavač može potvrditi i započeti ili ih otkazati. Svoje recenzije o upisanim tečajevima, polaznici mogu objaviti kako bi pomogli drugim korisnicima koji razmišljaju o upisu tog tečaja.
+	
+	Treći tip korisnika jest \textbf{administrator} sustava koji ima najveće ovlasti. On ima pristup bazi podataka sa podacima o svim registriranim korisnicima i može ih brisati, te ima pristup bazi podataka sa informacijama o tečajevima i njihovim materijalima koje također može brisati (i materijale i tečajeve).
 		\eject
 		
 
