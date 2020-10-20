@@ -42,15 +42,41 @@ class Body extends StatelessWidget {
             InputField(title: "Username", topValue: 0.62),
             InputField(title: "Password", topValue: 0.73),
             Positioned(
-              top: size.height * 0.83,
-              child: RoundedButton(
-                text: "Sign in",
-                press: () {},
-              ),
-            ),
+                top: size.height * 0.84,
+                child: FlatButton(
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10, horizontal: size.width * 0.07),
+                    onPressed: () {},
+                    color: customPurple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      "Sign up",
+                      style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 20,
+                          color: Colors.white),
+                    ))),
           ],
         ),
       ),
     );
+  }
+}
+
+class ButtonPress extends StatefulWidget {
+  ButtonPress({Key key}) : super(key: key);
+  @override
+  _ButtonPress createState() => _ButtonPress();
+}
+
+class _ButtonPress extends State<ButtonPress> {
+  void onPressed() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector();
   }
 }

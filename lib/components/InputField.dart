@@ -51,7 +51,7 @@ class InputField extends StatelessWidget {
                 fontFamily: 'RoundLight',
                 fontWeight: FontWeight.normal,
                 fontSize: 15,
-                color: customPurple,
+                color: Colors.grey[800],
               ),
             ),
           ),

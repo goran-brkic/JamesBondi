@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
-import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
@@ -32,7 +30,7 @@ class _Body extends State<Body> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: size.height * 1.5,
+          height: size.height * 1.1,
           width: double.infinity,
           child: Stack(
             alignment: Alignment.center,
@@ -62,26 +60,10 @@ class _Body extends State<Body> {
                 child: Row(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'Are you a lecturer or student?',
-                        style: TextStyle(
-                          fontFamily: 'RoundLight',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 15,
-                          color: customPurple,
-                        ),
-                      ),
+                      padding: EdgeInsets.all(1),
+                      child: Text('Are you a lecturer or student?'),
                     ),
-                    Text(
-                      'Lecturer',
-                      style: TextStyle(
-                        fontFamily: 'RoundLight',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15,
-                        color: Colors.grey[800],
-                      ),
-                    ),
+                    Text('Lecturer'),
                     Radio(
                         value: Person.lecturer,
                         groupValue: _radioValue1,
@@ -91,15 +73,7 @@ class _Body extends State<Body> {
                             _radioValue1 = value;
                           });
                         }),
-                    Text(
-                      'Student',
-                      style: TextStyle(
-                        fontFamily: 'RoundLight',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15,
-                        color: Colors.grey[800],
-                      ),
-                    ),
+                    Text('Student'),
                     Radio(
                         value: Person.student,
                         groupValue: _radioValue1,
@@ -158,7 +132,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       fontSize: 15,
-                      color: Colors.grey[800],
+                      color: customPurple,
                     ),
                   ),
                 ),
@@ -201,87 +175,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       fontSize: 15,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: size.height * 0.87,
-                  child: FlatButton(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10, horizontal: size.width * 0.07),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => WelcomeScreen()));
-                      },
                       color: customPurple,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Text(
-                        "Sign up",
-                        style: TextStyle(
-                            fontFamily: 'RoundLight',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
-                            color: Colors.white),
-                      )),
-                ),
-              ],
-              if (lecturer) ...[
-                InputField(title: "IBAN", topValue: 0.85),
-                Positioned(
-                  left: size.width * 0.12,
-                  top: size.height * (0.97 - 0.035),
-                  child: Text(
-                    "Image",
-                    style: TextStyle(
-                      fontFamily: 'RoundLight',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: size.height * 1.2,
-                  left: size.width * 0.12,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                    height: size.height * 0.25,
-                    width: size.width * 0.77,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF3F3F3),
-                      borderRadius: BorderRadius.circular(29),
-                      border: Border.all(color: customPurple),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 0,
-                          vertical: size.height * 0.014,
-                        ),
-                      ),
-                      style: TextStyle(
-                        fontFamily: 'RoundLight',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 17,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: size.width * 0.12,
-                  top: size.height * (1.2 - 0.035),
-                  child: Text(
-                    "About yourself",
-                    style: TextStyle(
-                      fontFamily: 'RoundLight',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15,
-                      color: Colors.grey[800],
                     ),
                   ),
                 ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
+import 'package:jamesbondi/Screens/SignUp/signup.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -33,10 +36,25 @@ class Body extends StatelessWidget {
             InputField(title: "Password", topValue: 0.79),
             Positioned(
               top: size.height * 0.87,
-              child: RoundedButton(
-                text: "Sign up",
-                press: () {},
-              ),
+              child: FlatButton(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 10, horizontal: size.width * 0.07),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SignUpScreen()));
+                  },
+                  color: customPurple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Text(
+                    "Sign up",
+                    style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 20,
+                        color: Colors.white),
+                  )),
             ),
             Positioned(
               top: size.height * 0.95,
@@ -53,14 +71,20 @@ class Body extends StatelessWidget {
             Positioned(
               top: size.height * 0.95,
               left: size.width * 0.63,
-              child: Text(
-                "Sign in",
-                style: TextStyle(
-                    fontFamily: 'RoundLight',
-                    fontWeight: FontWeight.normal,
-                    decoration: TextDecoration.underline,
-                    fontSize: 12,
-                    color: customPurple),
+              child: new GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                },
+                child: Text(
+                  "Sign in",
+                  style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.underline,
+                      fontSize: 12,
+                      color: customPurple),
+                ),
               ),
             ),
           ],
