@@ -20,7 +20,7 @@ class InputField extends StatelessWidget {
             top: size.height * topValue,
             left: size.width * 0.12,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
               height: size.height * 0.06,
               width: size.width * 0.77,
               decoration: BoxDecoration(
@@ -36,7 +36,7 @@ class InputField extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'RoundLight',
                   fontWeight: FontWeight.normal,
-                  fontSize: 15,
+                  fontSize: 17,
                   color: Colors.black87,
                 ),
               ),

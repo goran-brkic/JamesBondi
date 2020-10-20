@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: bgColor,
       ),
 //      home: WelcomeScreen(),
-      home: SignUpSection(),
+      home: WelcomeScreen(),
     );
   }
 }

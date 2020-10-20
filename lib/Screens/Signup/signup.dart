@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/components/InputField.dart';
+import 'package:jamesbondi/constants.dart';
 import 'components/body.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
@@ -25,22 +27,38 @@ class SignUpState extends State<SignUpSection> {
   String secCode;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Padding(
-            padding: EdgeInsets.all(10),
-            child: ListView(
-              children: <Widget>[
-                Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Create An Account',
-                      style: TextStyle(
-                          color: Colors.purple,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30),
-                    )),
-                Row(
+      body: SingleChildScrollView(
+        child: Container(
+          height: size.height * 1.1,
+          width: double.infinity,
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Positioned(
+                top: size.height * 0.07,
+                child: Text(
+                  'Create An Account',
+                  style: TextStyle(
+                    // decoration: TextDecoration.underline,
+                    fontFamily: 'Quiglet',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                    color: customPurple,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: size.height * 0.12,
+                child: Image.asset(
+                  'assets/images/Spacer_createAcc.png',
+                  width: size.width * 0.7,
+                ),
+              ),
+              Positioned(
+                top: size.height * 0.13,
+                child: Row(
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.all(1),
@@ -52,6 +70,7 @@ class SignUpState extends State<SignUpSection> {
                         groupValue: _radioValue1,
                         onChanged: (Person value) {
                           setState(() {
+                            lecturer = true;
                             _radioValue1 = value;
                           });
                         }),
@@ -61,420 +80,111 @@ class SignUpState extends State<SignUpSection> {
                         groupValue: _radioValue1,
                         onChanged: (Person value) {
                           setState(() {
+                            lecturer = false;
                             _radioValue1 = value;
                           });
                         }),
                   ],
                 ),
-                Text(
-                  'First Name',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                ),
-                Container(
-                  width: 250.0,
-                  height: 30.0,
-                  child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xF3F3F3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              width: 1,
-                            )),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 5, color: Colors.red)),
-                        hintText: "first name",
-                        hintStyle:
-                            TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                        //errorText: 'username is already taken',
-                      ),
-                      textAlignVertical: TextAlignVertical.bottom,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        setState(() {
-                          firstName = value;
-                        });
-                      }),
-                ),
-                Text(
-                  'Last Name',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                ),
-                Container(
-                    width: 250.0,
-                    height: 30.0,
+              ),
+              InputField(title: "First name", topValue: 0.25),
+              InputField(title: "Last name", topValue: 0.37),
+              InputField(title: "Email", topValue: 0.49),
+              InputField(title: "Username", topValue: 0.61),
+              InputField(title: "Password", topValue: 0.73),
+              if (!lecturer) ...[
+                InputField(title: "Credit card", topValue: 0.85),
+                Positioned(
+                  top: size.height * 0.97,
+                  left: size.width * 0.12,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                    height: size.height * 0.06,
+                    width: size.width * 0.26,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFF3F3F3),
+                      borderRadius: BorderRadius.circular(29),
+                      border: Border.all(color: customPurple),
+                    ),
                     child: TextField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xF3F3F3),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.purple[800]),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.purple[800]),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              borderSide: BorderSide(
-                                width: 1,
-                              )),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.black)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              borderSide:
-                                  BorderSide(width: 5, color: Colors.red)),
-                          hintText: "last name",
-                          hintStyle:
-                              TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                          //errorText: 'username is already taken',
-                        ),
-                        textAlignVertical: TextAlignVertical.bottom,
-                        textAlign: TextAlign.left,
-                        onChanged: (value) {
-                          setState(() {
-                            lastName = value;
-                          });
-                        })),
-                Text(
-                  'Email',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                ),
-                Container(
-                  width: 250.0,
-                  height: 30.0,
-                  child: TextField(
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xF3F3F3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
+                        border: InputBorder.none,
+                        hintText: "MM/YY",
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 0,
+                          vertical: size.height * 0.014,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              width: 1,
-                            )),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 5, color: Colors.red)),
-                        hintText: "email",
-                        hintStyle:
-                            TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                        //errorText: 'username is already taken',
                       ),
-                      textAlignVertical: TextAlignVertical.bottom,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        setState(() {
-                          email = value;
-                        });
-                      }),
+                      style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 17,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
                 ),
-                Text(
-                  'Username',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
+                Positioned(
+                  left: size.width * 0.12,
+                  top: size.height * (0.97 - 0.035),
+                  child: Text(
+                    "Expiration date",
+                    style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 15,
+                      color: customPurple,
+                    ),
+                  ),
                 ),
-                Container(
-                  width: 250.0,
-                  height: 30.0,
-                  child: TextField(
+                Positioned(
+                  top: size.height * 0.97,
+                  left: size.width * 0.42,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                    height: size.height * 0.06,
+                    width: size.width * 0.26,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFF3F3F3),
+                      borderRadius: BorderRadius.circular(29),
+                      border: Border.all(color: customPurple),
+                    ),
+                    child: TextField(
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xF3F3F3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
+                        border: InputBorder.none,
+                        hintText: "XXX",
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 0,
+                          vertical: size.height * 0.014,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              width: 1,
-                            )),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 5, color: Colors.red)),
-                        hintText: "username",
-                        hintStyle:
-                            TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                        //errorText: 'username is already taken',
                       ),
-                      textAlignVertical: TextAlignVertical.bottom,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        setState(() {
-                          username = value;
-                        });
-                      }),
-                ),
-                Text(
-                  'Password',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                ),
-                Container(
-                  width: 250.0,
-                  height: 30.0,
-                  child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xF3F3F3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              width: 1,
-                            )),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 5, color: Colors.red)),
-                        hintText: "password",
-                        hintStyle:
-                            TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                        //errorText: 'username is already taken',
+                      style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 17,
+                        color: Colors.black87,
                       ),
-                      textAlignVertical: TextAlignVertical.bottom,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        setState(() {
-                          password = value;
-                        });
-                      }),
+                    ),
+                  ),
                 ),
-                Text(
-                  'Credit Card',
-                  style: TextStyle(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                ),
-                Container(
-                  width: 250.0,
-                  height: 30.0,
-                  child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xF3F3F3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.purple[800]),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              width: 1,
-                            )),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.black)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide:
-                                BorderSide(width: 5, color: Colors.red)),
-                        hintText: "credit card",
-                        hintStyle:
-                            TextStyle(fontSize: 16, color: Color(0xFFB3B1B1)),
-                        //errorText: 'username is already taken',
-                      ),
-                      textAlignVertical: TextAlignVertical.bottom,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {
-                        setState(() {
-                          creditcard = value;
-                        });
-                      }),
-                ),
-                Row(
-                  children: <Widget>[
-                    Column(children: <Widget>[
-                      Text('Expiration date'),
-                      Container(
-                        width: 100.0,
-                        height: 30.0,
-                        child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xF3F3F3),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.purple[800]),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.purple[800]),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide: BorderSide(
-                                    width: 1,
-                                  )),
-                              errorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide: BorderSide(
-                                      width: 1, color: Colors.black)),
-                              focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide:
-                                      BorderSide(width: 5, color: Colors.red)),
-                              hintText: "MM/YY",
-                              hintStyle: TextStyle(
-                                  fontSize: 16, color: Color(0xFFB3B1B1)),
-                              //errorText: 'username is already taken',
-                            ),
-                            textAlignVertical: TextAlignVertical.bottom,
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {
-                              setState(() {
-                                secCode = value; // promjenit OVO
-                              });
-                            }),
-                      ),
-                    ]),
-                    Column(children: <Widget>[
-                      Text('Security code'),
-                      Container(
-                        width: 100.0,
-                        height: 30.0,
-                        child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xF3F3F3),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.purple[800]),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.purple[800]),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide: BorderSide(
-                                    width: 1,
-                                  )),
-                              errorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide: BorderSide(
-                                      width: 1, color: Colors.black)),
-                              focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  borderSide:
-                                      BorderSide(width: 5, color: Colors.red)),
-                              hintText: "security code",
-                              hintStyle: TextStyle(
-                                  fontSize: 16, color: Color(0xFFB3B1B1)),
-                              //errorText: 'username is already taken',
-                            ),
-                            textAlignVertical: TextAlignVertical.bottom,
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {
-                              setState(() {
-                                secCode = value;
-                              });
-                            }),
-                      ),
-                    ]),
-                  ],
+                Positioned(
+                  left: size.width * 0.42,
+                  top: size.height * (0.97 - 0.035),
+                  child: Text(
+                    "Security code",
+                    style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 15,
+                      color: customPurple,
+                    ),
+                  ),
                 ),
               ],
-            )));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
