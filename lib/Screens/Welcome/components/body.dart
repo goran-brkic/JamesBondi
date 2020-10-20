@@ -38,10 +38,7 @@ class Body extends StatelessWidget {
               child: FlatButton(
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SignInScreen()));
-                  },
+                  onPressed: () {},
                   color: Colors.purple,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -70,14 +67,20 @@ class Body extends StatelessWidget {
             Positioned(
               top: size.height * 0.95,
               left: size.width * 0.63,
-              child: Text(
-                "Sign in",
-                style: TextStyle(
-                    fontFamily: 'RoundLight',
-                    fontWeight: FontWeight.normal,
-                    decoration: TextDecoration.underline,
-                    fontSize: 12,
-                    color: customPurple),
+              child: new GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                },
+                child: Text(
+                  "Sign in",
+                  style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.underline,
+                      fontSize: 12,
+                      color: customPurple),
+                ),
               ),
             ),
           ],
