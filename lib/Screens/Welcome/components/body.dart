@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -33,10 +35,25 @@ class Body extends StatelessWidget {
             InputField(title: "Password", topValue: 0.79),
             Positioned(
               top: size.height * 0.87,
-              child: RoundedButton(
-                text: "Sign up",
-                press: () {},
-              ),
+              child: FlatButton(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 10, horizontal: size.width * 0.07),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SignInScreen()));
+                  },
+                  color: Colors.purple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Text(
+                    "Sign up",
+                    style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 20,
+                        color: Colors.white),
+                  )),
             ),
             Positioned(
               top: size.height * 0.95,

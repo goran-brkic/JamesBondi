@@ -2,16 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/constants.dart';
 
 class RoundedButton extends StatelessWidget {
-  final String text;
-  final Function press;
-  final Color color, textColor;
-  const RoundedButton({
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: RoundedButtonStateful(),
+    );
+  }
+}
+
+class RoundedButtonStateful extends StatefulWidget {
+  String text;
+  @override
+  _RoundedButton createState() => _RoundedButton(text: text);
+}
+
+class _RoundedButton extends State<RoundedButtonStateful> {
+  String text;
+  Function press;
+  Color color, textColor;
+  Key key;
+  _RoundedButton({
     Key key,
-    this.text,
+    @required String text,
     this.press,
     this.color = customPurple,
     this.textColor = Colors.white,
-  }) : super(key: key);
+  })  : this.key = key,
+        this.text = text;
 
   @override
   Widget build(BuildContext context) {

@@ -26,7 +26,7 @@ class InputField extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Color(0xFFF3F3F3),
                 borderRadius: BorderRadius.circular(29),
-                border: Border.all(color: customPurple),
+                border: Border.all(color: Colors.purple),
               ),
               child: TextField(
                 obscureText: (title == "Password") ? true : false,
@@ -51,7 +51,7 @@ class InputField extends StatelessWidget {
                 fontFamily: 'RoundLight',
                 fontWeight: FontWeight.normal,
                 fontSize: 15,
-                color: customPurple,
+                color: Colors.grey[800],
               ),
             ),
           ),
