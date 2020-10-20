@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
+import 'package:jamesbondi/Screens/SignUp/signup.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
+import 'package:jamesbondi/Screens/SignUp/signup.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -38,7 +40,10 @@ class Body extends StatelessWidget {
               child: FlatButton(
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SignUpScreen()));
+                  },
                   color: Colors.purple,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

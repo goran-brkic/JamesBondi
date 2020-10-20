@@ -1,46 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/constants.dart';
-import 'components/body.dart';
-
-class SignUpScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SignUpStatefull(),
-    );
-  }
-}
-
-class SignUpStatefull extends StatefulWidget {
-  @override
-  _SignUpStatefull createState() => _SignUpStatefull();
-}
-
-class _SignUpStatefull extends State<SignUpStatefull> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Body(),
-    );
-  }
-}
-
-/*
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
 
-class SignUpSection extends StatefulWidget {
-  final String title = 'Registration';
-  @override
-  State<StatefulWidget> createState() => SignUpState();
-}
-
 enum Person { lecturer, student }
 
-class SignUpState extends State<SignUpSection> {
+class Body extends StatelessWidget {
   String firstName;
   String lastName;
   String email;
@@ -174,4 +143,3 @@ class SignUpState extends State<SignUpSection> {
     );
   }
 }
-*/
