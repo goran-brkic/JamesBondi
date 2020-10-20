@@ -5,9 +5,11 @@ import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/roundedButton.dart';
 import 'package:jamesbondi/constants.dart';
+import '../../../components/addUser.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
+RegExp expDateRegex = RegExp(r'^[0,1]?\d{1}\/(([0-2]?\d{1}/))');
 
 enum Person { lecturer, student }
 
@@ -51,11 +53,33 @@ class _Body extends State<Body> {
         _success = true;
         _userEmail = user.email;
         user.sendEmailVerification();
-//      addLecturer('test', user.email, null, 'Testno', 'Ime', 'Moneyyyy');
+        if (lecturer) {
+          addLecturer(
+              _usernameController.text,
+              _emailController.text,
+              _firstNameController.text,
+              _lastNameController.text,
+              _ibanController.text,
+              _aboutYController.text);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
+        } else {
+          addStudent(
+              _usernameController.text,
+              _emailController.text,
+              _firstNameController.text,
+              _lastNameController.text,
+              _creditcardController.text,
+              _expirationDateController.text,
+              _secCodeController.text);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
+        }
       });
     } else {
       setState(() {
-        _success = true;
+        _success = false;
+        _firstNameController.clear();
       });
     }
   }
@@ -288,8 +312,21 @@ class _Body extends State<Body> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10, horizontal: size.width * 0.07),
                       onPressed: () {
+                        if (_creditcardController.text.isNotEmpty &&
+                            _expirationDateController.text.isNotEmpty &&
+                            _firstNameController.text.isNotEmpty &&
+                            _lastNameController.text.isNotEmpty &&
+                            _passwordController.text.isNotEmpty &&
+                            _secCodeController.text.isNotEmpty) {
+                          if (_formKey.currentState.validate()) {
+                            _register();
+                          }
+                        }
+
+                        /*
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => WelcomeScreen()));
+                        */
                       },
                       color: customPurple,
                       shape: RoundedRectangleBorder(
@@ -394,8 +431,20 @@ class _Body extends State<Body> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10, horizontal: size.width * 0.07),
                       onPressed: () {
+                        if (_firstNameController.text.isNotEmpty &&
+                            _lastNameController.text.isNotEmpty &&
+                            _passwordController.text.isNotEmpty &&
+                            _ibanController.text.isNotEmpty) {
+                          if (_formKey.currentState.validate()) {
+                            _register();
+                          }
+                        }
+
+                        /*
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => WelcomeScreen()));
+
+                        */
                       },
                       color: customPurple,
                       shape: RoundedRectangleBorder(
