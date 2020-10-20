@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
+import 'package:jamesbondi/Screens/Signup/signup.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 
@@ -31,7 +32,8 @@ class _HomeState extends State<Home> {
         backgroundColor: bgColor,
         scaffoldBackgroundColor: bgColor,
       ),
-      home: WelcomeScreen(),
+//      home: WelcomeScreen(),
+      home: SignUpScreen(),
     );
   }
 }

@@ -4,11 +4,9 @@ import 'package:jamesbondi/constants.dart';
 class InputField extends StatelessWidget {
   final String title;
   final double topValue;
-  const InputField({
-    Key key,
-    this.title,
-    this.topValue,
-  }) : super(key: key);
+  final TextEditingController controller;
+  const InputField({Key key, this.title, this.topValue, this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,8 @@ class InputField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(29),
                 border: Border.all(color: customPurple),
               ),
-              child: TextField(
+              child: TextFormField(
+                controller: controller,
                 obscureText: (title == "Password") ? true : false,
                 decoration: InputDecoration(
                   border: InputBorder.none,

@@ -17,15 +17,51 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  String firstName;
-  String lastName;
-  String email;
-  String username;
-  String password;
-  String creditcard;
   bool lecturer = true;
   Person _radioValue1 = Person.lecturer;
-  String secCode;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _creditcardController = TextEditingController();
+  final TextEditingController _expirationDateController =
+      TextEditingController();
+  final TextEditingController _secCodeController = TextEditingController();
+  final TextEditingController _ibanController = TextEditingController();
+  final TextEditingController _aboutYController = TextEditingController();
+  bool _success;
+  String _userEmail;
+
+  void _register() async {
+    final User user = (await auth.createUserWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ))
+        .user;
+    if (user != null) {
+      setState(() {
+        signed = true;
+        _success = true;
+        _userEmail = user.email;
+        user.sendEmailVerification();
+//      addLecturer('test', user.email, null, 'Testno', 'Ime', 'Moneyyyy');
+      });
+    } else {
+      setState(() {
+        _success = true;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -112,13 +148,37 @@ class _Body extends State<Body> {
                   ],
                 ),
               ),
-              InputField(title: "First name", topValue: 0.25),
-              InputField(title: "Last name", topValue: 0.37),
-              InputField(title: "Email", topValue: 0.49),
-              InputField(title: "Username", topValue: 0.61),
-              InputField(title: "Password", topValue: 0.73),
+              InputField(
+                title: "First name",
+                topValue: 0.25,
+                controller: _firstNameController,
+              ),
+              InputField(
+                title: "Last name",
+                topValue: 0.37,
+                controller: _lastNameController,
+              ),
+              InputField(
+                title: "Email",
+                topValue: 0.49,
+                controller: _emailController,
+              ),
+              InputField(
+                title: "Username",
+                topValue: 0.61,
+                controller: _usernameController,
+              ),
+              InputField(
+                title: "Password",
+                topValue: 0.73,
+                controller: _passwordController,
+              ),
               if (!lecturer) ...[
-                InputField(title: "Credit card", topValue: 0.85),
+                InputField(
+                  title: "Credit card",
+                  topValue: 0.85,
+                  controller: _creditcardController,
+                ),
                 Positioned(
                   top: size.height * 0.97,
                   left: size.width * 0.12,
@@ -131,7 +191,8 @@ class _Body extends State<Body> {
                       borderRadius: BorderRadius.circular(29),
                       border: Border.all(color: customPurple),
                     ),
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _expirationDateController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "MM/YY",
@@ -174,7 +235,8 @@ class _Body extends State<Body> {
                       borderRadius: BorderRadius.circular(29),
                       border: Border.all(color: customPurple),
                     ),
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _secCodeController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "XXX",
@@ -229,7 +291,11 @@ class _Body extends State<Body> {
                 ),
               ],
               if (lecturer) ...[
-                InputField(title: "IBAN", topValue: 0.85),
+                InputField(
+                  title: "IBAN",
+                  topValue: 0.85,
+                  controller: _ibanController,
+                ),
                 Positioned(
                   left: size.width * 0.12,
                   top: size.height * (0.97 - 0.035),
@@ -255,7 +321,8 @@ class _Body extends State<Body> {
                       borderRadius: BorderRadius.circular(29),
                       border: Border.all(color: customPurple),
                     ),
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _aboutYController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(
