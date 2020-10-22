@@ -15,8 +15,39 @@ class _BodyState extends State<Body> {
   final TextEditingController _usernameController = TextEditingController();
 
   bool _invalidInput = false;
+  bool _emptyEmail = false;
+  bool _emptyUsername = false;
   bool _usedEmail = false;
   bool _usedUsername = false;
+
+  String _emailReturn() {
+    if (_emptyEmail) {
+      _emptyEmail = false;
+      return "Email must not be empty";
+    }
+    if (_invalidInput) {
+      _invalidInput = false;
+      return "Not a valid email address";
+    }
+    if (_usedEmail) {
+      _usedEmail = false;
+      return "Email is already in use";
+    }
+    return "Email";
+  }
+
+  String _usernameReturn() {
+    if (_usedUsername) {
+      _usedUsername = false;
+      return "Username already in use";
+    }
+    if (_emptyUsername) {
+      _emptyUsername = false;
+      return "Username must not be empty";
+    }
+    return "Username";
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -44,11 +75,19 @@ class _BodyState extends State<Body> {
               ),
             ),
             InputField(
-                title: "Email", topValue: 0.57, controller: _emailController),
+              topValue: 0.57,
+              controller: _emailController,
+              colorValue: _emptyEmail || _invalidInput || _usedEmail
+                  ? Colors.red
+                  : customPurple,
+              title: _emailReturn(),
+            ),
             InputField(
-                title: "Username",
                 topValue: 0.68,
-                controller: _usernameController),
+                controller: _usernameController,
+                colorValue:
+                    _emptyUsername || _usedUsername ? Colors.red : customPurple,
+                title: _usernameReturn()),
             //InputField(title: "Password", topValue: 0.79),
             Positioned(
               top: size.height * 0.78,
@@ -56,7 +95,12 @@ class _BodyState extends State<Body> {
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
                   onPressed: () async {
-                    if (_formKey.currentState.validate()) {
+                    _emptyEmail = _emailController.text.isEmpty;
+                    _emptyUsername = _usernameController.text.isEmpty;
+
+                    if (_emptyEmail || _emptyUsername)
+                      setState(() {});
+                    else if (_formKey.currentState.validate()) {
                       if (!RegExp(
                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(_emailController.text)) {

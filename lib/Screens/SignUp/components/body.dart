@@ -112,6 +112,14 @@ class _Body extends State<Body> {
     });
   }
 
+  bool isFirstNameEmpty = false;
+  bool isLastNameEmpty = false;
+  bool isPasswordEmpty = false;
+  bool isIbanEmpty = false;
+  bool isCreditCardEmpty = false;
+  bool isSecCodeEmpty = false;
+  bool isExpDateEmpty = false;
+
   @override
   Widget build(BuildContext context) {
     _emailController.text = widget.emailAddressInput;
@@ -207,30 +215,35 @@ class _Body extends State<Body> {
                 topValue: 0.25,
                 controller: _firstNameController,
                 enabledField: true,
+                colorValue: isFirstNameEmpty ? Colors.red : customPurple,
               ),
               InputField(
                 title: "Last name",
                 topValue: 0.37,
                 controller: _lastNameController,
                 enabledField: true,
+                colorValue: isLastNameEmpty ? Colors.red : customPurple,
               ),
               InputField(
                 title: "Email",
                 topValue: 0.49,
                 controller: _emailController,
                 enabledField: false,
+                colorValue: customPurple,
               ),
               InputField(
                 title: "Username",
                 topValue: 0.61,
                 controller: _usernameController,
                 enabledField: false,
+                colorValue: customPurple,
               ),
               InputField(
                 title: "Password",
                 topValue: 0.73,
                 controller: _passwordController,
                 enabledField: true,
+                colorValue: isPasswordEmpty ? Colors.red : customPurple,
               ),
               if (!lecturer) ...[
                 InputField(
@@ -238,6 +251,7 @@ class _Body extends State<Body> {
                   topValue: 0.85,
                   controller: _creditcardController,
                   enabledField: true,
+                  colorValue: isCreditCardEmpty ? Colors.red : customPurple,
                 ),
                 Positioned(
                   top: size.height * 0.97,
@@ -249,7 +263,8 @@ class _Body extends State<Body> {
                     decoration: BoxDecoration(
                       color: Color(0xFFF3F3F3),
                       borderRadius: BorderRadius.circular(29),
-                      border: Border.all(color: customPurple),
+                      border: Border.all(
+                          color: isExpDateEmpty ? Colors.red : customPurple),
                     ),
                     child: TextFormField(
                       controller: _expirationDateController,
@@ -293,7 +308,8 @@ class _Body extends State<Body> {
                     decoration: BoxDecoration(
                       color: Color(0xFFF3F3F3),
                       borderRadius: BorderRadius.circular(29),
-                      border: Border.all(color: customPurple),
+                      border: Border.all(
+                          color: isSecCodeEmpty ? Colors.red : customPurple),
                     ),
                     child: TextFormField(
                       controller: _secCodeController,
@@ -333,15 +349,28 @@ class _Body extends State<Body> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10, horizontal: size.width * 0.07),
                       onPressed: () {
-                        if (_creditcardController.text.isNotEmpty &&
-                            _expirationDateController.text.isNotEmpty &&
-                            _firstNameController.text.isNotEmpty &&
-                            _lastNameController.text.isNotEmpty &&
-                            _passwordController.text.isNotEmpty &&
-                            _secCodeController.text.isNotEmpty) {
-                          if (_formKey.currentState.validate()) {
-                            _register();
-                          }
+                        isFirstNameEmpty = _firstNameController.text.isEmpty;
+                        isLastNameEmpty = _lastNameController.text.isEmpty;
+                        isCreditCardEmpty = _creditcardController.text.isEmpty;
+                        isExpDateEmpty = _expirationDateController.text.isEmpty;
+                        isPasswordEmpty = _passwordController.text.isEmpty;
+                        isSecCodeEmpty = _secCodeController.text.isEmpty;
+                        if (isFirstNameEmpty ||
+                            isCreditCardEmpty ||
+                            isExpDateEmpty ||
+                            isLastNameEmpty ||
+                            isPasswordEmpty ||
+                            isSecCodeEmpty) {
+                          setState(() {
+                            isFirstNameEmpty = isFirstNameEmpty;
+                            isCreditCardEmpty = isCreditCardEmpty;
+                            isExpDateEmpty = isExpDateEmpty;
+                            isLastNameEmpty = isLastNameEmpty;
+                            isPasswordEmpty = isPasswordEmpty;
+                            isSecCodeEmpty = isSecCodeEmpty;
+                          });
+                        } else if (_formKey.currentState.validate()) {
+                          _register();
                         }
 
                         /*
@@ -369,6 +398,7 @@ class _Body extends State<Body> {
                   topValue: 0.85,
                   controller: _ibanController,
                   enabledField: true,
+                  colorValue: isIbanEmpty ? Colors.red : customPurple,
                 ),
                 Positioned(
                   left: size.width * 0.12,
@@ -456,13 +486,23 @@ class _Body extends State<Body> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10, horizontal: size.width * 0.07),
                       onPressed: () {
-                        if (_firstNameController.text.isNotEmpty &&
-                            _lastNameController.text.isNotEmpty &&
-                            _passwordController.text.isNotEmpty &&
-                            _ibanController.text.isNotEmpty) {
-                          if (_formKey.currentState.validate()) {
-                            _register();
-                          }
+                        isFirstNameEmpty = _firstNameController.text.isEmpty;
+                        isLastNameEmpty = _lastNameController.text.isEmpty;
+                        isIbanEmpty = _ibanController.text.isEmpty;
+                        isPasswordEmpty = _passwordController.text.isEmpty;
+
+                        if (isFirstNameEmpty ||
+                            isIbanEmpty ||
+                            isLastNameEmpty ||
+                            isPasswordEmpty) {
+                          setState(() {
+                            isFirstNameEmpty = isFirstNameEmpty;
+                            isIbanEmpty = isIbanEmpty;
+                            isLastNameEmpty = isLastNameEmpty;
+                            isPasswordEmpty = isPasswordEmpty;
+                          });
+                        } else if (_formKey.currentState.validate()) {
+                          _register();
                         }
 
                         /*
