@@ -438,6 +438,18 @@ class _Body extends State<Body> {
                   ),
                 ),
                 Positioned(
+                    top: size.height * 0.99,
+                    left: size.height * 0.25,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            alignment: Alignment.center,
+                            child: _image != null
+                                ? Image.file(_image)
+                                : Container()))),
+                Positioned(
                   top: size.height * 1.2,
                   left: size.width * 0.12,
                   child: Container(
