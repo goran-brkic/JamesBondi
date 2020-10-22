@@ -460,7 +460,9 @@ class _Body extends State<Body> {
                             child: _image != null
                                 ? Image.file(_image)
                                 : Container()))),
-                                */
+                */
+
+                // About me
                 Positioned(
                   top: size.height * 1.2,
                   left: size.width * 0.12,
