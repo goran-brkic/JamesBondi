@@ -428,15 +428,26 @@ class _Body extends State<Body> {
                       },
                       elevation: 0,
                       fillColor: Color(0xFFF3F3F3),
-                      child: Icon(
-                        Icons.upload_outlined,
-                        size: 60.0,
-                      ),
-                      padding: EdgeInsets.all(15.0),
+                      child: _image != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  alignment: Alignment.center,
+                                  child: Image.file(_image)))
+                          : Icon(
+                              Icons.upload_outlined,
+                              size: 60.0,
+                            ),
+                      padding: _image != null
+                          ? EdgeInsets.all(0.0)
+                          : EdgeInsets.all(15.0),
                       shape: CircleBorder(),
                     ),
                   ),
                 ),
+                /*
                 Positioned(
                     top: size.height * 0.99,
                     left: size.height * 0.25,
@@ -449,6 +460,7 @@ class _Body extends State<Body> {
                             child: _image != null
                                 ? Image.file(_image)
                                 : Container()))),
+                                */
                 Positioned(
                   top: size.height * 1.2,
                   left: size.width * 0.12,
