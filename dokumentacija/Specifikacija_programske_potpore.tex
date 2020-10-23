@@ -55,48 +55,288 @@
 				
 			\subsection{Obrasci uporabe}
 				
-				\textbf{\textit{dio 1. revizije}}
 				
 				\subsubsection{Opis obrazaca uporabe}
-					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
-					
 
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC1 - Registracija}}
 					\begin{packed_item}
 	
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik:} Korisnik
+						\item  \textbf{Cilj:} Izbor maila i korisničke adrese
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} -
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Korisnik unosi potrebne podatke
+							\item Korisnik je usmjeren na stranicu za unos dodatnih podataka
+							
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[1.a] Odabir već zauzetog korisničkog imena i/ili e-maila, unos korisničkog podatka u nedozvoljenom formatu ili pružanje neispravnog e-maila
 							\item[] \begin{packed_enum}
 								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								\item Sustav obavještava korisnika o neuspjelom upisu i vraća ga na stranicu za registraciju
 								
 							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
 							
 						\end{packed_item}
 					\end{packed_item}
 				
+					\noindent \underbar{\textbf{UC2 - Unos podataka}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Korisnik
+						\item  \textbf{Cilj:} Stvoriti korisnički račun za pristup sustavu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Uspješan unos e-mail adrese i korisničkog imena
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Korisnik unosi potrebne podatke
+							\item Korisnik prima obavijest o uspješnoj registraciji
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Ostavljen prazan jedan od potrebnih podataka. Sustav obavještava korisnika da mora unijeti podatak.
+							
+						\end{packed_item}
+					\end{packed_item}
+			
+					\noindent \underbar{\textbf{UC3 - Prijava}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Korisnik
+						\item  \textbf{Cilj:} Pristup sustavu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Postojeći račun u sustavu
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Korisnik unosi e-mail i šifru
+							\item Korisnik prima obavijest o uspješnoj prijavi
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[1.a] Ostavljen prazan jedan od potrebnih podataka. Sustav obavještava korisnika da mora unijeti podatak.
+							\item[1.b] Unesen krivi e-mail ili šifra. Sustav obavještava korisnika o neispravnosti unesenih podataka.
+							
+						\end{packed_item}
+					\end{packed_item}
+		
+				\noindent \underbar{\textbf{UC4 - Pregled tečajeva}}
+				\begin{packed_item}
 					
+					\item \textbf{Glavni sudionik:} Student, Predavač, Administrator
+					\item  \textbf{Cilj:} Uspješan prikaz dostupnih tečajeva
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Uspješna prijava
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Tečajevi su prikazani na aplikaciji
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC5 - Pristup tečaju}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Student, Administrator
+					\item  \textbf{Cilj:} Pristup sadržaju tečaja
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj kojem se pristupa
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Student odabire tečaj
+						\item Student pristupa stranici tečaja
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+				\noindent \underbar{\textbf{UC6 - Upis tečaja}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Student
+					\item  \textbf{Cilj:} Dobivanje pristupa tečaju
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Uspješna prijava i tečaj kojeg student nije još platio
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Student odabire željeni tečaj
+						\item Student je usmjeren na stranicu za naplatu tečaja
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC7 - Naplata tečaja}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Student
+					\item  \textbf{Cilj:} Uspješna naplata tečaja
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Uspješna prijava
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Student potvrđuje odabrani tečaj i iznos naplate
+						\item Student izvršava plaćanje tečaja
+						
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Nedovoljno sredstava na kartici.
+						
+					\end{packed_item}
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC8 - Dodavanje tečaja}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Predavač
+					\item  \textbf{Cilj:} Uspješno kreiranje tečaja
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Uspješna prijava
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Predavač unosi potrebne podatke o tečaju
+						\item Predavač dodaje materijale za tečaj
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+			\noindent \underbar{\textbf{UC9 - Brisanje tečaja}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Administrator
+				\item  \textbf{Cilj:} Uspješno ukloniti tečaj
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač izabire brisanje vlastitog tečaja
+					\item Predavač potvrđuje brisanje tečaja
+					
+				\end{packed_enum}
+				
+			\end{packed_item}
+				
+			\noindent \underbar{\textbf{UC10 - Uređivanje tečaja}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Administrator
+				\item  \textbf{Cilj:} Promjena opisa i/ili materijala tečaja
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač izabire uređivanje vlastitog tečaja
+					\item Predavač mijenja sadržaj tečaja i/ili materijala
+					
+				\end{packed_enum}
+				
+			\end{packed_item}	
+		
+			\noindent \underbar{\textbf{UC11 - Objava recenzije}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Student
+				\item  \textbf{Cilj:} Objava recenzije na stranici tečaja i profilu predavača
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj na kojem se recenzija objavljuje
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Student unosi recenziju
+					
+				\end{packed_enum}
+				
+			\end{packed_item}
+		
+			\noindent \underbar{\textbf{UC12 - Pregled recenzija}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Administrator, Student
+				\item  \textbf{Cilj:} Pregled recenzija
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Prikaz recenzije odabranog predavča ili tečaja
+					
+				\end{packed_enum}
+				
+			\end{packed_item}
+		
+			\noindent \underbar{\textbf{UC13 - Odgovaranje na recenziju}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Administrator
+				\item  \textbf{Cilj:} Objava odgovora na recenziju
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Objava odgovora na željenu recenziju
+					
+				\end{packed_enum}
+			
+			\end{packed_item}
+			\noindent \underbar{\textbf{UC14 - Brisanje recenzije}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Administrator
+				\item  \textbf{Cilj:} Uklanjanje recenzije sa stranice tečaja ili profila predavača
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Uklanjanje recenzije
+					
+				\end{packed_enum}
+
+			\end{packed_item}
+		
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
 					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
