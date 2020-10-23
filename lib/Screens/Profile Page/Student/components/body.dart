@@ -1,13 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/constants.dart';
+import 'package:jamesbondi/components/getUser.dart';
 
 class Body extends StatefulWidget {
+  final User loggedUser;
+
+  Body(this.loggedUser);
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
+    final User loggedUser = widget.loggedUser;
+    Map<String, dynamic> userInfo;
+    getUserInfo(loggedUser.email).then((value) => userInfo);
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
@@ -76,7 +84,7 @@ class _BodyState extends State<Body> {
             Positioned(
               top: size.height * 0.43,
               child: Text(
-                'Michael Dolbey',
+                userInfo['firstName'] + userInfo['lastName'],
                 style: TextStyle(
                   fontFamily: 'RoundLight',
                   fontWeight: FontWeight.normal,

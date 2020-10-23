@@ -18,6 +18,8 @@ Future<Map<String, dynamic>> getUserInfo(String inputMail) {
               returnList['lecturer'] = doc['lecturer'];
               returnList['secCode'] = doc['secCode'];
               returnList['username'] = doc['username'];
+              returnList['image'] = doc['image'];
+              returnList['about'] = doc['about'];
               //print('PRINTAM ' + returnList['firstName']);
               //returnList = new Map<String, dynamic>.from(doc.data());
             })

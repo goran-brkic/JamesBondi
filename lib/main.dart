@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
         scaffoldBackgroundColor: bgColor,
       ),
 //      home: WelcomeScreen(),
-      home: SProfileScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
