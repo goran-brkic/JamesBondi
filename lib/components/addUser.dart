@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-void addLecturer(
+Future<bool> addLecturer(
     final String username,
     final String mail,
     final String firstName,
@@ -8,7 +8,7 @@ void addLecturer(
     final String iban,
     final String aboutY,
     final String image) {
-  FirebaseFirestore.instance
+  return FirebaseFirestore.instance
       .collection('users')
       .add({
         'username': username,
@@ -23,11 +23,11 @@ void addLecturer(
         'about': aboutY,
         'image': image
       })
-      .then((value) => print('User (lecturer) Added'))
+      .then((value) => true)
       .catchError((error) => print('Failed to add user: $error'));
 }
 
-void addStudent(
+Future<bool> addStudent(
     final String username,
     final String mail,
     final String firstName,
@@ -35,7 +35,7 @@ void addStudent(
     final String creditCard,
     final String cardExp,
     final String secCode) {
-  FirebaseFirestore.instance
+  return FirebaseFirestore.instance
       .collection('users')
       .add({
         'username': username,
@@ -47,8 +47,9 @@ void addStudent(
         'secCode': secCode,
         'iban': null,
         'lecturer': false,
-        'about': null
+        'about': null,
+        'image': null
       })
-      .then((value) => print('User (student) Added'))
+      .then((value) => true)
       .catchError((error) => print('Failed to add user: $error'));
 }

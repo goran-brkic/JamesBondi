@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

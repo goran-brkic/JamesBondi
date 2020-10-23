@@ -28,16 +28,17 @@ class Body extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: size.height * 0.43,
-                child: Text(
-                  "Sign in",
-                  style: TextStyle(
-                      // decoration: TextDecoration.underline,
-                      fontFamily: 'Quiglet',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 25,
-                      color: customPurple),
-                )),
+              top: size.height * 0.43,
+              child: Text(
+                "Sign in",
+                style: TextStyle(
+                    // decoration: TextDecoration.underline,
+                    fontFamily: 'Quiglet',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
             InputField(title: "Username", topValue: 0.62),
             InputField(title: "Password", topValue: 0.73),
             Positioned(

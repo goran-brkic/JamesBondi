@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/constants.dart';
@@ -59,26 +61,26 @@ class _Body extends State<Body> {
         user.sendEmailVerification();
         if (lecturer) {
           addLecturer(
-              _usernameController.text,
-              _emailController.text,
-              _firstNameController.text,
-              _lastNameController.text,
-              _ibanController.text,
-              _aboutYController.text,
-              imageURL);
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                  _usernameController.text,
+                  _emailController.text,
+                  _firstNameController.text,
+                  _lastNameController.text,
+                  _ibanController.text,
+                  _aboutYController.text,
+                  imageURL)
+              .then((value) => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => LProfileScreen(user))));
         } else {
           addStudent(
-              _usernameController.text,
-              _emailController.text,
-              _firstNameController.text,
-              _lastNameController.text,
-              _creditcardController.text,
-              _expirationDateController.text,
-              _secCodeController.text);
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                  _usernameController.text,
+                  _emailController.text,
+                  _firstNameController.text,
+                  _lastNameController.text,
+                  _creditcardController.text,
+                  _expirationDateController.text,
+                  _secCodeController.text)
+              .then((value) => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SProfileScreen(user))));
         }
       });
     } else {
@@ -460,7 +462,9 @@ class _Body extends State<Body> {
                             child: _image != null
                                 ? Image.file(_image)
                                 : Container()))),
-                                */
+                */
+
+                // About me
                 Positioned(
                   top: size.height * 1.2,
                   left: size.width * 0.12,
