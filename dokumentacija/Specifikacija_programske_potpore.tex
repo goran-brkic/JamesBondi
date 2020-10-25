@@ -2,20 +2,18 @@
 		
 	\section{Funkcionalni zahtjevi}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
-				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
-			
-			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item Korisnici			
+				\begin{packed_enum}
+					
+					\item Polaznik
+					\item Predavač	
+				\end{packed_enum}
+				\item Administrator			
+				\item Razvojni tim
 				
 			\end{packed_enum}
 			
@@ -23,28 +21,70 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item  \underbar{Neregistrirani korisnik (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item se registrirati u sustav
 					\begin{packed_enum}
 						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
+						\item  stvoriti novi korisnički račun polaznika za koji su mu potrebni korisničko ime, lozinka, ime, prezime, e-mail adresa i broj kartice za naplatu \textbf{ili}
+						\item  stvoriti novi korisnički račun predavača za koji su mu potrebni korisničko ime, lozinka, ime, prezime, e-mail adresa i IBAN računa, uz opciju stavljanja svoje slike i kratke biografije
 				
 					\end{packed_enum}
-					\item  funkcionalnost 3
+	
+				\end{packed_enum}
+			
+				\item  \underbar{Predavač (inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item pregledavati i mijenjati osobne podatke
+					\item pretraživati ponuđene tečajeve
+					\item dodati, urediti i obrisati tečaj
+					\item pregledati polaznike svojih tečajeva
+					\item pregledati i odgovoriti na recenzije
+					\item prihvatiti ili odbiti termin konzultacija
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+			\eject
+			
+				\item  \underbar{Polaznik (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item pregledavati i mijenjati osobne podatke
+					\item pretraživati ponuđene tečajeve
+					\item upisati i platiti tečaj
+					\item pristupiti plaćenom tečaju
+					\item preuzimati materijale upisanog tečaja
+					\item poslati zahtjev za konzultacijama
+					\item pregledati recenzije svih tečajeva
+					\item objaviti recenziju na upisanom tečaju
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Administrator (inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item vidjeti popis svih registriranih korisnika aplikacije
+					\item brisati korisnike
+					\item urediti i obrisati tečaj
+					\item dodati i obrisati kategoriju tečaja
+					\item pregledati i odgovoriti na recenzije
+					\item obrisati recenzije koje su u suprotnosti s pravilima korištenja aplikacije
+					\item pristupiti statistici
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Baza podataka (sudionik):}
+				
+				\begin{packed_enum}
+					
+					\item pohranjuje sve podatke o korisnicima
+					\item pohranjuje sve podatke o tečajevima i njihove materijale
 					
 				\end{packed_enum}
 			\end{packed_enum}
