@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
-import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/constants.dart';
 import '../../../components/addUser.dart';

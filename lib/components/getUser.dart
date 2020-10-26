@@ -27,3 +27,21 @@ Future<Map<String, dynamic>> getUserInfo(String inputMail) {
       .then((value) => returnList);
   //return returnList;
 }
+
+Future<String> getTypeOfUser(String inputMail) {
+  String lecturer;
+  return FirebaseFirestore.instance
+      .collection('users')
+      .where('mail', isEqualTo: inputMail)
+      .get()
+      .then((QuerySnapshot querySnapshot) => {
+            querySnapshot.docs.forEach((doc) {
+              lecturer = doc['lecturer'].toString();
+
+              //print('PRINTAM ' + returnList['firstName']);
+              //returnList = new Map<String, dynamic>.from(doc.data());
+            })
+          })
+      .then((value) => lecturer);
+  //return returnList;
+}

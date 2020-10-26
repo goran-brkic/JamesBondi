@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/constants.dart';
 
 class InputField extends StatelessWidget {
   final String title;
