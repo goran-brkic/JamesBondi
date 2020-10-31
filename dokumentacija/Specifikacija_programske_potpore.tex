@@ -110,7 +110,7 @@
 						\item[] \begin{packed_enum}
 	
 							\item Korisnik unosi potrebne podatke
-							\item Korisnik je usmjeren na stranicu za unos dodatnih podataka
+							\item Korisnik je usmjeren na stranicu za unos dodatnih podataka (\hyperref[UC2] {UC2})
 							
 						\end{packed_enum}
 						
@@ -127,8 +127,8 @@
 							
 						\end{packed_item}
 					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC2 - Unos podataka}}
+									
+					\noindent \label{UC2} \underbar{\textbf{UC2 - Unos podataka}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik:} Korisnik
@@ -148,7 +148,8 @@
 						
 						\item[] \begin{packed_item}
 							
-							\item[1.a] Ostavljen prazan jedan od potrebnih podataka. Sustav obavještava korisnika da mora unijeti podatak.
+							\item[1.a] Ostavljen prazan jedan od potrebnih podataka, sustav obavještava korisnika da mora unijeti podatak
+							\item[1.b] Korisnik odustaje od registracije, sustav briše cijelu registraciju
 							
 						\end{packed_item}
 					\end{packed_item}
@@ -173,8 +174,8 @@
 						
 						\item[] \begin{packed_item}
 							
-							\item[1.a] Ostavljen prazan jedan od potrebnih podataka. Sustav obavještava korisnika da mora unijeti podatak.
-							\item[1.b] Unesen krivi e-mail ili šifra. Sustav obavještava korisnika o neispravnosti unesenih podataka.
+							\item[1.a] Ostavljen prazan jedan od potrebnih podataka, sustav obavještava korisnika da mora unijeti podatak
+							\item[1.b] Unesen krivi e-mail ili šifra, sustav obavještava korisnika o neispravnosti unesenih podataka
 							
 						\end{packed_item}
 					\end{packed_item}
@@ -208,7 +209,7 @@
 					\item[] \begin{packed_enum}
 						
 						\item Polaznik odabire tečaj
-						\item Polaznik pristupa stranici tečaja
+						\item Polaznik je usmjeren na stranicu tečaja
 						
 					\end{packed_enum}
 					
@@ -251,7 +252,7 @@
 					
 					\item[] \begin{packed_item}
 						
-						\item[2.a] Nedovoljno sredstava na kartici.
+						\item[2.a] Nedovoljno sredstava na kartici, sustav obavještava polaznika o nemogućnosti pohađanja tečaja zbog financija
 						
 					\end{packed_item}
 				\end{packed_item}
@@ -287,8 +288,16 @@
 					
 					\item Predavač izabire brisanje vlastitog tečaja
 					\item Predavač potvrđuje brisanje tečaja
+					\item Tečaj je uklonjen iz baze podataka
 					
 				\end{packed_enum}
+				\item  \textbf{Opis mogućih odstupanja:}
+				
+				\item[] \begin{packed_item}
+					
+					\item[1.a] Postoje zahtjevi za konzultacijama na tom tečaju, sustav ih sve otkazuje
+					
+				\end{packed_item}
 				
 			\end{packed_item}
 				
@@ -322,6 +331,7 @@
 				\item[] \begin{packed_enum}
 					
 					\item Polaznik unosi recenziju
+					\item Recenzija se dodaje na stranicu tečaja
 					
 				\end{packed_enum}
 				
@@ -355,7 +365,8 @@
 				
 				\item[] \begin{packed_enum}
 					
-					\item Objava odgovora na željenu recenziju
+					\item Predavač odabire recenziju na koju želi odgovoriti
+					\item Predavač objavljuje svoj odgovor na željenu recenziju
 					
 				\end{packed_enum}
 			
@@ -371,7 +382,8 @@
 				
 				\item[] \begin{packed_enum}
 					
-					\item Uklanjanje recenzije
+					\item Odabir recenzije koju je potrebno ukloniti
+					\item Uklanjanje recenzije sa stranice tečaja ili profila predavača
 					
 				\end{packed_enum}
 
@@ -395,43 +407,35 @@
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC16 - Prihvaćanje termina konzultacija}}
+			\noindent \underbar{\textbf{UC16 - Odgovor na zahtjev za terminom konzultacija}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Predavač
-				\item  \textbf{Cilj:} Uspješno odgovoriti termin konzultacija
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odobravanje primljenog zahtjeva za terminom konzultacija
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC17 - Odbijanje termina konzultacija}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Predavač
-				\item  \textbf{Cilj:} Odbiti zahtjev za terminom konzultacija
+				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
 				\item  \textbf{Sudionici:} Baza podataka
 				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
+					\item Odobravanje primljenog zahtjeva za terminom konzultacija 
+					\item Polaznik dobiva obavijest o potvrđenom terminu
+					
+				\end{packed_enum}
+				\textbf{ili}
+			
+				\item[] \begin{packed_enum}
+					
 					\item Odbijanje termina konzultacija
 					\item Polaznik prima obavijest o odbijenom terminu
-					\item \hyperref[UC15]{Polaznik traži novi termin}
+					\item Polaznik traži novi termin \hyperref[UC15]{(UC15)}
 					
 				\end{packed_enum}
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC18 - Brisanje korisnika}}
+		
+			\noindent \underbar{\textbf{UC17 - Brisanje korisnika}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Administrator
@@ -443,12 +447,13 @@
 				\item[] \begin{packed_enum}
 					
 					\item Odabir korisnika čiji se račun uklanja
+					\item Ukoliko je korisnik predavač, sustav uklanja njegov profil i sve njegove tečajeve iz baze podataka. Ukoliko je korisnik polaznik, sustav ga uklanja s upisanih tečajeva te njegov profil iz baze podataka
 					
 				\end{packed_enum}
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC19 - Pregled statistike}}
+			\noindent \underbar{\textbf{UC18 - Pregled statistike}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Administrator
@@ -465,7 +470,7 @@
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC20 - Dodavanje kategorije}}
+			\noindent \underbar{\textbf{UC19 - Dodavanje kategorije}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Administrator
@@ -483,7 +488,7 @@
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC21 - Brisanje kategorije}}
+			\noindent \underbar{\textbf{UC20 - Brisanje kategorije}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Administrator
@@ -495,13 +500,15 @@
 				\item[] \begin{packed_enum}
 					
 					\item Odabir kategorije koju se želi ukloniti
+					\item Svi tečajevi pod odabranom kategorijom uklonjeni iz baze podataka
+					\item Kategorija je uklonjena iz baze podataka
 					
 				\end{packed_enum}
 				
 			\end{packed_item}
 		
 		
-			\noindent \underbar{\textbf{UC22 - Pregled korisnika}}
+			\noindent \underbar{\textbf{UC21 - Pregled korisnika}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Administrator
@@ -532,9 +539,17 @@
 	
 		\section{Ostali zahtjevi}
 		
-			\textbf{\textit{dio 1. revizije}}\\
-		 
-			 \textit{Nefunkcionalni zahtjevi i zahtjevi domene primjene dopunjuju funkcionalne zahtjeve. Oni opisuju \textbf{kako se sustav treba ponašati} i koja \textbf{ograničenja} treba poštivati (performanse, korisničko iskustvo, pouzdanost, standardi kvalitete, sigurnost...). Primjeri takvih zahtjeva u Vašem projektu mogu biti: podržani jezici korisničkog sučelja, vrijeme odziva, najveći mogući podržani broj korisnika, podržane web/mobilne platforme, razina zaštite (protokoli komunikacije, kriptiranje...)... Svaki takav zahtjev potrebno je navesti u jednoj ili dvije rečenice.}
+			\begin{packed_item}
+				\item Sustav treba podržavati rad više korisnika u isto vrijeme
+				\item Sustav treba biti jednostavan za korištenje, korisnici se moraju znati koristiti sučeljem bez opširnih uputa
+				\item Neispravno korištenje sučelja ne smije narušiti funkcionalnost i rad sustava
+				\item Sustav kao valutu koristi HRK
+				\item Nadogradnja sustava ne smije narušavati postojeće funkcionalnosti sustava
+				\item Korisničko sučelje i sustav moraju podržavati hrvatsku abecedu (dijakritičke znakove) pri unosu i prikazu tekstualnog sadržaja
+				\item Veza s bazom podataka mora biti kvalitetno zaštićena, brza i otporna na vanjske greške
+				\item Aplikacija mora imati responzivno korisničko sučelje
+				\item Svi osobni podaci u aplikaciji moraju se čuvati u skladu s GDPR regulativom
+			\end{packed_item}
 			 
 			 
 			 
