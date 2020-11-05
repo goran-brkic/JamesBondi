@@ -671,11 +671,47 @@
 				
 			\subsection{Sekvencijski dijagrami}
 				
-				\textbf{\textit{dio 1. revizije}}\\
+				\subsubsection{Obrasci uporabe UC1 i UC2 - Registracija i Unos podataka}
 				
-				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
+					Korisnik unosi svoju e-mail adresu i željeno korisničko ime. Poslužitelj s bazom podataka provjerava jesu li unesena e-mail adresa i korisničko ime dostupni (nisu zauzeti od strane drugog korisnika). Poslužitelj također provjerava jesu li podaci u dozvoljenom formatu te je li navedena e-mail adresa ispravna. Ako podaci nisu ispravni, sustav korisniku šalje obavijest o neuspjelom upisu i vraća ga na ponovni unos podataka. Ako su podaci ispravni, korisnika se usmjerava na stranicu za unos dodatnih podataka. \newline
+					Zatim korisnik unosi dodatne podatke. Ako su potrebni podaci ispravno uneseni, stvara se novi korisnički račun i korisnik dobiva obavijest o uspješnoj registraciji. Ako nije unesen jedan ili više potrebnih podataka, sustav obavještava korisnika. Ukoliko korisnik odluči odustati, registracija se briše.
 				\eject
-	
+				
+					\begin{figure}[h]
+						\includegraphics[scale=0.63]{dijagrami/UML_sd_UC1UC2.PNG}
+						\centering
+						\caption{Sekvencijski dijagram za UC1 i UC2}
+						\label{fig:UML_sd_UC1UC2}
+					\end{figure}
+				
+				\eject
+				\subsubsection{Obrasci uporabe UC6 i UC7 - Upis tečaja i Naplata tečaja}
+				
+					Polaznik odabire tečaj koji želi upisati. Nakon odabira tečaja, sustav usmjerava polaznika na stranicu za naplatu. \newline
+					Polaznik potvrđuje odabrani tečaj i iznos naplate, a zatim izvršava plaćanje tečaja. Ako na kartici ima dovoljno sredstava, tečaj se plaća i korisnik dobiva pristup tečaju. Ukoliko na kartici nema dovoljno sredstava, sustav obavještava korisnika o nemogućnosti pohađanja tečaja zbog financija.
+				
+					\begin{figure}[h]
+						\includegraphics[scale=0.56]{dijagrami/UML_sd_UC6UC7.PNG}
+						\centering
+						\caption{Sekvencijski dijagram za UC6 i UC7}
+						\label{fig:UML_sd_UC6UC7}
+					\end{figure}
+				
+				\eject
+				\subsubsection{Obrasci uporabe UC15 i UC16 - Slanje zahtjeva za konzultacijama i Odgovor na zahtjev za terminom konzultacija}
+				
+					Polaznik šalje zahtjev za terminom konzultacija. Podaci o zahtjevu se pohranjuju u bazu podataka. \newline
+					Nakon što je zahtjev pohranjen u bazu podataka, 	poslužitelj predavaču šalje obavijest o dospjelom zahtjevu. Predavač šalje poslužitelju zahtjev za prikaz liste zahtjeva za terminima konzultacija. Poslužitelj dohvaća listu zahtjeva iz baze podataka i prikazuje ih predavaču. Predavač može prihvatiti ili odbiti predloženi termin konzultacija. Ako predavač prihvati termin, poslužitelj izmjenjuje zahtjev u bazi podataka koja vraća potvrdu o odobrenom zahtjevu. Poslužitelj tada šalje obavijest polazniku da je zahtjev odobren. Ako predavač odbije termin, poslužitelj briše poslani zahtjev iz baze podataka i obavještava polaznika da je zahtjev odbijen. Polaznik zatim ponovno šalje zahtjev za terminom konzultacija, sve dok mu se zahtjev ne odobri.
+				\eject
+				
+					\begin{figure}[h]
+						\includegraphics[scale=0.59]{dijagrami/UML_sd_UC15UC16.PNG}
+						\centering
+						\caption{Sekvencijski dijagram za UC15 i UC16}
+						\label{fig:UML_sd_UC15UC16}
+					\end{figure}
+				\eject
+				
 		\section{Ostali zahtjevi}
 		
 			\begin{packed_item}
