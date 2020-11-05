@@ -182,6 +182,8 @@ class _BodyState extends State<Body> {
                 ),
               ),
             );
+          } else {
+            children = Container();
           }
           return children;
         });
