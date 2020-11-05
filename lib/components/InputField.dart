@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/constants.dart';
 
 class InputField extends StatelessWidget {
   final String title;
   final double topValue;
-  const InputField({
-    Key key,
-    this.title,
-    this.topValue,
-  }) : super(key: key);
+  final TextEditingController controller;
+  final bool enabledField;
+  final Color colorValue;
+  const InputField(
+      {Key key,
+      this.title,
+      this.topValue,
+      this.controller,
+      this.enabledField,
+      this.colorValue})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +25,17 @@ class InputField extends StatelessWidget {
             top: size.height * topValue,
             left: size.width * 0.12,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               height: size.height * 0.06,
               width: size.width * 0.77,
               decoration: BoxDecoration(
                 color: Color(0xFFF3F3F3),
                 borderRadius: BorderRadius.circular(29),
-                border: Border.all(color: customPurple),
+                border: Border.all(color: colorValue),
               ),
-              child: TextField(
+              child: TextFormField(
+                enabled: enabledField,
+                controller: controller,
                 obscureText: (title == "Password") ? true : false,
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -36,7 +43,7 @@ class InputField extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'RoundLight',
                   fontWeight: FontWeight.normal,
-                  fontSize: 17,
+                  fontSize: 15,
                   color: Colors.black87,
                 ),
               ),
@@ -51,7 +58,7 @@ class InputField extends StatelessWidget {
                 fontFamily: 'RoundLight',
                 fontWeight: FontWeight.normal,
                 fontSize: 15,
-                color: customPurple,
+                color: Colors.grey[800],
               ),
             ),
           ),

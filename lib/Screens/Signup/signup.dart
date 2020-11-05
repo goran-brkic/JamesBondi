@@ -1,8 +1,47 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/components/InputField.dart';
-import 'package:jamesbondi/constants.dart';
 import 'components/body.dart';
+
+//Test
+
+class SignUpScreen extends StatelessWidget {
+  final String emailAddressInput;
+  final String usernameInput;
+
+  SignUpScreen(
+      {@required this.emailAddressInput, @required this.usernameInput});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SignUpStatefull(
+          emailAddressInput: this.emailAddressInput,
+          usernameInput: this.usernameInput),
+    );
+  }
+}
+
+class SignUpStatefull extends StatefulWidget {
+  final String emailAddressInput;
+  final String usernameInput;
+
+  SignUpStatefull(
+      {@required this.emailAddressInput, @required this.usernameInput});
+  @override
+  _SignUpStatefull createState() => _SignUpStatefull();
+}
+
+class _SignUpStatefull extends State<SignUpStatefull> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Body(
+          emailAddressInput: widget.emailAddressInput,
+          usernameInput: widget.usernameInput),
+    );
+  }
+}
+
+/*
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
@@ -56,43 +95,12 @@ class SignUpState extends State<SignUpSection> {
                   width: size.width * 0.7,
                 ),
               ),
-              Positioned(
-                top: size.height * 0.13,
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(1),
-                      child: Text('Are you a lecturer or student?'),
-                    ),
-                    Text('Lecturer'),
-                    Radio(
-                        value: Person.lecturer,
-                        groupValue: _radioValue1,
-                        onChanged: (Person value) {
-                          setState(() {
-                            lecturer = true;
-                            _radioValue1 = value;
-                          });
-                        }),
-                    Text('Student'),
-                    Radio(
-                        value: Person.student,
-                        groupValue: _radioValue1,
-                        onChanged: (Person value) {
-                          setState(() {
-                            lecturer = false;
-                            _radioValue1 = value;
-                          });
-                        }),
-                  ],
-                ),
-              ),
               InputField(title: "First name", topValue: 0.25),
               InputField(title: "Last name", topValue: 0.37),
               InputField(title: "Email", topValue: 0.49),
               InputField(title: "Username", topValue: 0.61),
               InputField(title: "Password", topValue: 0.73),
-              if (!lecturer) ...[
+              if (lecturer) ...[
                 InputField(title: "Credit card", topValue: 0.85),
                 Positioned(
                   top: size.height * 0.97,
@@ -110,10 +118,6 @@ class SignUpState extends State<SignUpSection> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "MM/YY",
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 0,
-                          vertical: size.height * 0.014,
-                        ),
                       ),
                       style: TextStyle(
                         fontFamily: 'RoundLight',
@@ -153,10 +157,6 @@ class SignUpState extends State<SignUpSection> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "XXX",
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 0,
-                          vertical: size.height * 0.014,
-                        ),
                       ),
                       style: TextStyle(
                         fontFamily: 'RoundLight',
@@ -188,3 +188,4 @@ class SignUpState extends State<SignUpSection> {
     );
   }
 }
+*/
