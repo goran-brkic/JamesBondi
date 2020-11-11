@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/components/getUser.dart';
+import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 
 class Body extends StatefulWidget {
@@ -19,7 +19,7 @@ class _BodyState extends State<Body> {
 
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: getUserInfo(loggedUser.email),
+        future: UserInfoDB.getUserInfo(loggedUser.email),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;

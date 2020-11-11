@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<bool> checkEmailAddress(String email) {
   bool available = true;
@@ -63,4 +63,4 @@ FirebaseFirestore.instance
               available = false;
             })
           });
-*/
+*/*/

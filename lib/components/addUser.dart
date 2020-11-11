@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<bool> addLecturer(
     final String username,
@@ -53,3 +53,4 @@ Future<bool> addStudent(
       .then((value) => true)
       .catchError((error) => print('Failed to add user: $error'));
 }
+*/

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
+import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/SignUp/signup.dart';
-import '../../../components/checkAvailable.dart';
 
 class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
@@ -108,13 +108,14 @@ class _BodyState extends State<Body> {
                           _invalidInput = true;
                           _emailController.clear();
                         });
-                      } else if (!await checkEmailAddress(
+                      } else if (!await UserInfoDB.checkEmailAddress(
                           _emailController.text)) {
                         setState(() {
                           _usedEmail = true;
                           _emailController.clear();
                         });
-                      } else if (!await checkUser(_usernameController.text)) {
+                      } else if (!await UserInfoDB.checkUser(
+                          _usernameController.text)) {
                         setState(() {
                           _usedUsername = true;
                           _usernameController.clear();

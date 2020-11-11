@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<Map<String, dynamic>> getUserInfo(String inputMail) {
   Map<String, dynamic> returnList = new Map();
@@ -45,3 +45,4 @@ Future<String> getTypeOfUser(String inputMail) {
       .then((value) => lecturer);
   //return returnList;
 }
+*/

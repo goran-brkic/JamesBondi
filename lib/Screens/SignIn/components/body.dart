@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/components/InputField.dart';
+import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
-import 'package:jamesbondi/components/getUser.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _Body extends State<Body> {
     }
 
     if (auth.currentUser != null) {
-      if (await getTypeOfUser(auth.currentUser.email) == 'true') {
+      if (await UserInfoDB.getTypeOfUser(auth.currentUser.email) == 'true') {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => LProfileScreen(auth.currentUser)));
       } else {
