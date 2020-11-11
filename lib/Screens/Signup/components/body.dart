@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/components/InputField.dart';
+import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
-import '../../../components/addUser.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../components/uploadImage.dart';
 
@@ -59,7 +59,7 @@ class _Body extends State<Body> {
         _userEmail = user.email;
         user.sendEmailVerification();
         if (lecturer) {
-          addLecturer(
+          UserInfoDB.addLecturer(
                   _usernameController.text,
                   _emailController.text,
                   _firstNameController.text,
@@ -70,7 +70,7 @@ class _Body extends State<Body> {
               .then((value) => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => LProfileScreen(user))));
         } else {
-          addStudent(
+          UserInfoDB.addStudent(
                   _usernameController.text,
                   _emailController.text,
                   _firstNameController.text,
