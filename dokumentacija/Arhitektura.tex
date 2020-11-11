@@ -17,10 +17,11 @@
 				
 		\section{Baza podataka}
 			
-			\text Za potrebe našeg sustava koristit ćemo NoSQL baza podataka orijentirana na dokumente, odnosno kolekcije dokumenata. Gradivna jedinka baze je dokument koji je definiran svojim imenom i skupom atributa. Zadaća baze podataka jest jednostavna i brza pohrana, izmjena i dohvat podataka za daljnju obranu. Baza podataka ove aplikacije (za sada) sastoji se od jednog entiteta, a to je:
+			\text Za potrebe našeg sustava koristit ćemo NoSQL bazu podataka orijentirana na dokumente, odnosno kolekcije dokumenata. Gradivna jedinka baze je dokument koji je definiran svojim imenom i skupom atributa. Zadaća baze podataka jest jednostavna i brza pohrana, izmjena i dohvat podataka za daljnju obranu. Baza podataka ove aplikacije sastoji se od dva entiteta, a to su:
 			
 			\begin{itemize}
 				\item Korisnik
+				\item Tečajevi
 			\end{itemize}
 		
 			\subsection{Opis tablica}
@@ -39,20 +40,38 @@
 					\hline 
 					\endlastfoot
 					
-					About & string & kratka biografija o korisniku ukoliko je predavač \\ \hline
+					Mail & string & mail korisnika \\ \hline
+					Username & string & korisničko ime \\ \hline
+					Lecturer & boolean & oznaka je li korisnik registriran kao predavač \\ \hline
+					FirstName & string & ime korisnika \\ \hline
+					LastName & string & prezime korisnika \\ \hline
 					CardExp & string & datum isteka kartice za naplatu \\ \hline
 					CreditCard & string & broj kartice za naplatu \\ \hline
-					FirstName & string & ime korisnika \\ \hline
-					iban & string & IBAN računa za isplatu honorara \\ \hline
-					Image & & fotografija korisnika ukoliko je predavač \\ \hline
-					LastName & string & prezime korisnika \\ \hline
-					Lecturer & boolean & oznaka je li korisnik registriran kao predavač \\ \hline
-					Mail & string & mail korisnika \\ \hline
 					SecCode & string & kod za verifikaciju kartice \\ \hline
-					Username & string & korisničko ime \\ \hline
+					iban & string & IBAN računa za isplatu honorara \\ \hline
+					About & string & kratka biografija o korisniku ukoliko je predavač \\ \hline
+					Image & & fotografija korisnika ukoliko je predavač \\ \hline
 					
 					
 				\end{longtabu}
+			
+			\textbf{Tečajevi} \text    Ovaj entitet sadržava sve važne informacije o tečajevima koji su dostupni na aplikaciji. Sadrži atribut name te kolekciju za svaku razinu tečaja (beginner, intermediate, advanced) koja će sadržavati dodatne informacije o pojedinom tečaju. Za svaku kategoriju tečaja kreiran je dokument pod šifrom u bazi podataka, a za svaki tečaj kreira se dokument unutar kolekcije za odrabranu razinu i kategoriju tečaja. 
+			
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Tečajevi}}	 \\[3pt] \hline
+				\endfirsthead
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Tečajevi}}	 \\[3pt] \hline
+				\endhead
+				
+				\hline 
+				\endlastfoot
+				
+				Name & string & naziv kategorije tečaja \\ \hline
+				Razina tečaja & kolekcija & sadrži tri moguće razine tečajeva: početnička, srednja i napredna \\ \hline					
+				
+			\end{longtabu}
 			
 			
 			\subsection{Dijagram baze podataka}
