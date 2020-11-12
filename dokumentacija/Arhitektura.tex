@@ -37,21 +37,21 @@
 			\text Za potrebe našeg sustava koristit ćemo NoSQL bazu podataka orijentirana na dokumente, odnosno kolekcije dokumenata. Gradivna jedinka baze je dokument koji je definiran svojim imenom i skupom atributa. Zadaća baze podataka jest jednostavna i brza pohrana, izmjena i dohvat podataka za daljnju obranu. Baza podataka ove aplikacije sastoji se od dva entiteta, a to su:
 			
 			\begin{itemize}
-				\item Korisnik
-				\item Tečajevi
+				\item User
+				\item Categories
 			\end{itemize}
 		
 			\subsection{Opis tablica}
 			
 
-				\textbf{Korisnik} \text    Ovaj entitet sadržava sve važne informacije o korisniku aplikacije. Sadrži atribute: about, cardExp, creditCard, firstName, iban, image, lastName, lecturer, mail, secCode, username. Za svakog novog registriranog korisnika kreira se dokument pod šifrom u bazi podataka.
+				\textbf{User} \text    Ovaj entitet sadržava sve važne informacije o korisniku aplikacije. Sadrži atribute: about, cardExp, creditCard, firstName, iban, image, lastName, lecturer, mail, secCode, username. Za svakog novog registriranog korisnika kreira se dokument pod šifrom u bazi podataka.
 				
 				\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{User}}	 \\[3pt] \hline
 					\endfirsthead
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{User}}	 \\[3pt] \hline
 					\endhead
 					
 					\hline 
@@ -72,27 +72,70 @@
 					
 				\end{longtabu}
 			
-			\textbf{Tečajevi} \text    Ovaj entitet sadržava sve važne informacije o tečajevima koji su dostupni na aplikaciji. Sadrži atribut name te kolekciju za svaku razinu tečaja (beginner, intermediate, advanced) koja će sadržavati dodatne informacije o pojedinom tečaju. Za svaku kategoriju tečaja kreiran je dokument pod šifrom u bazi podataka, a za svaki tečaj kreira se dokument unutar kolekcije za odrabranu razinu i kategoriju tečaja. 
+			\textbf{Categories} \text    Ovaj entitet sadržava sve važne informacije o tečajevima koji su dostupni na aplikaciji. Sadrži atribut name te kolekciju za svaku razinu tečaja (beginner, intermediate, advanced) koja će sadržavati dodatne informacije o pojedinom tečaju. Za svaku kategoriju tečaja kreiran je dokument u bazi podataka, a za svaki tečaj kreira se dokument unutar kolekcije za odrabranu razinu i kategoriju tečaja. 
 			
 			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
 				
-				\hline \multicolumn{3}{|c|}{\textbf{Tečajevi}}	 \\[3pt] \hline
+				\hline \multicolumn{3}{|c|}{\textbf{Categories}}	 \\[3pt] \hline
 				\endfirsthead
 				
-				\hline \multicolumn{3}{|c|}{\textbf{Tečajevi}}	 \\[3pt] \hline
+				\hline \multicolumn{3}{|c|}{\textbf{Categories}}	 \\[3pt] \hline
 				\endhead
 				
 				\hline 
 				\endlastfoot
 				
 				Name & string & naziv kategorije tečaja \\ \hline
-				Razina tečaja & kolekcija & sadrži tri moguće razine tečajeva: početnička, srednja i napredna \\ \hline					
+				Difficulty & kolekcija & sadrži tri moguće razine tečajeva: početnička, srednja i napredna \\ \hline					
+				
+			\end{longtabu}
+		
+			\textbf{Difficulty} \text    Ova kolekcija unutar entiteta Courses sadrži kolekcije tečajeva (pod određenom kategorijom) raspoređene po razinama. 
+			
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Difficulty}}	 \\[3pt] \hline
+				\endfirsthead
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Difficulty}}	 \\[3pt] \hline
+				\endhead
+				
+				\hline 
+				\endlastfoot
+				
+				Beginner & kolekcija & početnička razina tečaja \\ \hline
+				Advanced & kolekcija & napredna razina tečaja \\ \hline
+				Intermediate & kolekcija & srednja razina tečaja \\ \hline					
+				
+			\end{longtabu}
+		
+		
+				\textbf{Beginner/Advanced/Intermediate} \text    Ove kolekcije sadrže informaciju o težini kreiranog tečaja te kolekciju koja će sadržavati sve dodatne sadržaje spomenutog tečaja. 
+			
+			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Beginner/Advanced/Intermediate}}	 \\[3pt] \hline
+				\endfirsthead
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Beginner/Advanced/Intermediate}}	 \\[3pt] \hline
+				\endhead
+				
+				\hline 
+				\endlastfoot
+				
+				Difficulty & string & informacija o težini tečaja \\ \hline
+				Courses & kolekcija & dodatni sadržaji i informacije o pojedinom tečaju \\ \hline				
 				
 			\end{longtabu}
 			
 			
 			\subsection{Dijagram baze podataka}
-				
+				\begin{figure}[H]
+					\includegraphics[scale=0.6]{dijagrami/ER_baza_podataka.PNG} 
+					\centering
+					\caption{E-R dijagram baze podataka}
+					\label{fig:ER}
+				\end{figure} 
 			
 			\eject
 			
