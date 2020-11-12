@@ -6,10 +6,10 @@ import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/Screens/SignUp/signup.dart';
 
 class Body extends StatefulWidget {
-  _BodyState createState() => _BodyState();
+  _Body createState() => _Body();
 }
 
-class _BodyState extends State<Body> {
+class _Body extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();

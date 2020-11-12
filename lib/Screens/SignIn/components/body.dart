@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
@@ -109,6 +110,37 @@ class _Body extends State<Body> {
                           fontSize: 20,
                           color: Colors.white),
                     ))),
+            Positioned(
+              top: size.height * 0.93,
+              left: size.width * 0.24,
+              child: Text(
+                "Don't have an account?",
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    color: customPurple),
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.93,
+              left: size.width * 0.60,
+              child: new GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                },
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.underline,
+                      fontSize: 14,
+                      color: customPurple),
+                ),
+              ),
+            ),
           ],
         ),
       ),
