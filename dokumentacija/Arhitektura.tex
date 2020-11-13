@@ -142,20 +142,36 @@
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
+			Na slici \ref{fig:ViewModel} su prikazani razredi koji pripadaju \textit{backend} dijelu MVVM arhitekture. Funkcije implementirane u razredu UserInfoDB manipuliraju podacima u bazi podataka koja predstavlja Model komponentu arhitekture. Sve funkcije koje manipuliraju podacima u bazi podataka (i općenito rade s Firebase metodama) su tipa Future, što znači da su te funkcije asinkrone zbog vremenski zahtjevnih procedura.
 			
-			\textbf{\textit{dio 1. revizije}}\\
+			Funkcije addLecturer, addStudent, checkEmailAddress i checkUser vraćaju boolean koji služi za provjeru uspješnosti akcije. Funkcija getUserInfo vraća mapu koja sadrži podatke o korisniku. Funkcija getTypeOfUser vraća string koji sadrži tip korisnika.
 			
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
+			\begin{figure}[h]
+				\includegraphics[scale=1]{dijagrami/ViewModel.PNG}
+				\centering
+				\caption{Dijagram razreda - dio ViewModel}
+				\label{fig:ViewModel}
+			\end{figure}
 			
-			\textbf{\textit{dio 2. revizije}}\\			
+			Na slici \ref{fig:View2} su prikazani razredi koji pripadaju \textit{frontend} dijelu MVVM arhitekture. View razredi služe za prikaz podataka korisniku. Svi View razredi su implementirani kao State, što znači da se njihov prikaz osvježava sa svakom promjenom stanja razreda.
 			
-			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
-			
-			
+			Zbog lakšeg prikaza, dijagram razreda View komponente je podijeljen na dva dijela, koji su prikazani jedan ispod drugog.
 			
 			\eject
-		
+			\begin{figure}[h]
+				\includegraphics[scale=0.41]{dijagrami/View1.PNG}
+				\centering
+			\end{figure}
+			
+			\begin{figure}[hbt!]
+				\includegraphics[scale=0.47]{dijagrami/View2.PNG}
+				\centering
+				\caption{Dijagram razreda - dio View}
+				\label{fig:View2}
+			\end{figure}
+			
+			\eject
+			
 		\section{Dijagram stanja}
 			
 			
