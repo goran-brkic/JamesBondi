@@ -8,11 +8,8 @@ class Body extends StatefulWidget {
   _Body createState() => _Body();
 }
 
-enum Difficulty { begginer, intermediate, advanced }
-
 class _Body extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Difficulty _difficulty = Difficulty.begginer;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +81,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Cooking");
+                  chooseDifficulty(context, size, "cooking");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Cooking.png',
@@ -99,7 +96,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "HomeGarden");
+                  chooseDifficulty(context, size, "garden");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Home&Garden.png',
@@ -114,7 +111,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Decorations");
+                  chooseDifficulty(context, size, "makeup");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Decorations.png',
@@ -129,7 +126,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Other");
+                  chooseDifficulty(context, size, "random");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Other.png',
@@ -192,7 +189,7 @@ class _Body extends State<Body> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
-                            "Begginer",
+                            "Beginner",
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.normal,
