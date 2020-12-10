@@ -23,7 +23,7 @@ class _BodyState extends State<Body> {
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.done) {
             snapshot.data['about'] != null
                 ? _aboutYController.text = snapshot.data['about']
                 : _aboutYController.text;
@@ -183,7 +183,7 @@ class _BodyState extends State<Body> {
               ),
             );
           } else {
-            children = Container();
+            return Text("loading");
           }
           return children;
         });

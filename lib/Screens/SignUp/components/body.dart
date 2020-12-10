@@ -9,7 +9,7 @@ import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../components/uploadImage.dart';
+import '../../../components/uploadFile.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
