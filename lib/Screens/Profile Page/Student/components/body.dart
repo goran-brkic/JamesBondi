@@ -22,7 +22,7 @@ class _BodyState extends State<Body> {
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.done) {
             children = SingleChildScrollView(
               child: Container(
                 height: size.height,
@@ -120,7 +120,7 @@ class _BodyState extends State<Body> {
               ),
             );
           } else {
-            children = Container();
+            return Text("loading");
           }
           return children;
         });
