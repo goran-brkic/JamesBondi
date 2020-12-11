@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
@@ -9,6 +10,7 @@ class Body extends StatefulWidget {
 }
 
 enum Difficulty { begginer, intermediate, advanced }
+enum Ctgry { IT, Cooking, HomeGarden, Decorations, Other }
 
 class _Body extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -69,7 +71,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "IT");
+                  chooseDifficulty(context, size, Ctgry.IT);
                 },
                 child: Image.asset(
                   'assets/images/Courses/IT.png',
@@ -84,7 +86,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Cooking");
+                  chooseDifficulty(context, size, Ctgry.Cooking);
                 },
                 child: Image.asset(
                   'assets/images/Courses/Cooking.png',
@@ -99,7 +101,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "HomeGarden");
+                  chooseDifficulty(context, size, Ctgry.HomeGarden);
                 },
                 child: Image.asset(
                   'assets/images/Courses/Home&Garden.png',
@@ -114,7 +116,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Decorations");
+                  chooseDifficulty(context, size, Ctgry.Decorations);
                 },
                 child: Image.asset(
                   'assets/images/Courses/Decorations.png',
@@ -129,7 +131,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, "Other");
+                  chooseDifficulty(context, size, Ctgry.Other);
                 },
                 child: Image.asset(
                   'assets/images/Courses/Other.png',
@@ -182,10 +184,12 @@ class _Body extends State<Body> {
                         size.width * 0.14, size.height * 0.45, 0, 0),
                     child: Column(
                       children: <Widget>[
+                        /////////
                         FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SignInScreen()));
+                                builder: (context) => ListCoursesScreen(
+                                    Difficulty.begginer, category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -199,11 +203,12 @@ class _Body extends State<Body> {
                                 fontSize: 20,
                                 color: customPurple),
                           ),
-                        ),
+                        ), //////////
                         FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SignInScreen()));
+                                builder: (context) => ListCoursesScreen(
+                                    Difficulty.intermediate, category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -221,7 +226,8 @@ class _Body extends State<Body> {
                         FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SignInScreen()));
+                                builder: (context) => ListCoursesScreen(
+                                    Difficulty.advanced, category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
