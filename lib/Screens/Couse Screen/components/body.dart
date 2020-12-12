@@ -67,24 +67,33 @@ class _Body extends State<Body> {
               top: size.height * 0.3,
               child: Container(
                 //color: Colors.grey[800],
-                width: size.width,
+                width: size.width - 10,
                 height: size.height / 2,
                 decoration: BoxDecoration(
-                    color: Colors.grey[400],
-                    borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  color: Colors.grey[150],
+                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                  border: Border(
+                    top: BorderSide(width: 1.0, color: customPurple),
+                    left: BorderSide(width: 1.0, color: customPurple),
+                    right: BorderSide(width: 1.0, color: customPurple),
+                    bottom: BorderSide(width: 1.0, color: customPurple),
+                  ),
+                ),
                 padding:
                     EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-                child: Text('dinamo',
+                child: Text('opis',
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       fontSize: 20,
-                      color: Colors.white,
+                      color: Colors.black,
                     )),
               ),
             ),
             Positioned(
-              top: size.height * 0.8,
+              top: size.height * 0.83,
+              height: 50,
+              width: 200,
               child: FlatButton(
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
@@ -97,7 +106,7 @@ class _Body extends State<Body> {
                     " BUY ",
                     style: TextStyle(
                         fontFamily: 'RoundLight',
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         fontSize: 20,
                         color: Colors.white),
                   )),
