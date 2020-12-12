@@ -4,9 +4,9 @@ import 'package:jamesbondi/Screens/Courses%20Page/components/body.dart';
 import 'package:jamesbondi/Screens/List Courses Page/components/body.dart';
 
 class ListCoursesScreen extends StatelessWidget {
-  Difficulty d;
-  Ctgry c;
-  ListCoursesScreen(Difficulty d, Ctgry c) {
+  String d;
+  String c;
+  ListCoursesScreen(String d, String c) {
     this.d = d;
     this.c = c;
   }
@@ -19,9 +19,9 @@ class ListCoursesScreen extends StatelessWidget {
 }
 
 class ListCoursesScreenStateful extends StatefulWidget {
-  Difficulty d;
-  Ctgry c;
-  ListCoursesScreenStateful(Difficulty d, Ctgry c) {
+  String d;
+  String c;
+  ListCoursesScreenStateful(String d, String c) {
     this.d = d;
     this.c = c;
   }
@@ -30,9 +30,9 @@ class ListCoursesScreenStateful extends StatefulWidget {
 }
 
 class _ListCoursesScreen extends State<ListCoursesScreenStateful> {
-  Difficulty d;
-  Ctgry c;
-  _ListCoursesScreen(Difficulty d, Ctgry c) {
+  String d;
+  String c;
+  _ListCoursesScreen(String d, String c) {
     this.d = d;
     this.c = c;
   }

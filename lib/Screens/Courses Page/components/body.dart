@@ -12,12 +12,8 @@ class Body extends StatefulWidget {
   _Body createState() => _Body();
 }
 
-enum Difficulty { begginer, intermediate, advanced }
-enum Ctgry { IT, Cooking, HomeGarden, Decorations, Other }
-
 class _Body extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Difficulty _difficulty = Difficulty.begginer;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +70,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, Ctgry.IT);
+                  chooseDifficulty(context, size, "IT");
                 },
                 child: Image.asset(
                   'assets/images/Courses/IT.png',
@@ -89,7 +85,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, Ctgry.Cooking);
+                  chooseDifficulty(context, size, "Cooking");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Cooking.png',
@@ -104,7 +100,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, Ctgry.HomeGarden);
+                  chooseDifficulty(context, size, "Home&Garden");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Home&Garden.png',
@@ -119,7 +115,7 @@ class _Body extends State<Body> {
               left: size.width * 0.55,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, Ctgry.Decorations);
+                  chooseDifficulty(context, size, "Decorations");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Decorations.png',
@@ -134,7 +130,7 @@ class _Body extends State<Body> {
               left: size.width * 0.05,
               child: new GestureDetector(
                 onTap: () {
-                  chooseDifficulty(context, size, Ctgry.Other);
+                  chooseDifficulty(context, size, "Other");
                 },
                 child: Image.asset(
                   'assets/images/Courses/Other.png',
@@ -191,8 +187,8 @@ class _Body extends State<Body> {
                         FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ListCoursesScreen(
-                                    Difficulty.begginer, category)));
+                                builder: (context) =>
+                                    ListCoursesScreen("beginner", category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -211,7 +207,7 @@ class _Body extends State<Body> {
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => ListCoursesScreen(
-                                    Difficulty.intermediate, category)));
+                                    "intermediate", category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
@@ -229,8 +225,8 @@ class _Body extends State<Body> {
                         FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ListCoursesScreen(
-                                    Difficulty.advanced, category)));
+                                builder: (context) =>
+                                    ListCoursesScreen("advanced", category)));
                           },
                           color: Colors.white,
                           shape: RoundedRectangleBorder(

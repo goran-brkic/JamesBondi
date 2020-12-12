@@ -6,22 +6,34 @@ import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/constants.dart';
 
 class BodyCourses extends StatefulWidget {
-  Difficulty d;
-  Ctgry c;
-  BodyCourses(Difficulty d, Ctgry c) {
+  String d;
+  String c;
+  BodyCourses(String d, String c) {
     this.d = d;
     this.c = c;
   }
   _Body createState() => _Body(d, c);
 }
 
+String translateString(String cat) {
+  switch (cat) {
+    case "IT":
+      return "IT";
+    case "Home&Garden":
+      return "garden";
+    case "Cooking":
+      return "cooking";
+    case "Decorations":
+      return "makeup";
+    case "Other":
+      return "random";
+  }
+}
+
 class _Body extends State<BodyCourses> {
-  Difficulty d;
-  Ctgry c;
-  //String dString = d.toString().substring(11); //poslije ovo napravit
-  //String cString = c.toString().substring(6);
-  //Future<List> courses = CoursesDB.getCourses(dString, cString);
-  _Body(Difficulty d, Ctgry c) {
+  String d;
+  String c;
+  _Body(String d, String c) {
     this.d = d;
     this.c = c;
   }
@@ -30,7 +42,7 @@ class _Body extends State<BodyCourses> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: CoursesDB.getCourses("cooking", "advanced"),
+        future: CoursesDB.getCourses(translateString(c), d),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           Widget children;
           children = Stack(
