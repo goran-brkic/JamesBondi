@@ -22,7 +22,7 @@ class CoursesDB {
 
   static Future<List> getCourses(
       final String category, final String difficulty) {
-    List returnList;
+    List returnList = new List();
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .get()
