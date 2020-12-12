@@ -4,6 +4,7 @@ import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'Screens/Courses Page/courses_screen.dart';
+import 'Screens/Couse Screen/CouseScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -60,7 +61,7 @@ class _HomeState extends State<Home> {
             ),
 //      home: WelcomeScreen(),
             //home: SignInScreen(),
-            home: CoursesScreen(),
+            home: CourseScreen(),
           )
         : Container();
   }
