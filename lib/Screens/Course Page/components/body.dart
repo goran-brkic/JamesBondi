@@ -106,7 +106,7 @@ class _Body extends State<Body> {
                           color: customPurple),
                     ),
                   ),
-                  //User nije kupio tecaj
+                  //User nije kupio tecaj  ->>cijeli zakomentirani, treba stavit if pa onda jedno il drugo
                   /*
                   Positioned(
                     top: size.height * 0.3,
@@ -156,8 +156,9 @@ class _Body extends State<Body> {
                               fontSize: 20,
                               color: Colors.white),
                         )),
-                  ), 
-                  */
+                  ),
+                   */
+
                   //ako user je vec kupio tecaj
                   Positioned(
                     top: size.height * 0.27,
@@ -201,6 +202,7 @@ class _Body extends State<Body> {
                           )),
                     ),
                   ),
+
                   Positioned(
                     top: size.height * 0.6,
                     child: Container(
@@ -457,6 +459,7 @@ class _Body extends State<Body> {
                               color: Colors.white),
                         )),
                   ),
+                  //zavrsava dio gdje je korisnik ulogiran
                 ],
               ),
             ),
