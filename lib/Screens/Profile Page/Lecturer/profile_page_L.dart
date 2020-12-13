@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile Page/Lecturer/components/body.dart';
 
 class LProfileScreen extends StatelessWidget {
-  final User loggedUser;
+  final String loggedUser;
 
   LProfileScreen(this.loggedUser);
   @override
@@ -15,7 +15,7 @@ class LProfileScreen extends StatelessWidget {
 }
 
 class LProfileScreenStateful extends StatefulWidget {
-  final User loggedUser;
+  final String loggedUser;
 
   LProfileScreenStateful(this.loggedUser);
   @override

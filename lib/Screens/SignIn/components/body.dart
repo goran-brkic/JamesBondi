@@ -34,10 +34,10 @@ class _Body extends State<Body> {
     if (auth.currentUser != null) {
       if (await UserInfoDB.getTypeOfUser(auth.currentUser.email) == 'true') {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LProfileScreen(auth.currentUser)));
+            builder: (context) => LProfileScreen(auth.currentUser.email)));
       } else {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SProfileScreen(auth.currentUser)));
+            builder: (context) => SProfileScreen(auth.currentUser.email)));
       }
     }
   }

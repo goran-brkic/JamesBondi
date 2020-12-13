@@ -4,7 +4,7 @@ import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 
 class Body extends StatefulWidget {
-  final User loggedUser;
+  final String loggedUser;
 
   Body(this.loggedUser);
   _BodyState createState() => _BodyState();
@@ -14,12 +14,12 @@ class _BodyState extends State<Body> {
   final TextEditingController _aboutYController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    User loggedUser = widget.loggedUser;
+    String loggedUser = widget.loggedUser;
     //Map<String, dynamic> userInfo;
 
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: UserInfoDB.getUserInfo(loggedUser.email),
+        future: UserInfoDB.getUserInfo(loggedUser),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;

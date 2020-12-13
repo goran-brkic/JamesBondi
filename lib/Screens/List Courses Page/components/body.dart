@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Courses%20Page/components/body.dart';
-import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
+import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/constants.dart';
 
@@ -28,6 +27,7 @@ String translateString(String cat) {
     case "Other":
       return "random";
   }
+  return "KRIVO";
 }
 
 class _Body extends State<BodyCourses> {
@@ -40,6 +40,43 @@ class _Body extends State<BodyCourses> {
 
   @override
   Widget build(BuildContext context) {
+    button(Map<String, dynamic> course) {
+      return Padding(
+        padding: const EdgeInsets.all(15),
+        child: FlatButton(
+            color: customPurple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      CourseScreen(translateString(c), d, course['courseID'])));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  course['courseName'],
+                  style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+                Text(
+                  course['coursePrice'].toString() + ' €',
+                  style: TextStyle(
+                      fontFamily: 'RoundLight',
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              ],
+            )),
+      );
+    }
+
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
         future: CoursesDB.getCourses(translateString(c), d),
@@ -65,7 +102,7 @@ class _Body extends State<BodyCourses> {
               Positioned(
                 top: size.height * 0.08,
                 child: Text(
-                  '$c',
+                  "$c",
                   style: TextStyle(
                       fontFamily: 'Quiglet',
                       fontWeight: FontWeight.normal,
@@ -94,9 +131,7 @@ class _Body extends State<BodyCourses> {
                               shrinkWrap: true,
                               itemCount: snapshot.data.length,
                               itemBuilder: (BuildContext ctxt, int index) {
-                                return button(
-                                    (snapshot.data[index])['courseName'],
-                                    (snapshot.data[index])['coursePrice']);
+                                return button((snapshot.data[index]));
                               })
                           : Text("LOADING COURSES"))),
             ],
@@ -104,39 +139,4 @@ class _Body extends State<BodyCourses> {
           return children;
         });
   }
-}
-
-button(String name, double price) {
-  return Padding(
-    padding: const EdgeInsets.all(15),
-    child: FlatButton(
-        color: customPurple,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        onPressed: () {
-          //ide na sljedecu stranicu
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '$name',
-              style: TextStyle(
-                  fontFamily: 'RoundLight',
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                  color: Colors.white),
-            ),
-            Text(
-              '$price €',
-              style: TextStyle(
-                  fontFamily: 'RoundLight',
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                  color: Colors.white),
-            ),
-          ],
-        )),
-  );
 }

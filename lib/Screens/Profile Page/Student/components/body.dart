@@ -4,7 +4,7 @@ import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 
 class Body extends StatefulWidget {
-  final User loggedUser;
+  final String loggedUser;
 
   Body(this.loggedUser);
   _BodyState createState() => _BodyState();
@@ -13,12 +13,10 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    final User loggedUser = widget.loggedUser;
-    Map<String, dynamic> userInfo;
-    UserInfoDB.getUserInfo(loggedUser.email).then((value) => userInfo);
+    final String loggedUser = widget.loggedUser;
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: UserInfoDB.getUserInfo(loggedUser.email),
+        future: UserInfoDB.getUserInfo(loggedUser),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;

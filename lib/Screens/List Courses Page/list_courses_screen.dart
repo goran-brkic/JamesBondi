@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Courses%20Page/components/body.dart';
 import 'package:jamesbondi/Screens/List Courses Page/components/body.dart';
 
 class ListCoursesScreen extends StatelessWidget {

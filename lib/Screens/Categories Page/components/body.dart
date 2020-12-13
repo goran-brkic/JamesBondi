@@ -1,11 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
-import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
-import 'package:jamesbondi/components/Course.dart';
-import 'package:jamesbondi/components/InputField.dart';
-import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 
 class Body extends StatefulWidget {
@@ -44,7 +38,7 @@ class _Body extends State<Body> {
             Positioned(
               top: size.height * 0.08,
               child: Text(
-                "Ime kursa",
+                "Courses",
                 style: TextStyle(
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
@@ -55,7 +49,7 @@ class _Body extends State<Body> {
             Positioned(
               top: size.height * 0.24,
               child: Text(
-                "Cijena",
+                "Choose a category",
                 style: TextStyle(
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
@@ -63,53 +57,80 @@ class _Body extends State<Body> {
                     color: customPurple),
               ),
             ),
+
+            // IT Courses
             Positioned(
-              top: size.height * 0.3,
-              child: Container(
-                //color: Colors.grey[800],
-                width: size.width - 10,
-                height: size.height / 2,
-                decoration: BoxDecoration(
-                  color: Colors.grey[150],
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  border: Border(
-                    top: BorderSide(width: 1.0, color: customPurple),
-                    left: BorderSide(width: 1.0, color: customPurple),
-                    right: BorderSide(width: 1.0, color: customPurple),
-                    bottom: BorderSide(width: 1.0, color: customPurple),
-                  ),
+              top: size.height * 0.31,
+              left: size.width * 0.05,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "IT");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/IT.png',
+                  width: size.width * 0.4,
                 ),
-                padding:
-                    EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-                child: Text('opis',
-                    style: TextStyle(
-                      fontFamily: 'RoundLight',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 20,
-                      color: Colors.black,
-                    )),
               ),
             ),
+
+            // Cooking Courses
             Positioned(
-              top: size.height * 0.83,
-              height: 50,
-              width: 200,
-              child: FlatButton(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: size.width * 0.07),
-                  onPressed: () {},
-                  color: customPurple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Text(
-                    " BUY ",
-                    style: TextStyle(
-                        fontFamily: 'RoundLight',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.white),
-                  )),
+              top: size.height * 0.31,
+              left: size.width * 0.55,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Cooking");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Cooking.png',
+                  width: size.width * 0.4,
+                ),
+              ),
+            ),
+
+            // Home & Garden Courses
+            Positioned(
+              top: size.height * 0.56,
+              left: size.width * 0.05,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Home&Garden");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Home&Garden.png',
+                  width: size.width * 0.4,
+                ),
+              ),
+            ),
+
+            // Decorations Courses
+            Positioned(
+              top: size.height * 0.56,
+              left: size.width * 0.55,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Decorations");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Decorations.png',
+                  width: size.width * 0.4,
+                ),
+              ),
+            ),
+
+            // Other Courses
+            Positioned(
+              top: size.height * 0.81,
+              left: size.width * 0.05,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Other");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Other.png',
+                  width: size.width * 0.4,
+                ),
+              ),
             ),
           ],
         ),
