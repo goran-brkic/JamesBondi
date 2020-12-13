@@ -106,6 +106,8 @@ class _Body extends State<Body> {
                           color: customPurple),
                     ),
                   ),
+                  //User nije kupio tecaj
+                  /*
                   Positioned(
                     top: size.height * 0.3,
                     child: Container(
@@ -148,6 +150,301 @@ class _Body extends State<Body> {
                         ),
                         child: Text(
                           snapshot.hasData ? "BUY" : "LOADING",
+                          style: TextStyle(
+                              fontFamily: 'RoundLight',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
+                        )),
+                  ), 
+                  */
+                  //ako user je vec kupio tecaj
+                  Positioned(
+                    top: size.height * 0.27,
+                    child: Container(
+                      width: size.width - 10,
+                      height: size.height / 4,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[150],
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        border: Border(
+                          top: BorderSide(width: 1.0, color: customPurple),
+                          left: BorderSide(width: 1.0, color: customPurple),
+                          right: BorderSide(width: 1.0, color: customPurple),
+                          bottom: BorderSide(width: 1.0, color: customPurple),
+                        ),
+                      ),
+                      padding: EdgeInsets.only(
+                          top: 10, bottom: 10, left: 15, right: 15),
+                      child: Text(
+                          snapshot.hasData ? snapshot.data['courseInfo'] : "",
+                          style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 20,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.55,
+                    child: Container(
+                      width: size.width - 10,
+                      height: size.height / 4,
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text("Materials",
+                          style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: customPurple,
+                          )),
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.6,
+                    child: Container(
+                        width: size.width,
+                        height: size.height / 4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[150],
+                          border: Border(
+                            top: BorderSide(width: 1.0, color: customPurple),
+                            bottom: BorderSide(width: 1.0, color: customPurple),
+                          ),
+                        ),
+                        padding: EdgeInsets.only(
+                            top: 10, bottom: 10, left: 15, right: 15),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              //vuci materijale kao slike i tekst(stavit cemo deafult sliku za pdf npr)
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 5),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[150],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        left: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        right: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        bottom: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/pdf.png",
+                                          height: size.height / 7,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Text("material1",
+                                              style: TextStyle(
+                                                  fontFamily: 'RoundLight',
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 20,
+                                                  color: Colors.black)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 10, right: 5),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[150],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        left: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        right: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        bottom: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/pdf.png",
+                                          height: size.height / 7,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Text("material2",
+                                              style: TextStyle(
+                                                  fontFamily: 'RoundLight',
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 20,
+                                                  color: Colors.black)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 10, right: 5),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[150],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        left: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        right: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        bottom: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/pdf.png",
+                                          height: size.height / 7,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Text("material3",
+                                              style: TextStyle(
+                                                  fontFamily: 'RoundLight',
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 20,
+                                                  color: Colors.black)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 10, right: 5),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[150],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        left: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        right: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        bottom: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/pdf.png",
+                                          height: size.height / 7,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Text("material4",
+                                              style: TextStyle(
+                                                  fontFamily: 'RoundLight',
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 20,
+                                                  color: Colors.black)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 5),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[150],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30.0)),
+                                      border: Border(
+                                        top: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        left: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        right: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                        bottom: BorderSide(
+                                            width: 1.0, color: customPurple),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/pencil.png",
+                                          height: size.height / 7,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: Text("material5",
+                                              style: TextStyle(
+                                                  fontFamily: 'RoundLight',
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 20,
+                                                  color: Colors.black)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                  ),
+
+                  Positioned(
+                    top: size.height * 0.88,
+                    height: 50,
+                    width: 300,
+                    child: FlatButton(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10, horizontal: size.width * 0.07),
+                        onPressed: () {},
+                        color: customPurple,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          snapshot.hasData ? "Ask for consultation" : "LOADING",
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.bold,

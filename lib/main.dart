@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Screens/Categories Page/categories_screen.dart';
@@ -58,7 +59,7 @@ class _HomeState extends State<Home> {
             ),
 //      home: WelcomeScreen(),
             //home: SignInScreen(),
-            home: CategoriesScreen(),
+            home: CourseScreen("a", "a", "a"),
           )
         : Container();
   }
