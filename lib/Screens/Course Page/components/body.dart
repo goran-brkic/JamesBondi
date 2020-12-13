@@ -222,7 +222,9 @@ class _Body extends State<Body> {
                             children: [
                               //vuci materijale kao slike i tekst(stavit cemo deafult sliku za pdf npr)
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  //download file ?
+                                },
                                 child: Container(
                                   padding: EdgeInsets.only(right: 5),
                                   child: Container(
@@ -245,12 +247,15 @@ class _Body extends State<Body> {
                                     child: Column(
                                       children: [
                                         Image.asset(
+                                          //ucitaj iz "bp"
                                           "assets/images/pdf.png",
                                           height: size.height / 7,
                                         ),
                                         Container(
                                           padding: EdgeInsets.only(top: 5),
-                                          child: Text("material1",
+                                          child: Text(
+                                              //ime iz baze, mozemo ogranicit na nekolko charova ?
+                                              "material1",
                                               style: TextStyle(
                                                   fontFamily: 'RoundLight',
                                                   fontWeight: FontWeight.normal,
@@ -409,7 +414,7 @@ class _Body extends State<Body> {
                                     child: Column(
                                       children: [
                                         Image.asset(
-                                          "assets/images/pencil.png",
+                                          "assets/images/mp4.png",
                                           height: size.height / 7,
                                         ),
                                         Container(
