@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Consultation Screen/components/bodyLecturer.dart';
 import 'package:jamesbondi/Screens/Consultation Screen/components/bodyStudent.dart';
 
-class CourseScreen extends StatelessWidget {
+class ConsultationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CourseScreenStatful(),
+      body: ConsultationScreenStateful(),
     );
   }
 }
 
-class CourseScreenStatful extends StatefulWidget {
+class ConsultationScreenStateful extends StatefulWidget {
   @override
-  _CourseScreen createState() => _CourseScreen();
+  _ConsultationScreen createState() => _ConsultationScreen();
 }
 
-class _CourseScreen extends State<CourseScreenStatful> {
+class _ConsultationScreen extends State<ConsultationScreenStateful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(),
+      body: BodyStudent(),
     );
   }
 }
