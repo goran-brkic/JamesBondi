@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/AddCourse/add_course.dart';
 import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Screens/Categories Page/categories_screen.dart';
@@ -61,7 +63,7 @@ class _HomeState extends State<Home> {
             ),
 //      home: WelcomeScreen(),
             //home: SignInScreen(),
-            home: AddCourseScreen(),
+            home: SignInScreen(),
           )
         : Container();
   }

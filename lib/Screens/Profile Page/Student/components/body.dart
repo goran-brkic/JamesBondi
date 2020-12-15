@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/JoinChannel/join_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 
@@ -97,6 +98,20 @@ class _BodyState extends State<Body> {
                           fontSize: 22,
                           color: customPurple,
                         ),
+                      ),
+                    ),
+
+                    //video butt
+                    Positioned(
+                      top: size.height * 0.6,
+                      child: RaisedButton(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10, horizontal: size.width * 0.07),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => JoinScreen()));
+                        },
+                        child: Text("Video"),
                       ),
                     ),
 
