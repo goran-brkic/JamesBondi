@@ -6,6 +6,7 @@ class CoursesDB {
       final String category,
       final String difficulty,
       final String courseName,
+      final String courseInfo,
       final String mail,
       final double price,
       final List<String> materials) {
@@ -13,6 +14,7 @@ class CoursesDB {
         .collection('courses/' + category + '/' + difficulty)
         .add({
           'courseName': courseName,
+          'courseInfo': courseInfo,
           'courseMail': mail,
           'coursePrice': price,
           'courseMaterials': materials

@@ -97,7 +97,7 @@ class _Body extends State<Body> {
                     top: size.height * 0.24,
                     child: Text(
                       snapshot.hasData
-                          ? snapshot.data['coursePrice'].toString() + " €"
+                          ? snapshot.data['coursePrice'].toString() + " HRK"
                           : "",
                       style: TextStyle(
                           fontFamily: 'RoundLight',

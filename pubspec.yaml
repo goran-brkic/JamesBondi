@@ -33,6 +33,7 @@ dependencies:
   firebase_storage: "^5.0.0-dev.3"
   image_picker: ^0.6.0+17
   dcdg: ^2.0.1
+  flutter_document_picker: ^4.0.0
 
 
 dev_dependencies:
