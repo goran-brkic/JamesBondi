@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:http/http.dart';
 
 class CoursesDB {
   static Future<bool> addCourse(
@@ -34,7 +33,7 @@ class CoursesDB {
                 Map<String, dynamic> temp;
                 temp = doc.data();
                 temp['courseID'] = doc.id;
-                print("DOCUMENT ID:" + doc.id);
+                // print('DOCUMENT ID:' + doc.id);
                 returnList.add(temp);
               })
             })
@@ -44,12 +43,6 @@ class CoursesDB {
   static Future<Map<String, dynamic>> getCourse(
       final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
-    print("Trazim kat: " +
-        category +
-        "  i dif: " +
-        difficulty +
-        " i ID: " +
-        courseID);
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)

@@ -70,7 +70,7 @@ class _Body extends State<Body> {
                         ),
                       ),
                       InputField(
-                        title: "Course name",
+                        title: 'Course name',
                         topValue: 0.25,
                         controller: _courseNameController,
                         enabledField: true,
@@ -81,7 +81,7 @@ class _Body extends State<Body> {
                         left: size.width * 0.12,
                         top: size.height * (0.39 - 0.035),
                         child: Text(
-                          "Short description",
+                          'Short description',
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
@@ -253,7 +253,7 @@ class _Body extends State<Body> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: size.width * 0.07),
                             onPressed: () async {
-                              List<String> linkovi = new List<String>();
+                              List<String> linkovi;
                               for (var i in listaPuteva) {
                                 linkovi.add(await uploadFile(File(i)));
                               }
@@ -272,7 +272,7 @@ class _Body extends State<Body> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Text(
-                              "Add course",
+                              'Add course',
                               style: TextStyle(
                                   fontFamily: 'RoundLight',
                                   fontWeight: FontWeight.bold,
@@ -286,7 +286,7 @@ class _Body extends State<Body> {
   }
 }
 
-matButton(Size size, String ime) {
+GestureDetector matButton(Size size, String ime) {
   return GestureDetector(
     onTap: () {
       //delete file ?

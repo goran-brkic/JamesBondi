@@ -16,7 +16,7 @@ class Body extends StatefulWidget {
 
 class _Body extends State<Body> {
   /// create a channelController to retrieve text value
-  final _channelController = TextEditingController();
+  TextEditingController _channelController;
 
   /// if channel textField is validated to have error
   bool _validateError = false;
@@ -47,6 +47,7 @@ class _Body extends State<Body> {
                 children: <Widget>[
                   Expanded(
                       child: TextField(
+                    enabled: false,
                     controller: _channelController,
                     decoration: InputDecoration(
                         errorText:
@@ -62,7 +63,7 @@ class _Body extends State<Body> {
               Column(
                 children: [
                   ListTile(
-                    title: Text("Predavac"),
+                    title: Text('Predavac'),
                     leading: Radio(
                       activeColor: customPurple,
                       value: ClientRole.Broadcaster,
@@ -75,7 +76,7 @@ class _Body extends State<Body> {
                     ),
                   ),
                   ListTile(
-                    title: Text("Student"),
+                    title: Text('Student'),
                     leading: Radio(
                       value: ClientRole.Audience,
                       groupValue: _role,
