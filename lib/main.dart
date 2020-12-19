@@ -3,10 +3,12 @@ import 'package:jamesbondi/Screens/AddCourse/add_course.dart';
 import 'package:jamesbondi/Screens/Categories%20Add%20Page/categories_add_screen.dart';
 import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/Request%20Consultations/request_consulations.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Screens/Categories Page/categories_screen.dart';
+import 'Screens/Checkout/checkout_screen.dart';
 import 'Screens/Consultation Screen/ConsultationScreen.dart';
 
 void main() {
@@ -62,13 +64,7 @@ class _HomeState extends State<Home> {
               backgroundColor: bgColor,
               scaffoldBackgroundColor: bgColor,
             ),
-<<<<<<< HEAD
-            home: CategoriesAddScreen(),
-=======
-//      home: WelcomeScreen(),
-            //home: SignInScreen(),
-            home: SignInScreen(),
->>>>>>> 4342c9403759129a984865232e1ed25f15ec3370
+            home: CheckoutScreen(),
           )
         : Container();
   }
