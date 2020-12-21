@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Consultation Screen/components/bodyLecturer.dart';
-import 'package:jamesbondi/Screens/Consultation Screen/components/bodyStudent.dart';
+import 'package:jamesbondi/Screens/Consultation%20Screen/components/body.dart';
 
 class ConsultationScreen extends StatelessWidget {
   @override
@@ -20,7 +19,7 @@ class _ConsultationScreen extends State<ConsultationScreenStateful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BodyStudent(),
+      body: Body(),
     );
   }
 }

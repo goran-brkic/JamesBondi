@@ -3,14 +3,15 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
+import 'package:jamesbondi/Screens/Request%20Consultations/request_consulations.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/constants.dart';
 
-class Body extends StatefulWidget {
+class BodyBought extends StatefulWidget {
   String id;
   String cat;
   String dif;
-  Body(String cat, String dif, String id) {
+  BodyBought(String cat, String dif, String id) {
     this.cat = cat;
     this.dif = dif;
     this.id = id;
@@ -18,7 +19,7 @@ class Body extends StatefulWidget {
   _Body createState() => _Body(this.cat, this.dif, this.id);
 }
 
-class _Body extends State<Body> {
+class _Body extends State<BodyBought> {
   String courseID;
   String courseCat;
   String courseDif;
@@ -93,6 +94,7 @@ class _Body extends State<Body> {
                       ),
                     ),
                   ),
+                  /*
                   Positioned(
                     top: size.height * 0.24,
                     child: Text(
@@ -106,6 +108,8 @@ class _Body extends State<Body> {
                           color: customPurple),
                     ),
                   ),
+                  */
+
                   //User nije kupio tecaj  ->>cijeli zakomentirani, treba stavit if pa onda jedno il drugo
                   /*
                   Positioned(
@@ -445,7 +449,11 @@ class _Body extends State<Body> {
                     child: FlatButton(
                         padding: EdgeInsets.symmetric(
                             vertical: 10, horizontal: size.width * 0.07),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => RequestConsultationsScreen(
+                                  widget.cat, widget.dif, widget.id)));
+                        },
                         color: customPurple,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),

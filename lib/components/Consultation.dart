@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConsultationDB {
   static Future<bool> createConsRequest(
@@ -22,11 +23,13 @@ class ConsultationDB {
         .catchError((error) => print('Failed to add course: $error'));
   }
 
-  static Future<List> getConsultations(final String mail, final bool student) {
-    List returnList;
+  static Future<List> getConsultations(final String mail) async {
+    List returnList = new List();
+    var type = await SharedPreferences.getInstance()
+        .then((value) => value.getBool('lecturer'));
     return FirebaseFirestore.instance
         .collection('meetings')
-        .where(student ? 'studentMail' : 'lecturerMail', isEqualTo: mail)
+        .where(!type ? 'studentMail' : 'lecturerMail', isEqualTo: mail)
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
@@ -38,7 +41,7 @@ class ConsultationDB {
               })
             })
         .then((value) => returnList)
-        .catchError((error) => print('Failed to add course: $error'));
+        .catchError((error) => print('Failed to get consultations: $error'));
   }
 
   static Future<Map<String, dynamic>> getConsultation(final String meetID) {

@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -13,14 +16,14 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  TextEditingController _mailController = new TextEditingController();
-  TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _mailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   void _login() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
+      var userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: _mailController.text, password: _passwordController.text);
     } on FirebaseAuthException catch (e) {
@@ -32,19 +35,21 @@ class _Body extends State<Body> {
     }
 
     if (auth.currentUser != null) {
+      final prefs = await SharedPreferences.getInstance();
       if (await UserInfoDB.getTypeOfUser(auth.currentUser.email) == 'true') {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LProfileScreen(auth.currentUser.email)));
+        await prefs.setBool('lecturer', true);
       } else {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SProfileScreen(auth.currentUser.email)));
+        await prefs.setBool('lecturer', false);
       }
+
+      await Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => ConsultationScreen()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
         height: size.height,

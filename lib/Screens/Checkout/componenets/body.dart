@@ -1,15 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/constants.dart';
 
-
 class Body extends StatefulWidget {
+  var course;
+  Body(this.course);
+  @override
   _Body createState() => _Body();
 }
 
 class _Body extends State<Body> {
+  String creditCardNumber = '4124';
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
+    Widget cardChild;
+    if (creditCardNumber.startsWith('4')) {
+      cardChild = Image.asset(
+        'assets/images/visa.png',
+        width: size.width * 0.1,
+      );
+    } else if (creditCardNumber.startsWith('34') ||
+        creditCardNumber.startsWith('37')) {
+      cardChild = Image.asset(
+        'assets/images/americanExpress.png',
+        width: size.width * 0.1,
+      );
+    } else if (creditCardNumber.startsWith('5')) {
+      cardChild = Image.asset(
+        'assets/images/mastercard.png',
+        width: size.width * 0.1,
+      );
+    }
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Form(
@@ -36,7 +57,7 @@ class _Body extends State<Body> {
               Positioned(
                 top: size.height * 0.085,
                 child: Text(
-                  "Checkout",
+                  'Checkout',
                   style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
@@ -49,7 +70,7 @@ class _Body extends State<Body> {
                 top: size.height * 0.24,
                 left: size.width * 0.1,
                 child: Text(
-                  "Please review the information",
+                  'Please review the information',
                   style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
@@ -76,15 +97,15 @@ class _Body extends State<Body> {
               Positioned(
                 top: size.height * 0.31,
                 left: size.width * 0.15,
-                  child: Text(
-                    "Course: ", // + courseName,
-                    style: TextStyle(
-                      fontFamily: 'RoundLight',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 22,
-                      color: Colors.black,
-                    ),
+                child: Text(
+                  'Course: ' + widget.course['courseName'], // + courseName,
+                  style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 22,
+                    color: Colors.black,
                   ),
+                ),
               ),
               Positioned(
                 top: size.height * 0.36,
@@ -92,7 +113,9 @@ class _Body extends State<Body> {
                 child: GestureDetector(
                   onTap: () {},
                   child: Text(
-                    "Price: ", // + price,
+                    'Price: ' +
+                        widget.course['coursePrice'].toString() +
+                        ' HRK', // + price,
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
@@ -108,7 +131,7 @@ class _Body extends State<Body> {
                 child: GestureDetector(
                   onTap: () {},
                   child: Text(
-                    "Method of payment:",
+                    'Method of payment:',
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
@@ -124,7 +147,7 @@ class _Body extends State<Body> {
                 top: size.height * 0.46,
                 left: size.width * 0.15,
                 child: Container(
-                  padding: new EdgeInsets.fromLTRB(24, 10, 0, 9),
+                  padding: EdgeInsets.fromLTRB(24, 10, 0, 9),
                   height: size.height * 0.06,
                   width: size.width * 0.55,
                   decoration: BoxDecoration(
@@ -133,7 +156,7 @@ class _Body extends State<Body> {
                     border: Border.all(color: customPurple),
                   ),
                   child: Text(
-                    "****  ****  ****  4852", // + credit card number substring zadnja cetiri broja
+                    '****  ****  ****  4852', // + credit card number substring zadnja cetiri broja
                     // var string = 'dartlang';
                     // string.substring(1);    // 'artlang'
                     // string.substring(1, 4); // 'art
@@ -152,25 +175,7 @@ class _Body extends State<Body> {
               Positioned(
                 top: size.height * 0.46,
                 left: size.width * 0.73,
-                if (creditCardNumber.startsWith(4)) ...[
-                  child: Image.asset(
-                    'assets/images/visa.png',
-                    width: size.width * 0.1,
-                  ),
-                ],
-                if (creditCardNumber.startsWith(34) || creditCardNumber.startsWith(37)) ...[
-                  child: Image.asset(
-                    'assets/images/americanExpress.png',
-                    width: size.width * 0.1,
-                  ),
-                ],
-                */
-                if (creditCardNumber.startsWith(5)) ...[
-                  child: Image.asset(
-                    'assets/images/mastercard.png',
-                    width: size.width * 0.1,
-                  ),
-                ],
+                child: cardChild,
               ),
 
               // Purchase button
@@ -191,7 +196,7 @@ class _Body extends State<Body> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Text(
-                      "Purchase",
+                      'Purchase',
                       style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
