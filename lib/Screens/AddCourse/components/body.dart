@@ -125,7 +125,7 @@ class _Body extends State<Body> {
                         left: size.width * 0.12,
                         top: size.height * (0.7 - 0.035),
                         child: Text(
-                          "Price",
+                          'Price',
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,

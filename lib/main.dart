@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Categories%20Add%20Page/categories_add_screen.dart';
-import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
-import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import 'Screens/Checkout/checkout_screen.dart';
 
 void main() {
   runApp(MyApp());

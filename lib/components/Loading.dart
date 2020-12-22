@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/constants.dart';
 
 Scaffold loadingBar() {
   return Scaffold(

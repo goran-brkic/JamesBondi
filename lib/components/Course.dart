@@ -40,6 +40,17 @@ class CoursesDB {
         .then((value) => returnList);
   }
 
+  static Future<String> getCourseName(final String courseID) {
+    String returnItem;
+    return FirebaseFirestore.instance
+        .collection('courses')
+        .doc(courseID)
+        .get()
+        .then((DocumentSnapshot docSnapshot) {
+      returnItem = docSnapshot.id;
+    }).then((value) => returnItem);
+  }
+
   static Future<Map<String, dynamic>> getCourse(
       final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
