@@ -44,7 +44,7 @@ class _CourseScreen extends State<CourseScreenStatful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BodyFresh(this.c, this.dif, this.id),
+      body: BodyBought(this.c, this.dif, this.id),
     );
   }
 }

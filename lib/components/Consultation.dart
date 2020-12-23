@@ -44,6 +44,20 @@ class ConsultationDB {
         .catchError((error) => print('Failed to get consultations: $error'));
   }
 
+  static Future<void> confirmConsultationsLecturer(String meetID) {
+    return FirebaseFirestore.instance
+        .collection('meetings')
+        .doc(meetID)
+        .update({'lecturerConfirm': true});
+  }
+
+  static Future<void> confirmConsultationsStudent(String meetID) {
+    return FirebaseFirestore.instance
+        .collection('meetings')
+        .doc(meetID)
+        .update({'studentConfirm': true});
+  }
+
   static Future<Map<String, dynamic>> getConsultation(final String meetID) {
     Map<String, dynamic> returnItem;
     return FirebaseFirestore.instance
@@ -53,5 +67,12 @@ class ConsultationDB {
         .then((DocumentSnapshot docSnapshot) {
       returnItem = docSnapshot.data();
     }).then((value) => returnItem);
+  }
+
+  static Future<void> updateConsultation(
+      String meetID, DateTime reqDate, bool lec) {
+    print('TRAZIM DOKUMENT S ID: ' + meetID.toString());
+    return FirebaseFirestore.instance.collection('meetings').doc(meetID).update(
+        {'studentConfirm': !lec, 'lecturerConfirm': lec, 'reqDate': reqDate});
   }
 }

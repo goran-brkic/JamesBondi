@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Welcome/welcome_screen.dart';
 import 'package:jamesbondi/components/Consultation.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/constants.dart';
@@ -79,7 +78,7 @@ class _Body extends State<Body> {
     var size = MediaQuery.of(context).size;
     dateTime = DateFormat.yMd().format(DateTime.now());
     return FutureBuilder(
-        future: CoursesDB.getCourse(widget.cat, widget.dif, widget.courseID),
+        future: CoursesDB.getCourse(widget.courseID),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           if (snapshot.hasError) {
@@ -134,7 +133,12 @@ class _Body extends State<Body> {
                                 widget.courseID,
                                 FirebaseAuth.instance.currentUser.email,
                                 snapshot.data['courseMail'],
-                                DateTime.parse('1969-07-20 20:18:04Z'),
+                                DateTime(
+                                    selectedDate.year,
+                                    selectedDate.month,
+                                    selectedDate.day,
+                                    selectedTime.hour,
+                                    selectedTime.minute),
                                 true,
                                 false);
                           },

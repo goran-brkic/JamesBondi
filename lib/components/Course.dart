@@ -51,24 +51,14 @@ class CoursesDB {
     }).then((value) => returnItem);
   }
 
-  static Future<Map<String, dynamic>> getCourse(
-      final String category, final String difficulty, final String courseID) {
+  static Future<Map<String, dynamic>> getCourse(final String courseID) {
     Map<String, dynamic> returnItem;
     return FirebaseFirestore.instance
-        .collection('courses/' + category + '/' + difficulty)
+        .collection('courses')
         .doc(courseID)
         .get()
         .then((DocumentSnapshot docSnapshot) {
       returnItem = docSnapshot.data();
-      //print("DOHVACAM COURSE S ID: " + courseID);
-
-      /*
-      if (docSnapshot.exists) {
-        print('Document data: ${docSnapshot.data()}');
-      } else {
-        print('Document does not exist on the database');
-      }
-      */
     }).then((value) => returnItem);
   }
 }
