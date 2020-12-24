@@ -31,8 +31,8 @@ class _BodyNew extends State<BodyNew> {
         context: context,
         initialDate: selectedDate,
         initialDatePickerMode: DatePickerMode.day,
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(2020),
+        lastDate: DateTime(2021));
     if (picked != null) {
       setState(() {
         selectedDate = picked;
@@ -75,7 +75,25 @@ class _BodyNew extends State<BodyNew> {
         [hh, ':', nn, ' ', am]).toString();
     super.initState();
     getType();
-    print('OVDJE JE MEET ID: ' + widget.meetID.toString());
+    //print('OVDJE JE MEET ID: ' + widget.meetID.toString());
+  }
+
+  Future<void> _showDialog(var context) async {
+    return showDialog<void>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Enter a date after now!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        },
+        context: context);
   }
 
   @override
@@ -122,7 +140,7 @@ class _BodyNew extends State<BodyNew> {
                 child: FlatButton(
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
-                  onPressed: () {
+                  onPressed: () async {
                     if (DateTime(
                             selectedDate.year,
                             selectedDate.month,
@@ -132,18 +150,9 @@ class _BodyNew extends State<BodyNew> {
                         .isBefore(DateTime.now())) {
                       selectedDate = DateTime.now();
                       selectedTime = TimeOfDay.now();
-                      AlertDialog(
-                        title: Text('Choose a date after now!'),
-                        actions: [
-                          FlatButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('OK'))
-                        ],
-                      );
+                      await _showDialog(context);
                     } else {
-                      ConsultationDB.updateConsultation(
+                      await ConsultationDB.updateConsultation(
                           widget.meetID,
                           DateTime(
                               selectedDate.year,
