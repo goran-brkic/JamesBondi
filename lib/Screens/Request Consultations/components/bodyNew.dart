@@ -123,15 +123,36 @@ class _BodyNew extends State<BodyNew> {
                   padding: EdgeInsets.symmetric(
                       vertical: 10, horizontal: size.width * 0.07),
                   onPressed: () {
-                    ConsultationDB.updateConsultation(
-                        widget.meetID,
-                        DateTime(
+                    if (DateTime(
                             selectedDate.year,
                             selectedDate.month,
                             selectedDate.day,
                             selectedTime.hour,
-                            selectedTime.minute),
-                        lec);
+                            selectedTime.minute)
+                        .isBefore(DateTime.now())) {
+                      selectedDate = DateTime.now();
+                      selectedTime = TimeOfDay.now();
+                      AlertDialog(
+                        title: Text('Choose a date after now!'),
+                        actions: [
+                          FlatButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'))
+                        ],
+                      );
+                    } else {
+                      ConsultationDB.updateConsultation(
+                          widget.meetID,
+                          DateTime(
+                              selectedDate.year,
+                              selectedDate.month,
+                              selectedDate.day,
+                              selectedTime.hour,
+                              selectedTime.minute),
+                          lec);
+                    }
                   },
                   color: customPurple,
                   shape: RoundedRectangleBorder(

@@ -34,7 +34,7 @@ class _Body extends State<BodyBought> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: CoursesDB.getCourse(courseID),
+        future: CoursesDB.getCourse(courseCat, courseDif, courseID),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;

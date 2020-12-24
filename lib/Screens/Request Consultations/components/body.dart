@@ -73,12 +73,30 @@ class _Body extends State<Body> {
     super.initState();
   }
 
+  Future<void> _showDialog(var context) async {
+    return showDialog<void>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Enter a date after now!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        },
+        context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     dateTime = DateFormat.yMd().format(DateTime.now());
     return FutureBuilder(
-        future: CoursesDB.getCourse(widget.courseID),
+        future: CoursesDB.getCourse(widget.cat, widget.dif, widget.courseID),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           if (snapshot.hasError) {
@@ -128,19 +146,36 @@ class _Body extends State<Body> {
                         child: FlatButton(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: size.width * 0.07),
-                          onPressed: () {
-                            ConsultationDB.createConsRequest(
-                                widget.courseID,
-                                FirebaseAuth.instance.currentUser.email,
-                                snapshot.data['courseMail'],
-                                DateTime(
+                          onPressed: () async {
+                            if (DateTime(
                                     selectedDate.year,
                                     selectedDate.month,
                                     selectedDate.day,
                                     selectedTime.hour,
-                                    selectedTime.minute),
-                                true,
-                                false);
+                                    selectedTime.minute)
+                                .isBefore(DateTime.now())) {
+                              selectedDate = DateTime.now();
+                              selectedTime = TimeOfDay.now();
+                              _timeController.text = formatDate(
+                                  DateTime(2019, 08, 1, DateTime.now().hour,
+                                      DateTime.now().minute),
+                                  [hh, ':', nn, ' ', am]).toString();
+                              await _showDialog(context);
+                            } else {
+                              await ConsultationDB.createConsRequest(
+                                  widget.courseID,
+                                  FirebaseAuth.instance.currentUser.email,
+                                  snapshot.data['courseMail'],
+                                  DateTime(
+                                      selectedDate.year,
+                                      selectedDate.month,
+                                      selectedDate.day,
+                                      selectedTime.hour,
+                                      selectedTime.minute),
+                                  true,
+                                  false);
+                              Navigator.of(context).pop();
+                            }
                           },
                           color: customPurple,
                           shape: RoundedRectangleBorder(

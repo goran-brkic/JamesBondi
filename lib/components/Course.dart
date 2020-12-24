@@ -51,10 +51,11 @@ class CoursesDB {
     }).then((value) => returnItem);
   }
 
-  static Future<Map<String, dynamic>> getCourse(final String courseID) {
+  static Future<Map<String, dynamic>> getCourse(
+      final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
     return FirebaseFirestore.instance
-        .collection('courses')
+        .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
         .get()
         .then((DocumentSnapshot docSnapshot) {

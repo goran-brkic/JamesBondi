@@ -121,7 +121,7 @@ class _Body extends State<Body> {
                           _usernameController.clear();
                         });
                       } else {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        await Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SignUpScreen(
                                   emailAddressInput: _emailController.text,
                                   usernameInput: _usernameController.text,
