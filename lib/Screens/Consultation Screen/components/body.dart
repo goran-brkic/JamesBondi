@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Request%20Consultations/req_new_cons.dart';
 import 'package:jamesbondi/components/Consultation.dart';
-import 'package:jamesbondi/components/Loading.dart';
+import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';

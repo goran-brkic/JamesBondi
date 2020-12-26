@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Course%20Page/components/bodyB.dart';
 import 'package:jamesbondi/Screens/Course%20Page/components/bodyU.dart';
 
+import 'components/bodyL.dart';
+
 class CourseScreen extends StatelessWidget {
   String id;
   String cat;
@@ -44,7 +46,7 @@ class _CourseScreen extends State<CourseScreenStatful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BodyBought(this.c, this.dif, this.id),
+      body: BodyLec(this.c, this.dif, this.id),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
 import 'package:jamesbondi/components/Course.dart';
-import 'package:jamesbondi/components/Loading.dart';
+import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/constants.dart';
 
 class BodyCourses extends StatefulWidget {
