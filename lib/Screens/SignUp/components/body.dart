@@ -424,7 +424,7 @@ class _Body extends State<Body> {
                     child: RawMaterialButton(
                       onPressed: () async {
                         await getImage();
-                        imageURL = await uploadFile(_image);
+                        imageURL = await uploadImage(_image);
                         print(imageURL);
                       },
                       elevation: 0,

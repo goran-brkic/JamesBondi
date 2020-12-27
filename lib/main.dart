@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/AddCourse/add_course.dart';
-import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'Screens/Categories Page/categories_screen.dart';
-import 'Screens/Consultation Screen/ConsultationScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,9 +57,7 @@ class _HomeState extends State<Home> {
               backgroundColor: bgColor,
               scaffoldBackgroundColor: bgColor,
             ),
-//      home: WelcomeScreen(),
-            //home: SignInScreen(),
-            home: AddCourseScreen(),
+            home: SignInScreen(),
           )
         : Container();
   }

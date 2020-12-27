@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
-import 'package:jamesbondi/constants.dart';
+import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'body2.dart';
 
 class Body extends StatefulWidget {
   _Body createState() => _Body();
@@ -8,136 +10,112 @@ class Body extends StatefulWidget {
 
 class _Body extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //lista widgeta za bottomNav bar
+  int _selectedIndex = 2;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    CategoriesScreen2(),
+    //CategoriesScreen2(),
+    CategoriesScreen2(),
+    //CategoriesScreen2(),
+    //SearchScreen(),
+    ConsultationScreen(),
+    SProfileScreen(FirebaseAuth.instance.currentUser.email),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-        child: Form(
-      key: _formKey,
-      child: Container(
-        height: size.height,
-        width: double.infinity,
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Positioned(
-              top: size.height * 0.001,
-              child: Image.asset(
-                'assets/images/top_part_courses.png',
-                width: size.width * 1,
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.15,
-              child: Image.asset(
-                'assets/images/Line 1.png',
-                width: size.width * 0.7,
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.08,
-              child: Text(
-                "Courses",
-                style: TextStyle(
-                    fontFamily: 'Quiglet',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 34,
-                    color: Colors.white),
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.24,
-              child: Text(
-                "Choose a category",
-                style: TextStyle(
-                    fontFamily: 'Quiglet',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 25,
-                    color: customPurple),
-              ),
-            ),
-
-            // IT Courses
-            Positioned(
-              top: size.height * 0.31,
-              left: size.width * 0.05,
-              child: new GestureDetector(
-                onTap: () {
-                  chooseDifficulty(context, size, "IT");
-                },
-                child: Image.asset(
-                  'assets/images/Courses/IT.png',
-                  width: size.width * 0.4,
-                ),
-              ),
-            ),
-
-            // Cooking Courses
-            Positioned(
-              top: size.height * 0.31,
-              left: size.width * 0.55,
-              child: new GestureDetector(
-                onTap: () {
-                  chooseDifficulty(context, size, "Cooking");
-                },
-                child: Image.asset(
-                  'assets/images/Courses/Cooking.png',
-                  width: size.width * 0.4,
-                ),
-              ),
-            ),
-
-            // Home & Garden Courses
-            Positioned(
-              top: size.height * 0.56,
-              left: size.width * 0.05,
-              child: new GestureDetector(
-                onTap: () {
-                  chooseDifficulty(context, size, "Home&Garden");
-                },
-                child: Image.asset(
-                  'assets/images/Courses/Home&Garden.png',
-                  width: size.width * 0.4,
-                ),
-              ),
-            ),
-
-            // Decorations Courses
-            Positioned(
-              top: size.height * 0.56,
-              left: size.width * 0.55,
-              child: new GestureDetector(
-                onTap: () {
-                  chooseDifficulty(context, size, "Decorations");
-                },
-                child: Image.asset(
-                  'assets/images/Courses/Decorations.png',
-                  width: size.width * 0.4,
-                ),
-              ),
-            ),
-
-            // Other Courses
-            Positioned(
-              top: size.height * 0.81,
-              left: size.width * 0.05,
-              child: new GestureDetector(
-                onTap: () {
-                  chooseDifficulty(context, size, "Other");
-                },
-                child: Image.asset(
-                  'assets/images/Courses/Other.png',
-                  width: size.width * 0.4,
-                ),
-              ),
-            ),
-          ],
+    return Scaffold(
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
         ),
-      ),
-    ));
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.orange[800],
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          child: Container(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    MaterialButton(
+                        minWidth: 30,
+                        onPressed: () {
+                          _onItemTapped(0);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.category),
+                            Text('Categories')
+                          ],
+                        )),
+                    MaterialButton(
+                        minWidth: 30,
+                        onPressed: () {
+                          _onItemTapped(1);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.search),
+                            Text('Search')
+                          ],
+                        )),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    MaterialButton(
+                        minWidth: 30,
+                        onPressed: () {
+                          _onItemTapped(2);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.ring_volume),
+                            Text('Consultation')
+                          ],
+                        )),
+                    MaterialButton(
+                        minWidth: 30,
+                        onPressed: () {
+                          _onItemTapped(3);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.group_outlined),
+                            Text('Profile')
+                          ],
+                        )),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          key: _formKey,
+        ));
   }
-
+}
+//chooseDiff je u body2.dart
+/*
   chooseDifficulty(context, size, category) {
     return showDialog(
         context: context,
@@ -245,3 +223,4 @@ class _Body extends State<Body> {
         });
   }
 }
+*/

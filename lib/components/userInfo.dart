@@ -56,7 +56,7 @@ class UserInfoDB {
   }
 
   static Future<bool> checkEmailAddress(String email) {
-    bool available = true;
+    var available = true;
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: email)
@@ -70,7 +70,7 @@ class UserInfoDB {
   }
 
   static Future<bool> checkUser(String username) {
-    bool used = true;
+    var used = true;
     return FirebaseFirestore.instance
         .collection('users')
         .where('username', isEqualTo: username)
@@ -84,7 +84,7 @@ class UserInfoDB {
   }
 
   static Future<Map<String, dynamic>> getUserInfo(String inputMail) {
-    Map<String, dynamic> returnList = new Map();
+    var returnList = Map<String, dynamic>();
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: inputMail)
