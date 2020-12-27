@@ -62,4 +62,30 @@ class CoursesDB {
       returnItem = docSnapshot.data();
     }).then((value) => returnItem);
   }
+
+  static Future<List<Map<String, dynamic>>> searchCourses(
+      final String keyword) {
+    var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
+    var difs = ['advanced', 'beginner', 'intermediate'];
+    List<Map<String, dynamic>> returnItem;
+    for (var i in cats) {
+      for (var j in difs) {
+        FirebaseFirestore.instance
+            .collection('courses/' + i + '/' + j)
+            .where('courseName', isGreaterThanOrEqualTo: keyword)
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+                  querySnapshot.docs.forEach((doc) {
+                    Map<String, dynamic> temp;
+                    temp = doc.data();
+                    temp['courseID'] = doc.id;
+                    temp['category'] = i;
+                    temp['difficulty'] = j;
+                    returnItem.add(temp);
+                  })
+                });
+      }
+    }
+    return Future.value(returnItem);
+  }
 }

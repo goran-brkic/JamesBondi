@@ -38,7 +38,7 @@ class _Body extends State<BodyCourses> {
     this.d = d;
     this.c = c;
   }
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Padding button(Map<String, dynamic> course) {
@@ -83,60 +83,130 @@ class _Body extends State<BodyCourses> {
         future: CoursesDB.getCourses(translateString(c), d),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           Widget children;
-          children = Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Positioned(
-                top: size.height * 0.001,
-                child: Image.asset(
-                  'assets/images/top_part_courses.png',
-                  width: size.width * 1,
-                ),
+          children = Scaffold(
+              body: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Positioned(
+                    top: size.height * 0.001,
+                    child: Image.asset(
+                      'assets/images/top_part_courses.png',
+                      width: size.width * 1,
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.15,
+                    child: Image.asset(
+                      'assets/images/Line 1.png',
+                      width: size.width * 0.7,
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.08,
+                    child: Text(
+                      '$c',
+                      style: TextStyle(
+                          fontFamily: 'Quiglet',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 34,
+                          color: Colors.white),
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.24,
+                    child: Text(
+                      'Choose a course',
+                      style: TextStyle(
+                          fontFamily: 'Quiglet',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 25,
+                          color: customPurple),
+                    ),
+                  ),
+                  Positioned(
+                      top: size.height * 0.30,
+                      child: Container(
+                          height: 400,
+                          width: 400,
+                          child: snapshot.hasData
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    return button((snapshot.data[index]));
+                                  })
+                              : loadingBar()))
+                ],
               ),
-              Positioned(
-                top: size.height * 0.15,
-                child: Image.asset(
-                  'assets/images/Line 1.png',
-                  width: size.width * 0.7,
-                ),
+              floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+                backgroundColor: Colors.orange[800],
+                onPressed: () {},
               ),
-              Positioned(
-                top: size.height * 0.08,
-                child: Text(
-                  '$c',
-                  style: TextStyle(
-                      fontFamily: 'Quiglet',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 34,
-                      color: Colors.white),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              bottomNavigationBar: BottomAppBar(
+                shape: CircularNotchedRectangle(),
+                child: Container(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          MaterialButton(
+                              minWidth: 30,
+                              onPressed: () {},
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.category),
+                                  Text('Categories')
+                                ],
+                              )),
+                          MaterialButton(
+                              minWidth: 30,
+                              onPressed: () {},
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.search),
+                                  Text('Search')
+                                ],
+                              )),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          MaterialButton(
+                              minWidth: 30,
+                              onPressed: () {},
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.ring_volume),
+                                  Text('Consultation')
+                                ],
+                              )),
+                          MaterialButton(
+                              minWidth: 30,
+                              onPressed: () {},
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.group_outlined),
+                                  Text('Profile')
+                                ],
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Positioned(
-                top: size.height * 0.24,
-                child: Text(
-                  'Choose a course',
-                  style: TextStyle(
-                      fontFamily: 'Quiglet',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 25,
-                      color: customPurple),
-                ),
-              ),
-              Positioned(
-                  top: size.height * 0.30,
-                  child: Container(
-                      height: 400,
-                      width: 400,
-                      child: snapshot.hasData
-                          ? ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (BuildContext ctxt, int index) {
-                                return button((snapshot.data[index]));
-                              })
-                          : loadingBar()))
-            ],
-          );
+                key: _formKey,
+              ));
           return children;
         });
   }

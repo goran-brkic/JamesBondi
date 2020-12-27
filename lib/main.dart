@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
               backgroundColor: bgColor,
               scaffoldBackgroundColor: bgColor,
             ),
-            home: CategoriesScreen(),
+            home: SignInScreen(),
           )
         : Container();
   }

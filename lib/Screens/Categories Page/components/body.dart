@@ -1,14 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
 import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
-import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
-import 'package:jamesbondi/Screens/JoinChannel/join_screen.dart';
-import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
-import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
-import 'package:jamesbondi/constants.dart';
-
 import 'body2.dart';
 
 class Body extends StatefulWidget {
@@ -22,12 +15,12 @@ class _Body extends State<Body> {
 
   static List<Widget> _widgetOptions = <Widget>[
     CategoriesScreen2(),
+    //CategoriesScreen2(),
     CategoriesScreen2(),
-    CategoriesScreen2(),
-    CategoriesScreen2(),
+    //CategoriesScreen2(),
     //SearchScreen(),
-    //ConsultationScreen(),
-    //SProfileScreen(FirebaseAuth.instance.currentUser.email),
+    ConsultationScreen(),
+    SProfileScreen(FirebaseAuth.instance.currentUser.email),
   ];
 
   void _onItemTapped(int index) {
@@ -61,7 +54,9 @@ class _Body extends State<Body> {
                   children: <Widget>[
                     MaterialButton(
                         minWidth: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          _onItemTapped(0);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -71,7 +66,9 @@ class _Body extends State<Body> {
                         )),
                     MaterialButton(
                         minWidth: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          _onItemTapped(1);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -86,7 +83,9 @@ class _Body extends State<Body> {
                   children: <Widget>[
                     MaterialButton(
                         minWidth: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          _onItemTapped(2);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -96,7 +95,9 @@ class _Body extends State<Body> {
                         )),
                     MaterialButton(
                         minWidth: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          _onItemTapped(3);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[

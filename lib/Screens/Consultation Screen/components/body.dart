@@ -138,7 +138,7 @@ class _Body extends State<Body> {
                       ]),
                     ),
                     Container(
-                      height: size.height * 0.8,
+                      height: size.height * 0.6,
                       width: size.width,
                       child: ListView(
                         shrinkWrap: true,

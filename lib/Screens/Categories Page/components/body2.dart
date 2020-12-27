@@ -5,133 +5,134 @@ import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dar
 import '../../../constants.dart';
 
 class CategoriesScreen2 extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: Form(
-        child: Container(
-          height: size.height,
-          //width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 10),
+        child: Form(
+      key: _formKey,
+      child: Container(
+        height: size.height * 1.05,
+        width: double.infinity,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(
+              top: size.height * 0.001,
+              child: Image.asset(
+                'assets/images/top_part_courses.png',
+                width: size.width * 1,
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.15,
+              child: Image.asset(
+                'assets/images/Line 1.png',
+                width: size.width * 0.7,
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.08,
+              child: Text(
+                "Courses",
+                style: TextStyle(
+                    fontFamily: 'Quiglet',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 34,
+                    color: Colors.white),
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.24,
+              child: Text(
+                "Choose a category",
+                style: TextStyle(
+                    fontFamily: 'Quiglet',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+
+            // IT Courses
+            Positioned(
+              top: size.height * 0.31,
+              left: size.width * 0.05,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "IT");
+                },
                 child: Image.asset(
-                  'assets/images/top_part_courses.png',
-                  width: size.width * 1,
+                  'assets/images/Courses/IT.png',
+                  width: size.width * 0.4,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 15),
+            ),
+
+            // Cooking Courses
+            Positioned(
+              top: size.height * 0.31,
+              left: size.width * 0.55,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Cooking");
+                },
                 child: Image.asset(
-                  'assets/images/Line 1.png',
-                  width: size.width * 0.7,
+                  'assets/images/Courses/Cooking.png',
+                  width: size.width * 0.4,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Text(
-                  "Courses",
-                  style: TextStyle(
-                      fontFamily: 'Quiglet',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 34,
-                      color: Colors.white),
+            ),
+
+            // Home & Garden Courses
+            Positioned(
+              top: size.height * 0.56,
+              left: size.width * 0.05,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Home&Garden");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Home&Garden.png',
+                  width: size.width * 0.4,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Text(
-                  "Choose a category",
-                  style: TextStyle(
-                      fontFamily: 'Quiglet',
-                      fontWeight: FontWeight.normal,
-                      fontSize: 25,
-                      color: customPurple),
+            ),
+
+            // Decorations Courses
+            Positioned(
+              top: size.height * 0.56,
+              left: size.width * 0.55,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Decorations");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Decorations.png',
+                  width: size.width * 0.4,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  //IT courses
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: new GestureDetector(
-                      onTap: () {
-                        chooseDifficulty(context, size, "IT");
-                      },
-                      child: Image.asset(
-                        'assets/images/Courses/IT.png',
-                        width: size.width / 4,
-                      ),
-                    ),
-                  ),
-                  // Cooking Courses
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: new GestureDetector(
-                      onTap: () {
-                        chooseDifficulty(context, size, "Cooking");
-                      },
-                      child: Image.asset(
-                        'assets/images/Courses/Cooking.png',
-                        width: size.width / 4,
-                      ),
-                    ),
-                  ),
-                  // Home & Garden Courses
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: new GestureDetector(
-                      onTap: () {
-                        chooseDifficulty(context, size, "Home&Garden");
-                      },
-                      child: Image.asset(
-                        'assets/images/Courses/Home&Garden.png',
-                        width: size.width / 4,
-                      ),
-                    ),
-                  ),
-                ],
+            ),
+
+            // Other Courses
+            Positioned(
+              top: size.height * 0.81,
+              left: size.width * 0.3,
+              child: new GestureDetector(
+                onTap: () {
+                  chooseDifficulty(context, size, "Other");
+                },
+                child: Image.asset(
+                  'assets/images/Courses/Other.png',
+                  width: size.width * 0.4,
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // Decorations Courses
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: new GestureDetector(
-                      onTap: () {
-                        chooseDifficulty(context, size, "Decorations");
-                      },
-                      child: Image.asset(
-                        'assets/images/Courses/Decorations.png',
-                        width: size.width / 4,
-                      ),
-                    ),
-                  ),
-                  // Other Courses
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: new GestureDetector(
-                      onTap: () {
-                        chooseDifficulty(context, size, "Other");
-                      },
-                      child: Image.asset(
-                        'assets/images/Courses/Other.png',
-                        width: size.width / 4,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
+    ));
   }
 }
 
