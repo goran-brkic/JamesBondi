@@ -25,7 +25,6 @@ class _BodyState extends State<Body> {
             children = SingleChildScrollView(
               child: Container(
                 height: size.height,
-                width: double.infinity,
                 child: Stack(
                   alignment: Alignment.center,
                   children: <Widget>[
