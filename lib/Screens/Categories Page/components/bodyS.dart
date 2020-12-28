@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jamesbondi/Screens/Categories%20Add%20Page/categories_add_screen.dart';
 import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
@@ -8,11 +7,11 @@ import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'body2.dart';
 
-class BodyLec extends StatefulWidget {
+class BodyS extends StatefulWidget {
   _Body createState() => _Body();
 }
 
-class _Body extends State<BodyLec> {
+class _Body extends State<BodyS> {
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //lista widgeta za bottomNav bar
   int _selectedIndex = 0;
@@ -21,8 +20,8 @@ class _Body extends State<BodyLec> {
     CategoriesScreen2(),
     SearchScreen(),
     ConsultationScreen(),
-    //SProfileScreen(FirebaseAuth.instance.currentUser.email),
-    LProfileScreen(FirebaseAuth.instance.currentUser.email)
+    SProfileScreen(FirebaseAuth.instance.currentUser.email),
+    //LProfileScreen(FirebaseAuth.instance.currentUser.email)
   ];
 
   void _onItemTapped(int index) {
@@ -53,17 +52,7 @@ class _Body extends State<BodyLec> {
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.orange[800],
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CategoriesAddScreen()));
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
           child: Container(
             height: 50,
             child: Row(

@@ -39,7 +39,7 @@ class _Body extends State<Body> {
             Positioned(
               top: size.height * 0.08,
               child: Text(
-                "Courses",
+                "Add a course",
                 style: TextStyle(
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
