@@ -69,20 +69,20 @@ class CoursesDB {
   }
 
   static Future<List<Map<String, dynamic>>> searchCourses(
-      final String keyword) {
+      final String keyword) async {
     var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
     var difs = ['advanced', 'beginner', 'intermediate'];
     List<Map<String, dynamic>> returnItem = [];
-    print('Trazim tecaj se keyword: ' + keyword);
+    //print('Trazim tecaj se keyword: ' + keyword);
     for (var i in cats) {
       for (var j in difs) {
-        FirebaseFirestore.instance
+        await FirebaseFirestore.instance
             .collection('courses/' + i + '/' + j)
             .where('keywords', arrayContains: keyword.toLowerCase())
             .get()
             .then((QuerySnapshot querySnapshot) => {
                   querySnapshot.docs.forEach((doc) {
-                    print('Nasao sam course: ' + doc.data().toString());
+                    //print('Nasao sam course: ' + doc.data().toString());
                     Map<String, dynamic> temp;
                     temp = doc.data();
                     temp['courseID'] = doc.id;
@@ -93,6 +93,7 @@ class CoursesDB {
                 });
       }
     }
+    //print('Returnam: ' + returnItem.toString());
     return Future.value(returnItem);
   }
 }

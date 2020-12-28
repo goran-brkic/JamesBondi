@@ -15,50 +15,72 @@ class _Body extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: customPurple,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () async {
-                courses = await CoursesDB.searchCourses(_textController.text)
-                    .whenComplete(() => ready = true);
-              },
+        appBar: AppBar(
+          backgroundColor: customPurple,
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () async {
+                  setState(() {
+                    ready = true;
+                  });
+                  //courses = await CoursesDB.searchCourses(_textController.text);
+                },
+              ),
             ),
-          ),
-        ],
-        title: Container(
-          alignment: Alignment.center,
-          child: Container(
+          ],
+          title: Container(
             alignment: Alignment.center,
-            width: 300,
-            height: 40,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                    width: 1, color: Colors.white, style: BorderStyle.solid)),
-            child: TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                  hintText: 'Search',
-                  contentPadding: EdgeInsets.fromLTRB(15, 4, 15, 15),
-                  border: InputBorder.none),
-              onChanged: (value) {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 300,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                      width: 1, color: Colors.white, style: BorderStyle.solid)),
+              child: TextField(
+                controller: _textController,
+                decoration: InputDecoration(
+                    hintText: 'Search',
+                    contentPadding: EdgeInsets.fromLTRB(15, 4, 15, 15),
+                    border: InputBorder.none),
+                onChanged: (value) {},
+              ),
             ),
           ),
         ),
-      ),
-      body: Container(
-          child: ListView.builder(
-              itemCount: courses.length,
-              itemBuilder: (context, index) => button(
-                  courses.elementAt(index)['category'],
-                  courses.elementAt(index)['difficulty'],
-                  courses.elementAt(index)))),
-    );
+        body: Container(
+          child: ready
+              ? FutureBuilder<List<Map<String, dynamic>>>(
+                  future: CoursesDB.searchCourses(_textController.text),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: Text('Please wait its loading...'));
+                    } else {
+                      if (snapshot.hasError)
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      else {
+                        if (!snapshot.hasData)
+                          return Center(child: Text('No Data'));
+                        else {
+                          //print('${snapshot.data}');
+                          return ListView.builder(
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) => button(
+                                  snapshot.data.elementAt(index)['category'],
+                                  snapshot.data.elementAt(index)['difficulty'],
+                                  snapshot.data.elementAt(index)));
+                        }
+                      }
+                    }
+                  })
+              : Container(),
+        ));
   }
 
   Padding button(String cat, String dif, var course) {
