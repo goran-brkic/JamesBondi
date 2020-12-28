@@ -103,7 +103,7 @@ class _Body extends State<Body> {
       }
 
       await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => CategoriesAddScreen()));
+          .push(MaterialPageRoute(builder: (context) => CategoriesScreen()));
     }
   }
 

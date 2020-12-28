@@ -271,12 +271,12 @@ class _Body extends State<Body> {
                   if (lec) {
                     await ConsultationDB.confirmConsultationsLecturer(meetID);
                     setState(() {
-                      Future.delayed(Duration(milliseconds: 200));
+                      //Future.delayed(Duration(milliseconds: 200));
                     });
                   } else {
                     await ConsultationDB.confirmConsultationsStudent(meetID);
                     setState(() {
-                      Future.delayed(Duration(milliseconds: 200));
+                      //Future.delayed(Duration(milliseconds: 200));
                     });
                   }
                 }, //accept

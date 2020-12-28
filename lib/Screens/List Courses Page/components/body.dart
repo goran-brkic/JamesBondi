@@ -1,9 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/Course%20Page/CourseScreen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BodyCourses extends StatefulWidget {
   String d;
@@ -38,7 +46,20 @@ class _Body extends State<BodyCourses> {
     this.d = d;
     this.c = c;
   }
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool lec;
+  void getType() async {
+    lec = await SharedPreferences.getInstance()
+        .then((value) => value.getBool('lecturer'));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getType();
+  }
+
+  //final GlobalKey<FormState> _formKey =
+  //GlobalKey<FormState>(debugLabel: '_ListCoursesKey');
   @override
   Widget build(BuildContext context) {
     Padding button(Map<String, dynamic> course) {
@@ -84,60 +105,61 @@ class _Body extends State<BodyCourses> {
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           Widget children;
           children = Scaffold(
-              body: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  Positioned(
-                    top: size.height * 0.001,
-                    child: Image.asset(
-                      'assets/images/top_part_courses.png',
-                      width: size.width * 1,
-                    ),
+            body: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                Positioned(
+                  top: size.height * 0.001,
+                  child: Image.asset(
+                    'assets/images/top_part_courses.png',
+                    width: size.width * 1,
                   ),
-                  Positioned(
-                    top: size.height * 0.15,
-                    child: Image.asset(
-                      'assets/images/Line 1.png',
-                      width: size.width * 0.7,
-                    ),
+                ),
+                Positioned(
+                  top: size.height * 0.15,
+                  child: Image.asset(
+                    'assets/images/Line 1.png',
+                    width: size.width * 0.7,
                   ),
-                  Positioned(
-                    top: size.height * 0.08,
-                    child: Text(
-                      '$c',
-                      style: TextStyle(
-                          fontFamily: 'Quiglet',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 34,
-                          color: Colors.white),
-                    ),
+                ),
+                Positioned(
+                  top: size.height * 0.08,
+                  child: Text(
+                    '$c',
+                    style: TextStyle(
+                        fontFamily: 'Quiglet',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 34,
+                        color: Colors.white),
                   ),
-                  Positioned(
-                    top: size.height * 0.24,
-                    child: Text(
-                      'Choose a course',
-                      style: TextStyle(
-                          fontFamily: 'Quiglet',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 25,
-                          color: customPurple),
-                    ),
+                ),
+                Positioned(
+                  top: size.height * 0.24,
+                  child: Text(
+                    'Choose a course',
+                    style: TextStyle(
+                        fontFamily: 'Quiglet',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 25,
+                        color: customPurple),
                   ),
-                  Positioned(
-                      top: size.height * 0.30,
-                      child: Container(
-                          height: 400,
-                          width: 400,
-                          child: snapshot.hasData
-                              ? ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder: (BuildContext ctxt, int index) {
-                                    return button((snapshot.data[index]));
-                                  })
-                              : loadingBar()))
-                ],
-              ),
+                ),
+                Positioned(
+                    top: size.height * 0.30,
+                    child: Container(
+                        height: 400,
+                        width: 400,
+                        child: snapshot.hasData
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (BuildContext ctxt, int index) {
+                                  return button((snapshot.data[index]));
+                                })
+                            : loadingBar()))
+              ],
+            ),
+            /*
               floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
                 backgroundColor: Colors.orange[800],
@@ -157,7 +179,10 @@ class _Body extends State<BodyCourses> {
                         children: <Widget>[
                           MaterialButton(
                               minWidth: 30,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CategoriesScreen()));
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -167,7 +192,10 @@ class _Body extends State<BodyCourses> {
                               )),
                           MaterialButton(
                               minWidth: 30,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SearchScreen()));
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -182,7 +210,11 @@ class _Body extends State<BodyCourses> {
                         children: <Widget>[
                           MaterialButton(
                               minWidth: 30,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ConsultationScreen()));
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -192,7 +224,23 @@ class _Body extends State<BodyCourses> {
                               )),
                           MaterialButton(
                               minWidth: 30,
-                              onPressed: () {},
+                              onPressed: () {
+                                lec
+                                    ? Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LProfileScreen(FirebaseAuth
+                                                    .instance
+                                                    .currentUser
+                                                    .email)))
+                                    : Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SProfileScreen(FirebaseAuth
+                                                    .instance
+                                                    .currentUser
+                                                    .email)));
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -205,8 +253,9 @@ class _Body extends State<BodyCourses> {
                     ],
                   ),
                 ),
-                key: _formKey,
-              ));
+                //key: _formKey,
+              */
+          );
           return children;
         });
   }

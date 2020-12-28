@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
 import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'body2.dart';
 
 class Body extends StatefulWidget {
@@ -10,24 +12,34 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   //lista widgeta za bottomNav bar
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
     CategoriesScreen2(),
-    //CategoriesScreen2(),
     SearchScreen(),
-    //CategoriesScreen2(),
-    //SearchScreen(),
     ConsultationScreen(),
     SProfileScreen(FirebaseAuth.instance.currentUser.email),
+    LProfileScreen(FirebaseAuth.instance.currentUser.email)
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  bool lec;
+  void getType() async {
+    lec = await SharedPreferences.getInstance()
+        .then((value) => value.getBool('lecturer'));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getType();
   }
 
   @override
@@ -97,7 +109,7 @@ class _Body extends State<Body> {
                     MaterialButton(
                         minWidth: 30,
                         onPressed: () {
-                          _onItemTapped(3);
+                          lec ? _onItemTapped(4) : _onItemTapped(3);
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +123,7 @@ class _Body extends State<Body> {
               ],
             ),
           ),
-          key: _formKey,
+          //key: _formKey,
         ));
   }
 }

@@ -5,13 +5,12 @@ import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dar
 import '../../../constants.dart';
 
 class CategoriesScreen2 extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> _formKey1 =
+  //GlobalKey<FormState>(debugLabel: '_CategoriesScreenKey');
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-        child: Form(
-      key: _formKey,
       child: Container(
         height: size.height * 1.05,
         width: double.infinity,
@@ -132,7 +131,7 @@ class CategoriesScreen2 extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }
 
