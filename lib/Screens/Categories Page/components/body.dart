@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
 import 'body2.dart';
 
 class Body extends StatefulWidget {
@@ -16,7 +17,7 @@ class _Body extends State<Body> {
   static List<Widget> _widgetOptions = <Widget>[
     CategoriesScreen2(),
     //CategoriesScreen2(),
-    CategoriesScreen2(),
+    SearchScreen(),
     //CategoriesScreen2(),
     //SearchScreen(),
     ConsultationScreen(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> {
               backgroundColor: bgColor,
               scaffoldBackgroundColor: bgColor,
             ),
-            home: SignInScreen(),
+            home: SearchScreen(),
           )
         : Container();
   }

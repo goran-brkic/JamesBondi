@@ -9,6 +9,10 @@ class CoursesDB {
       final String mail,
       final double price,
       final List<String> materials) {
+    List<String> keywords = [];
+    for (var i in courseName.split(' ')) {
+      keywords.add(i.toLowerCase());
+    }
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .add({
@@ -16,7 +20,8 @@ class CoursesDB {
           'courseInfo': courseInfo,
           'courseMail': mail,
           'coursePrice': price,
-          'courseMaterials': materials
+          'courseMaterials': materials,
+          'keywords': keywords
         })
         .then((value) => true)
         .catchError((error) => print('Failed to add course: $error'));
@@ -67,15 +72,17 @@ class CoursesDB {
       final String keyword) {
     var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
     var difs = ['advanced', 'beginner', 'intermediate'];
-    List<Map<String, dynamic>> returnItem;
+    List<Map<String, dynamic>> returnItem = [];
+    print('Trazim tecaj se keyword: ' + keyword);
     for (var i in cats) {
       for (var j in difs) {
         FirebaseFirestore.instance
             .collection('courses/' + i + '/' + j)
-            .where('courseName', isGreaterThanOrEqualTo: keyword)
+            .where('keywords', arrayContains: keyword.toLowerCase())
             .get()
             .then((QuerySnapshot querySnapshot) => {
                   querySnapshot.docs.forEach((doc) {
+                    print('Nasao sam course: ' + doc.data().toString());
                     Map<String, dynamic> temp;
                     temp = doc.data();
                     temp['courseID'] = doc.id;

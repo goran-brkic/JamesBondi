@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Add%20Page/categories_add_screen.dart';
 import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
 import 'package:jamesbondi/Screens/Consultation%20Screen/ConsultationScreen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
@@ -102,7 +103,7 @@ class _Body extends State<Body> {
       }
 
       await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => CategoriesScreen()));
+          .push(MaterialPageRoute(builder: (context) => CategoriesAddScreen()));
     }
   }
 

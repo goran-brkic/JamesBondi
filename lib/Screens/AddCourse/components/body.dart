@@ -253,7 +253,7 @@ class _Body extends State<Body> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: size.width * 0.07),
                             onPressed: () async {
-                              List<String> linkovi;
+                              List<String> linkovi = [];
                               for (var i in listaPuteva) {
                                 linkovi.add(await uploadFile(File(i)));
                               }
