@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/components/Result.dart';
@@ -5,42 +6,47 @@ import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 
 class Body extends StatefulWidget {
-  var course;
+  final course;
   Body(this.course);
   @override
   _Body createState() => _Body();
 }
 
 class _Body extends State<Body> {
-  String creditCardNumber;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Widget cardChild;
-    if (creditCardNumber.startsWith('4')) {
-      cardChild = Image.asset(
-        'assets/images/visa.png',
-        width: size.width * 0.1,
-      );
-    } else if (creditCardNumber.startsWith('34') ||
-        creditCardNumber.startsWith('37')) {
-      cardChild = Image.asset(
-        'assets/images/americanExpress.png',
-        width: size.width * 0.1,
-      );
-    } else if (creditCardNumber.startsWith('5')) {
-      cardChild = Image.asset(
-        'assets/images/mastercard.png',
-        width: size.width * 0.1,
-      );
+    Widget cardChild(String creditCardNumber) {
+      if (creditCardNumber.startsWith('4')) {
+        return Image.asset(
+          'assets/images/visa.png',
+          width: size.width * 0.1,
+        );
+      } else if (creditCardNumber.startsWith('34') ||
+          creditCardNumber.startsWith('37')) {
+        return Image.asset(
+          'assets/images/americanExpress.png',
+          width: size.width * 0.1,
+        );
+      } else if (creditCardNumber.startsWith('5')) {
+        return Image.asset(
+          'assets/images/mastercard.png',
+          width: size.width * 0.1,
+        );
+      } else {
+        return Image.asset(
+          'assets/images/visa.png',
+          width: size.width * 0.1,
+        );
+      }
     }
+
     return FutureBuilder(
         future: UserInfoDB.getUserInfo(FirebaseAuth.instance.currentUser.email),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return loadingBar();
           } else if (snapshot.hasData) {
-            creditCardNumber = snapshot.data['creditCard'];
             return SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Form(
@@ -168,8 +174,10 @@ class _Body extends State<Body> {
                           ),
                           child: Text(
                             '****  ****  **** ' +
-                                creditCardNumber.substring(12,
-                                    15), // + credit card number substring zadnja cetiri broja
+                                snapshot.data['creditCard'].substring(
+                                    snapshot.data['creditCard'].length - 4,
+                                    snapshot.data['creditCard']
+                                        .length), // + credit card number substring zadnja cetiri broja
                             // var string = 'dartlang';
                             // string.substring(1);    // 'artlang'
                             // string.substring(1, 4); // 'art
@@ -188,7 +196,7 @@ class _Body extends State<Body> {
                       Positioned(
                         top: size.height * 0.46,
                         left: size.width * 0.73,
-                        child: cardChild,
+                        child: cardChild(snapshot.data['creditCard']),
                       ),
 
                       // Purchase button
@@ -197,13 +205,17 @@ class _Body extends State<Body> {
                         child: FlatButton(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: size.width * 0.07),
-                            onPressed: () {},
-
-                            /*
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => WelcomeScreen()));
-                            */
-
+                            onPressed: () async {
+                              if (Random().nextInt(100) < 90) {
+                                print('Successfully bought course with ID ' +
+                                    widget.course['courseID'].toString());
+                                await UserInfoDB.addCourse(
+                                    FirebaseAuth.instance.currentUser.email,
+                                    widget.course['courseID']);
+                              } else {
+                                print('FAILED TO BUY');
+                              }
+                            },
                             color: customPurple,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),

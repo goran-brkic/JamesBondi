@@ -128,4 +128,29 @@ class UserInfoDB {
         .then((value) => lecturer);
     //return returnList;
   }
+
+  static Future<void> addCourse(String mail, String courseID) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                doc.reference.update({
+                  'courses': FieldValue.arrayUnion([courseID])
+                });
+              })
+            });
+  }
+
+  static Future<bool> searchCourse(String mail, String courseID) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .where('courses', arrayContains: courseID)
+        .get()
+        .then((QuerySnapshot querySnapshot) =>
+            querySnapshot.size > 0 ? true : false)
+        .catchError((value) => false);
+  }
 }

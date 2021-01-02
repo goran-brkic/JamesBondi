@@ -65,6 +65,7 @@ class CoursesDB {
         .get()
         .then((DocumentSnapshot docSnapshot) {
       returnItem = docSnapshot.data();
+      returnItem['courseID'] = docSnapshot.id;
     }).then((value) => returnItem);
   }
 
