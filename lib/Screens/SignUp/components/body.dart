@@ -9,7 +9,7 @@ import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../components/uploadImage.dart';
+import '../../../components/uploadFile.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
@@ -18,8 +18,8 @@ RegExp expDateRegex = RegExp(r'^[0,1]?\d{1}\/(([0-2]?\d{1}/))');
 enum Person { lecturer, student }
 
 class Body extends StatefulWidget {
-  String emailAddressInput;
-  String usernameInput;
+  final String emailAddressInput;
+  final String usernameInput;
 
   Body({@required this.emailAddressInput, @required this.usernameInput});
 
@@ -68,7 +68,7 @@ class _Body extends State<Body> {
                   _aboutYController.text,
                   imageURL)
               .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => LProfileScreen(user))));
+                  builder: (context) => LProfileScreen(user.email))));
         } else {
           UserInfoDB.addStudent(
                   _usernameController.text,
@@ -79,7 +79,7 @@ class _Body extends State<Body> {
                   _expirationDateController.text,
                   _secCodeController.text)
               .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => SProfileScreen(user))));
+                  builder: (context) => SProfileScreen(user.email))));
         }
       });
     } else {
@@ -424,7 +424,7 @@ class _Body extends State<Body> {
                     child: RawMaterialButton(
                       onPressed: () async {
                         await getImage();
-                        imageURL = await uploadFile(_image);
+                        imageURL = await uploadImage(_image);
                         print(imageURL);
                       },
                       elevation: 0,

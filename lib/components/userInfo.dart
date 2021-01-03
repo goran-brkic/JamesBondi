@@ -56,7 +56,7 @@ class UserInfoDB {
   }
 
   static Future<bool> checkEmailAddress(String email) {
-    bool available = true;
+    var available = true;
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: email)
@@ -70,7 +70,7 @@ class UserInfoDB {
   }
 
   static Future<bool> checkUser(String username) {
-    bool used = true;
+    var used = true;
     return FirebaseFirestore.instance
         .collection('users')
         .where('username', isEqualTo: username)
@@ -84,7 +84,7 @@ class UserInfoDB {
   }
 
   static Future<Map<String, dynamic>> getUserInfo(String inputMail) {
-    Map<String, dynamic> returnList = new Map();
+    var returnList = Map<String, dynamic>();
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: inputMail)
@@ -127,5 +127,30 @@ class UserInfoDB {
             })
         .then((value) => lecturer);
     //return returnList;
+  }
+
+  static Future<void> addCourse(String mail, String courseID) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                doc.reference.update({
+                  'courses': FieldValue.arrayUnion([courseID])
+                });
+              })
+            });
+  }
+
+  static Future<bool> searchCourse(String mail, String courseID) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .where('courses', arrayContains: courseID)
+        .get()
+        .then((QuerySnapshot querySnapshot) =>
+            querySnapshot.size > 0 ? true : false)
+        .catchError((value) => false);
   }
 }

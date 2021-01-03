@@ -36,7 +36,10 @@ class InputField extends StatelessWidget {
               child: TextFormField(
                 enabled: enabledField,
                 controller: controller,
-                obscureText: (title == "Password") ? true : false,
+                obscureText:
+                    (title == 'Password' || title == 'Enter a password!')
+                        ? true
+                        : false,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                 ),

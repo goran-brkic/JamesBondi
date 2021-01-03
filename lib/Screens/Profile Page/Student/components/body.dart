@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/JoinChannel/join_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 
 class Body extends StatefulWidget {
-  final User loggedUser;
+  final String loggedUser;
 
   Body(this.loggedUser);
   _BodyState createState() => _BodyState();
@@ -13,20 +14,17 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    final User loggedUser = widget.loggedUser;
-    Map<String, dynamic> userInfo;
-    UserInfoDB.getUserInfo(loggedUser.email).then((value) => userInfo);
+    final String loggedUser = widget.loggedUser;
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: UserInfoDB.getUserInfo(loggedUser.email),
+        future: UserInfoDB.getUserInfo(loggedUser),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.done) {
             children = SingleChildScrollView(
               child: Container(
                 height: size.height,
-                width: double.infinity,
                 child: Stack(
                   alignment: Alignment.center,
                   children: <Widget>[
@@ -102,6 +100,20 @@ class _BodyState extends State<Body> {
                       ),
                     ),
 
+                    //video butt
+                    Positioned(
+                      top: size.height * 0.6,
+                      child: RaisedButton(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10, horizontal: size.width * 0.07),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => JoinScreen()));
+                        },
+                        child: Text("Video"),
+                      ),
+                    ),
+
                     // Type of Person
                     Positioned(
                       top: size.height * 0.47,
@@ -120,7 +132,7 @@ class _BodyState extends State<Body> {
               ),
             );
           } else {
-            children = Container();
+            return Text("loading");
           }
           return children;
         });
