@@ -364,10 +364,13 @@ class _BodyLec extends State<BodyLec> {
           child: Column(
             children: [
               Image.asset(
-                materialLink.substring(endLocation - 4, endLocation - 1) ==
-                        'pdf'
-                    ? 'assets/images/pdf.png'
-                    : 'assets/images/mp4.png',
+                edit
+                    ? 'assets/icons/basura-trash.png'
+                    : materialLink.substring(
+                                endLocation - 4, endLocation - 1) ==
+                            'pdf'
+                        ? 'assets/images/pdf.png'
+                        : 'assets/images/mp4.png',
                 height: size.height / 7,
               ),
               Container(

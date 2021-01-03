@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/components/body2.dart';
 import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
@@ -13,6 +15,45 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
+  Future<void> _showConfirmDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+                'Successfully bought course ' + widget.course['courseName']),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => CategoriesScreen()));
+                  },
+                  child: Text('Back to home screen'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Future<void> _showFailedDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+                'Failed to complete payment! Please review your card info'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -207,13 +248,15 @@ class _Body extends State<Body> {
                                 vertical: 10, horizontal: size.width * 0.07),
                             onPressed: () async {
                               if (Random().nextInt(100) < 90) {
-                                print('Successfully bought course with ID ' +
-                                    widget.course['courseID'].toString());
+                                //print('Successfully bought course with ID ' +
+                                //widget.course['courseID'].toString());
                                 await UserInfoDB.addCourse(
                                     FirebaseAuth.instance.currentUser.email,
                                     widget.course['courseID']);
+                                _showConfirmDialog(context);
                               } else {
-                                print('FAILED TO BUY');
+                                _showFailedDialog(context);
+                                //print('FAILED TO BUY');
                               }
                             },
                             color: customPurple,
