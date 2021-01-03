@@ -185,8 +185,7 @@ class _Body extends State<Body> {
                                 if (_path != "-") {
                                   print(_path.split(
                                       r'/')[_path.split(r'/').length - 1]);
-                                  //listaLinkova
-                                  //  .add(await uploadFile(File(_path)));
+
                                   listaPuteva.add(_path);
                                   listaImena.add(_path.split(
                                       r'/')[_path.split(r'/').length - 1]);

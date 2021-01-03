@@ -97,4 +97,22 @@ class CoursesDB {
     //print('Returnam: ' + returnItem.toString());
     return Future.value(returnItem);
   }
+
+  static Future<void> removeMaterials(final String category,
+      final String difficulty, final String courseID, List mats) {
+    print('BRISEM MATERIJALE');
+    return FirebaseFirestore.instance
+        .collection('courses/' + category + '/' + difficulty)
+        .doc(courseID)
+        .update({'courseMaterials': FieldValue.arrayRemove(mats)});
+  }
+
+  static Future<void> addMaterials(final String category,
+      final String difficulty, final String courseID, List mats) {
+    print('DODAJEM MATERIALE');
+    return FirebaseFirestore.instance
+        .collection('courses/' + category + '/' + difficulty)
+        .doc(courseID)
+        .update({'courseMaterials': FieldValue.arrayUnion(mats)});
+  }
 }

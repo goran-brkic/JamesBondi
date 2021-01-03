@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/Result.dart';
+import 'package:jamesbondi/components/uploadFile.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,8 +27,88 @@ class _BodyLec extends State<BodyLec> {
     courseDif = dif;
     courseID = id;
   }
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Future<void> _showConfirmDialog(var context) async {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Would you like to apply these changes?'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      listaImena.clear();
+                      listaLinkova.clear();
+                      listaPuteva.clear();
+                      _deleteList.clear();
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('No')),
+              FlatButton(
+                  onPressed: () async {
+                    await CoursesDB.removeMaterials(
+                        courseCat, courseDif, courseID, _deleteList);
+                    List<String> linkovi = [];
+                    for (var i in listaPuteva) {
+                      linkovi.add(await uploadFile(File(i)));
+                    }
+                    await CoursesDB.addMaterials(
+                        courseCat, courseDif, courseID, linkovi);
+                    setState(() {
+                      listaImena.clear();
+                      listaLinkova.clear();
+                      listaPuteva.clear();
+                      _deleteList.clear();
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Yes'))
+            ],
+          );
+        },
+        context: context);
+  }
 
+  Future<void> _showEraseDialog(var context, var materialLink) async {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Would you like to delete this material?'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('No')),
+              FlatButton(
+                  onPressed: () {
+                    _deleteList.add(materialLink);
+                    setState(() {});
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Yes'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  String _path = '-';
+  List<String> listaLinkova = new List<String>();
+  List<String> listaImena = new List<String>();
+  List<String> listaPuteva = new List<String>();
+  int documentCount = 0;
+
+  FlutterDocumentPickerParams params = FlutterDocumentPickerParams(
+    allowedFileExtensions: ['pdf', 'mp4'],
+    invalidFileNameSymbols: ['/'],
+  );
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool edit = false;
+  List<String> _deleteList = [];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -92,76 +176,6 @@ class _BodyLec extends State<BodyLec> {
                         ),
                       ),
                     ),
-                    /*
-                  Positioned(
-                    top: size.height * 0.24,
-                    child: Text(
-                      snapshot.hasData
-                          ? snapshot.data['coursePrice'].toString() + ' HRK'
-                          : '',
-                      style: TextStyle(
-                          fontFamily: 'RoundLight',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 30,
-                          color: customPurple),
-                    ),
-                  ),
-                  */
-
-                    //User nije kupio tecaj  ->>cijeli zakomentirani, treba stavit if pa onda jedno il drugo
-                    /*
-                  Positioned(
-                    top: size.height * 0.3,
-                    child: Container(
-                      //color: Colors.grey[800],
-                      width: size.width - 10,
-                      height: size.height / 2,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[150],
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        border: Border(
-                          top: BorderSide(width: 1.0, color: customPurple),
-                          left: BorderSide(width: 1.0, color: customPurple),
-                          right: BorderSide(width: 1.0, color: customPurple),
-                          bottom: BorderSide(width: 1.0, color: customPurple),
-                        ),
-                      ),
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 15, right: 15),
-                      child: Text(
-                          snapshot.hasData ? snapshot.data['courseInfo'] : '',
-                          style: TextStyle(
-                            fontFamily: 'RoundLight',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
-                            color: Colors.black,
-                          )),
-                    ),
-                  ),
-                  Positioned(
-                    top: size.height * 0.83,
-                    height: 50,
-                    width: 200,
-                    child: FlatButton(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: size.width * 0.07),
-                        onPressed: () {},
-                        color: customPurple,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          snapshot.hasData ? 'BUY' : 'LOADING',
-                          style: TextStyle(
-                              fontFamily: 'RoundLight',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.white),
-                        )),
-                  ),
-                   */
-
-                    //ako user je vec kupio tecaj
                     Positioned(
                       top: size.height * 0.27,
                       child: Container(
@@ -204,6 +218,39 @@ class _BodyLec extends State<BodyLec> {
                             )),
                       ),
                     ),
+                    edit
+                        ? Positioned(
+                            top: size.height * 0.545,
+                            left: size.height * 0.22,
+                            child: Container(
+                              padding: EdgeInsets.only(left: 5),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  _path =
+                                      await FlutterDocumentPicker.openDocument(
+                                          params: params);
+
+                                  if (_path != "-") {
+                                    print(_path.split(
+                                        r'/')[_path.split(r'/').length - 1]);
+
+                                    listaPuteva.add(_path);
+                                    listaImena.add(_path.split(
+                                        r'/')[_path.split(r'/').length - 1]);
+                                    setState(() {
+                                      documentCount++;
+                                    });
+                                  }
+                                },
+                                child: Image.asset(
+                                  'assets/images/Upload.png',
+                                  width: size.width * 0.05,
+                                  height: size.height * 0.05,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(),
 
                     Positioned(
                       top: size.height * 0.6,
@@ -227,7 +274,11 @@ class _BodyLec extends State<BodyLec> {
                               children: [
                                 for (var mat
                                     in snapshot.data['courseMaterials'])
-                                  matButton(size, mat)
+                                  _deleteList.contains(mat)
+                                      ? Container()
+                                      : matButton(size, mat),
+                                for (var ime in listaImena)
+                                  newMatButton(size, ime)
                               ],
                             ),
                           )),
@@ -240,15 +291,21 @@ class _BodyLec extends State<BodyLec> {
                       child: FlatButton(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: size.width * 0.07),
-                          onPressed: () {
-                            /* Omoguci editanje */
+                          onPressed: () async {
+                            if (edit) {
+                              await _showConfirmDialog(context);
+                            }
+
+                            setState(() {
+                              edit = !edit;
+                            });
                           },
                           color: customPurple,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Text(
-                            snapshot.hasData ? 'Edit course' : 'LOADING',
+                            !edit ? 'Edit course' : 'Finish editing',
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.bold,
@@ -284,8 +341,11 @@ class _BodyLec extends State<BodyLec> {
         RegExp(r"materials%(\S)*%").firstMatch(materialLink).start;
     //print(materialLink.substring(endLocation - 4, endLocation - 1));
     return GestureDetector(
-      onTap: () {
-        launch(materialLink);
+      onTap: () async {
+        if (edit) {
+          await _showEraseDialog(context, materialLink);
+        } else
+          launch(materialLink);
       },
       child: Container(
         padding: EdgeInsets.only(right: 5),
@@ -315,6 +375,50 @@ class _BodyLec extends State<BodyLec> {
                 child: Text(
                     //ime iz baze, mozemo ogranicit na nekolko charova ?
                     materialLink.substring(startLocation + 12, endLocation - 5),
+                    style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 20,
+                        color: Colors.black)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  GestureDetector newMatButton(Size size, String ime) {
+    return GestureDetector(
+      onTap: () {
+        //delete file ?
+      },
+      child: Container(
+        padding: EdgeInsets.only(right: 5),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.grey[150],
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            border: Border(
+              top: BorderSide(width: 1.0, color: customPurple),
+              left: BorderSide(width: 1.0, color: customPurple),
+              right: BorderSide(width: 1.0, color: customPurple),
+              bottom: BorderSide(width: 1.0, color: customPurple),
+            ),
+          ),
+          child: Column(
+            children: [
+              Image.asset(
+                //ucitaj iz "bp"
+                ime.split(".")[1] == "pdf"
+                    ? "assets/images/pdf.png"
+                    : "assets/images/mp4.png",
+                height: size.height / 7,
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                child: Text((ime.split(".")[0]),
                     style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
