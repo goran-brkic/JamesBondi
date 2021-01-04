@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/JoinChannel/join_screen.dart';
 import 'package:jamesbondi/Screens/Request%20Consultations/req_new_cons.dart';
 import 'package:jamesbondi/components/Consultation.dart';
 import 'package:jamesbondi/components/Result.dart';
@@ -20,38 +21,6 @@ void getType() async {
       .then((value) => value.getBool('lecturer'));
 }
 
-Widget schButton(var date, var size) {
-  return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-    Container(
-      width: size.width / 2 - 56,
-      child: Text(
-        //name of consultations from database
-        'Consultations',
-        style: TextStyle(
-            fontFamily: 'RoundLight',
-            fontWeight: FontWeight.normal,
-            fontSize: 15,
-            color: Colors.black),
-      ),
-    ),
-    Container(
-      width: 2,
-      height: 25,
-      color: customPurple,
-    ),
-    Container(
-      child: Text(
-        DateFormat('dd.MM  H:m').format(date.toDate()),
-        style: TextStyle(
-            fontFamily: 'datum',
-            fontWeight: FontWeight.normal,
-            fontSize: 15,
-            color: Colors.black),
-      ),
-    ),
-  ]);
-}
-
 class _Body extends State<Body> {
   @override
   void initState() {
@@ -62,6 +31,7 @@ class _Body extends State<Body> {
   var pending = <Map<String, dynamic>>[];
   var scheduled = <Map<String, dynamic>>[];
   var unapproved = <Map<String, dynamic>>[];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -70,167 +40,230 @@ class _Body extends State<Body> {
             FirebaseAuth.instance.currentUser.email),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           Widget children;
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            children = loadingBar();
-          } else {
-            if (snapshot.hasError)
-              children = Center(child: Text('Error: ${snapshot.error}'));
-            else {
-              if (!snapshot.hasData) {
-                children = loadingBar();
-              } else {
-                for (Map<String, dynamic> x in snapshot.data) {
-                  if (x['studentConfirm'].toString() == 'true' &&
-                      x['lecturerConfirm'].toString() == 'true') {
-                    scheduled.add(x);
-                  } else if (x['studentConfirm'].toString() == 'true' &&
-                      x['lecturerConfirm'].toString() == 'false') {
-                    if (lec) {
-                      pending.add(x);
-                    } else {
-                      unapproved.add(x);
-                    }
-                  } else if (x['studentConfirm'].toString() == 'false' &&
-                      x['lecturerConfirm'].toString() == 'true') {
-                    if (lec) {
-                      unapproved.add(x);
-                    } else {
-                      pending.add(x);
-                    }
-                  }
-                }
-
-                children = Column(children: <Widget>[
-                  Container(
-                    height: size.height * 0.2,
-                    child:
-                        Stack(alignment: Alignment.center, children: <Widget>[
-                      Positioned(
-                        top: size.height * 0.001,
-                        child: Image.asset(
-                          'assets/images/top_part_courses.png',
-                          width: size.width * 1,
+          !snapshot.hasData
+              ? children = loadingBar()
+              : {
+                  for (Map<String, dynamic> x in snapshot.data)
+                    {
+                      if (x['studentConfirm'].toString() == 'true' &&
+                          x['lecturerConfirm'].toString() == 'true')
+                        {scheduled.add(x)}
+                      else if (x['studentConfirm'].toString() == 'true' &&
+                          x['lecturerConfirm'].toString() == 'false')
+                        {
+                          if (lec) {pending.add(x)} else {unapproved.add(x)}
+                        }
+                      else if (x['studentConfirm'].toString() == 'false' &&
+                          x['lecturerConfirm'].toString() == 'true')
+                        {
+                          if (lec) {unapproved.add(x)} else {pending.add(x)}
+                        }
+                    },
+                  children = Column(children: <Widget>[
+                    Container(
+                      height: size.height * 0.2,
+                      child:
+                          Stack(alignment: Alignment.center, children: <Widget>[
+                        Positioned(
+                          top: size.height * 0.001,
+                          child: Image.asset(
+                            'assets/images/top_part_courses.png',
+                            width: size.width * 1,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: size.height * 0.15,
-                        child: Image.asset(
-                          'assets/images/Line 1.png',
-                          width: size.width * 0.7,
+                        Positioned(
+                          top: size.height * 0.15,
+                          child: Image.asset(
+                            'assets/images/Line 1.png',
+                            width: size.width * 0.7,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        top: size.height * 0.08,
-                        child: Text(
-                          "Consultations",
-                          style: TextStyle(
-                              fontFamily: 'RoundLight',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 34,
-                              color: Colors.white),
-                        ),
-                      ),
-                      Positioned(
-                        top: size.height * 0.16,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              pending.clear();
-                              unapproved.clear();
-                              scheduled.clear();
-                            });
-                          },
+                        Positioned(
+                          top: size.height * 0.08,
                           child: Text(
-                            'REFRESH',
+                            "Consultations",
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.normal,
-                                fontSize: 26,
+                                fontSize: 34,
                                 color: Colors.white),
                           ),
                         ),
-                      ),
-                    ]),
-                  ),
-                  Container(
-                    height: size.height * 0.6,
-                    width: size.width,
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      children: <Widget>[
-                        Center(
-                          child: Text(
-                            'Scheduled consultations',
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: customPurple),
+                        Positioned(
+                          top: size.height * 0.16,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                pending.clear();
+                                unapproved.clear();
+                                scheduled.clear();
+                              });
+                            },
+                            child: Text(
+                              'REFRESH',
+                              style: TextStyle(
+                                  fontFamily: 'RoundLight',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 26,
+                                  color: Colors.white),
+                            ),
                           ),
                         ),
-                        scheduled.isEmpty
-                            ? Text('')
-                            : ListView.builder(
-                                padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                shrinkWrap: true,
-                                itemCount: scheduled.length - 1,
-                                itemBuilder: (BuildContext ctxt, int index) {
-                                  return schButton(
-                                      scheduled[index]['reqDate'], size);
-                                }),
-                        Center(
-                          child: Text(
-                            'Consultations awaiting your approval',
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: customPurple),
-                          ),
-                        ),
-                        pending.isEmpty
-                            ? Text('')
-                            : ListView.builder(
-                                padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                shrinkWrap: true,
-                                itemCount: pending.length - 1,
-                                itemBuilder: (BuildContext ctxt, int index) {
-                                  return pendButton(
-                                      pending[index]['reqDate'],
-                                      size,
-                                      pending[index]['courseID'],
-                                      pending[index]['meetID']);
-                                }),
-                        Center(
-                          child: Text(
-                            'Requested consultations',
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: customPurple),
-                          ),
-                        ),
-                        unapproved.isEmpty
-                            ? Text('')
-                            : ListView.builder(
-                                padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                                shrinkWrap: true,
-                                itemCount: unapproved.length - 1,
-                                itemBuilder: (BuildContext ctxt, int index) {
-                                  return schButton(
-                                      unapproved[index]['reqDate'], size);
-                                }),
-                      ],
+                      ]),
                     ),
-                  ),
-                ]);
-              }
-            }
-          }
+                    Container(
+                      height: size.height * 0.6,
+                      width: size.width,
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        children: <Widget>[
+                          Center(
+                            child: Text(
+                              'Scheduled consultations',
+                              style: TextStyle(
+                                  fontFamily: 'RoundLight',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: customPurple),
+                            ),
+                          ),
+                          scheduled.isEmpty
+                              ? Text('')
+                              : ListView.builder(
+                                  padding:
+                                      EdgeInsets.only(top: 5.0, bottom: 5.0),
+                                  shrinkWrap: true,
+                                  itemCount: scheduled.length - 1,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    return schButton(
+                                        scheduled[index]['reqDate'],
+                                        size,
+                                        scheduled[index]['meetID']);
+                                  }),
+                          Center(
+                            child: Text(
+                              'Consultations awaiting your approval',
+                              style: TextStyle(
+                                  fontFamily: 'RoundLight',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: customPurple),
+                            ),
+                          ),
+                          pending.isEmpty
+                              ? Text('')
+                              : ListView.builder(
+                                  padding:
+                                      EdgeInsets.only(top: 5.0, bottom: 5.0),
+                                  shrinkWrap: true,
+                                  itemCount: pending.length - 1,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    return pendButton(
+                                        pending[index]['reqDate'],
+                                        size,
+                                        pending[index]['courseID'],
+                                        pending[index]['meetID']);
+                                  }),
+                          Center(
+                            child: Text(
+                              'Requested consultations',
+                              style: TextStyle(
+                                  fontFamily: 'RoundLight',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: customPurple),
+                            ),
+                          ),
+                          unapproved.isEmpty
+                              ? Text('')
+                              : ListView.builder(
+                                  padding:
+                                      EdgeInsets.only(top: 5.0, bottom: 5.0),
+                                  shrinkWrap: true,
+                                  itemCount: unapproved.length - 1,
+                                  itemBuilder: (BuildContext ctxt, int index) {
+                                    return schButton1(
+                                        unapproved[index]['reqDate'], size);
+                                  }),
+                        ],
+                      ),
+                    ),
+                  ])
+                };
+
           return children;
         });
+  }
+
+  Widget schButton1(var date, var size) {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      Container(
+        width: size.width / 2 - 56,
+        child: Text(
+          //name of consultations from database
+          'Consultations',
+          style: TextStyle(
+              fontFamily: 'RoundLight',
+              fontWeight: FontWeight.normal,
+              fontSize: 15,
+              color: Colors.black),
+        ),
+      ),
+      Container(
+        width: 2,
+        height: 25,
+        color: customPurple,
+      ),
+      Container(
+        child: Text(
+          DateFormat('dd.MM  H:m').format(date.toDate()),
+          style: TextStyle(
+              fontFamily: 'datum',
+              fontWeight: FontWeight.normal,
+              fontSize: 15,
+              color: Colors.black),
+        ),
+      ),
+    ]);
+  }
+
+  Widget schButton(var date, var size, var meetID) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => JoinScreen(meetID, lec)));
+      },
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Container(
+          width: size.width / 2 - 56,
+          child: Text(
+            //name of consultations from database
+            'Consultations',
+            style: TextStyle(
+                fontFamily: 'RoundLight',
+                fontWeight: FontWeight.normal,
+                fontSize: 15,
+                color: Colors.black),
+          ),
+        ),
+        Container(
+          width: 2,
+          height: 25,
+          color: customPurple,
+        ),
+        Container(
+          child: Text(
+            DateFormat('dd.MM  H:m').format(date.toDate()),
+            style: TextStyle(
+                fontFamily: 'datum',
+                fontWeight: FontWeight.normal,
+                fontSize: 15,
+                color: Colors.black),
+          ),
+        ),
+      ]),
+    );
   }
 
   Widget pendButton(var date, var size, var courseID, var meetID) {

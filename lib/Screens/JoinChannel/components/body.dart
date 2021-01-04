@@ -10,18 +10,21 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../constants.dart';
 
 class Body extends StatefulWidget {
+  final String meetID;
+  final bool lecturer;
+  Body(this.meetID, this.lecturer);
   @override
   State<StatefulWidget> createState() => _Body();
 }
 
 class _Body extends State<Body> {
   /// create a channelController to retrieve text value
-  TextEditingController _channelController;
+  TextEditingController _channelController = TextEditingController();
 
   /// if channel textField is validated to have error
   bool _validateError = false;
 
-  ClientRole _role = ClientRole.Broadcaster;
+  ClientRole _role;
 
   @override
   void dispose() {
@@ -32,6 +35,8 @@ class _Body extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    _channelController.text = widget.meetID;
+    _role = widget.lecturer ? ClientRole.Broadcaster : ClientRole.Audience;
     return Scaffold(
       appBar: AppBar(
         title: Text('Konzultacije'),
@@ -64,9 +69,11 @@ class _Body extends State<Body> {
                 children: [
                   ListTile(
                     title: Text('Predavac'),
+                    enabled: false,
                     leading: Radio(
                       activeColor: customPurple,
                       value: ClientRole.Broadcaster,
+                      toggleable: false,
                       groupValue: _role,
                       onChanged: (ClientRole value) {
                         setState(() {
@@ -77,9 +84,11 @@ class _Body extends State<Body> {
                   ),
                   ListTile(
                     title: Text('Student'),
+                    enabled: false,
                     leading: Radio(
                       value: ClientRole.Audience,
                       groupValue: _role,
+                      toggleable: false,
                       onChanged: (ClientRole value) {
                         setState(() {
                           _role = value;

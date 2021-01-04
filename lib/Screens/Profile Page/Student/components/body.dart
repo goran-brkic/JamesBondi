@@ -101,6 +101,7 @@ class _BodyState extends State<Body> {
                     ),
 
                     //video butt
+                    /*
                     Positioned(
                       top: size.height * 0.6,
                       child: RaisedButton(
@@ -113,6 +114,7 @@ class _BodyState extends State<Body> {
                         child: Text("Video"),
                       ),
                     ),
+                    */
 
                     // Type of Person
                     Positioned(
