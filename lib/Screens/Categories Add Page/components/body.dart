@@ -166,7 +166,7 @@ class _Body extends State<Body> {
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(
-                        size.width * 0.08, size.height * 0.4, 0, 0),
+                        size.width * 0.09, size.height * 0.4, 0, 0),
                     child: Column(
                       children: [
                         Text(
@@ -174,7 +174,7 @@ class _Body extends State<Body> {
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 20,
+                            fontSize: size.width * 0.06,
                             color: Colors.white,
                           ),
                         ),
@@ -191,7 +191,7 @@ class _Body extends State<Body> {
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(
-                        size.width * 0.14, size.height * 0.45, 0, 0),
+                        size.width * 0.14, size.height * 0.44, 0, 0),
                     child: Column(
                       children: <Widget>[
                         /////////
@@ -210,7 +210,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.normal,
-                                fontSize: 20,
+                                fontSize: size.width * 0.05,
                                 color: customPurple),
                           ),
                         ),
@@ -230,7 +230,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.normal,
-                                fontSize: 20,
+                                fontSize: size.width * 0.05,
                                 color: customPurple),
                           ),
                         ),
@@ -249,7 +249,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                                 fontFamily: 'RoundLight',
                                 fontWeight: FontWeight.normal,
-                                fontSize: 20,
+                                fontSize: size.width * 0.05,
                                 color: customPurple),
                           ),
                         ),

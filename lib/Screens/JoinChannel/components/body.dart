@@ -104,7 +104,7 @@ class _Body extends State<Body> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CallPage(
+        builder: (context) => CallScreen(
           channelName: widget.meetID,
           role: _role,
         ),

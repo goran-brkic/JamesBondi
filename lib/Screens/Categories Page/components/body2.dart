@@ -190,7 +190,7 @@ chooseDifficulty(context, size, category) {
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 20,
+                              fontSize: size.width * 0.05,
                               color: customPurple),
                         ),
                       ), //////////
@@ -209,7 +209,7 @@ chooseDifficulty(context, size, category) {
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 20,
+                              fontSize: size.width * 0.05,
                               color: customPurple),
                         ),
                       ),
@@ -228,7 +228,7 @@ chooseDifficulty(context, size, category) {
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 20,
+                              fontSize: size.width * 0.05,
                               color: customPurple),
                         ),
                       ),

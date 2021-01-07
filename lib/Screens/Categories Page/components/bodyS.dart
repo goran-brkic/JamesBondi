@@ -49,78 +49,76 @@ class _Body extends State<BodyS> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: size.height * 0.08,
+          //width: size.width - 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              MaterialButton(
+                  minWidth: 2,
+                  onPressed: () {
+                    _onItemTapped(0);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.category),
+                      Text('Categories',
+                          style: TextStyle(fontSize: size.width * 0.03))
+                    ],
+                  )),
+              MaterialButton(
+                  minWidth: 2,
+                  onPressed: () {
+                    _onItemTapped(1);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.search),
+                      Text('Search',
+                          style: TextStyle(fontSize: size.width * 0.03))
+                    ],
+                  )),
+              MaterialButton(
+                minWidth: 2,
+                onPressed: () {
+                  _onItemTapped(2);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(0);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.category),
-                            Text('Categories')
-                          ],
-                        )),
-                    MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(1);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.search),
-                            Text('Search')
-                          ],
-                        )),
+                    Icon(Icons.ring_volume),
+                    Text('Consultation',
+                        style: TextStyle(fontSize: size.width * 0.03))
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              ),
+              MaterialButton(
+                onPressed: () {
+                  _onItemTapped(3);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(2);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.ring_volume),
-                            Text('Consultation')
-                          ],
-                        )),
-                    MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(3);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.group_outlined),
-                            Text('Profile')
-                          ],
-                        )),
+                    Icon(Icons.group_outlined),
+                    Text('Profile',
+                        style: TextStyle(fontSize: size.width * 0.03))
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          //key: _formKey,
-        ));
+        ),
+      ),
+      //key: _formKey,
+    );
   }
 }
 //chooseDiff je u body2.dart

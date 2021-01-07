@@ -65,15 +65,16 @@ class _Body extends State<BodyLec> {
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: Container(
-            height: 50,
+            height: size.height * 0.08,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     MaterialButton(
-                        minWidth: 30,
                         onPressed: () {
                           _onItemTapped(0);
                         },
@@ -81,11 +82,11 @@ class _Body extends State<BodyLec> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(Icons.category),
-                            Text('Categories')
+                            Text('Categories',
+                                style: TextStyle(fontSize: size.width * 0.03))
                           ],
                         )),
                     MaterialButton(
-                        minWidth: 30,
                         onPressed: () {
                           _onItemTapped(1);
                         },
@@ -93,38 +94,43 @@ class _Body extends State<BodyLec> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Icon(Icons.search),
-                            Text('Search')
+                            Text('Search',
+                                style: TextStyle(fontSize: size.width * 0.03))
                           ],
                         )),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(2);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.ring_volume),
-                            Text('Consultation')
-                          ],
-                        )),
+                      minWidth: 2,
+                      onPressed: () {
+                        _onItemTapped(2);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.ring_volume),
+                          Text('Consultation',
+                              style: TextStyle(fontSize: size.width * 0.03))
+                        ],
+                      ),
+                    ),
                     MaterialButton(
-                        minWidth: 30,
-                        onPressed: () {
-                          _onItemTapped(3);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.group_outlined),
-                            Text('Profile')
-                          ],
-                        )),
+                      onPressed: () {
+                        _onItemTapped(3);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.group_outlined),
+                          Text('Profile',
+                              style: TextStyle(fontSize: size.width * 0.03))
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ],

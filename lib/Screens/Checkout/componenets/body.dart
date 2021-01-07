@@ -118,7 +118,7 @@ class _Body extends State<Body> {
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 50,
+                            fontSize: size.width * 0.1,
                             color: Colors.white,
                           ),
                         ),
@@ -131,7 +131,7 @@ class _Body extends State<Body> {
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 25,
+                            fontSize: size.width * 0.065,
                             color: Colors.black,
                           ),
                         ),
@@ -160,7 +160,7 @@ class _Body extends State<Body> {
                           style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 22,
+                            fontSize: size.width * 0.055,
                             color: Colors.black,
                           ),
                         ),
@@ -177,7 +177,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 22,
+                              fontSize: size.width * 0.055,
                               color: Colors.black,
                             ),
                           ),
@@ -193,7 +193,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 22,
+                              fontSize: size.width * 0.055,
                               color: Colors.black,
                             ),
                           ),
@@ -205,7 +205,8 @@ class _Body extends State<Body> {
                         top: size.height * 0.46,
                         left: size.width * 0.15,
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(24, 10, 0, 9),
+                          padding: EdgeInsets.fromLTRB(
+                              size.width * 0.06, size.width * 0.03, 0, 9),
                           height: size.height * 0.06,
                           width: size.width * 0.55,
                           decoration: BoxDecoration(
@@ -226,7 +227,7 @@ class _Body extends State<Body> {
                             style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 21,
+                              fontSize: size.width * 0.05,
                               color: Colors.black,
                             ),
                           ),
@@ -268,7 +269,7 @@ class _Body extends State<Body> {
                               style: TextStyle(
                                   fontFamily: 'RoundLight',
                                   fontWeight: FontWeight.normal,
-                                  fontSize: 20,
+                                  fontSize: size.width * 0.055,
                                   color: Colors.white),
                             )),
                       ),
