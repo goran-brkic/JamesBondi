@@ -34,11 +34,12 @@
 				
 		\section{Baza podataka}
 			
-			\text Za potrebe našeg sustava koristit ćemo NoSQL bazu podataka orijentiranu na dokumente, odnosno kolekcije dokumenata. Gradivna jedinka baze je dokument koji je definiran svojim imenom i skupom atributa. Zadaća baze podataka jest jednostavna i brza pohrana, izmjena i dohvat podataka za daljnju obranu. Baza podataka ove aplikacije sastoji se od dva entiteta, a to su:
+			\text Za potrebe našeg sustava koristit ćemo NoSQL bazu podataka orijentiranu na dokumente, odnosno kolekcije dokumenata. Gradivna jedinka baze je dokument koji je definiran svojim imenom i skupom atributa. Zadaća baze podataka jest jednostavna i brza pohrana, izmjena i dohvat podataka za daljnju obranu. Baza podataka ove aplikacije sastoji se od tri entiteta, a to su:
 			
 			\begin{itemize}
 				\item User
 				\item Categories
+				\item Meetings
 			\end{itemize}
 		
 			\subsection{Opis tablica}
@@ -68,8 +69,7 @@
 					iban & string & IBAN računa za isplatu honorara \\ \hline
 					About & string & kratka biografija o korisniku ukoliko je predavač \\ \hline
 					Image & string & poveznica na fotografiju korisnika ukoliko je predavač \\ \hline
-					
-					
+					Courses & array & sadrži sve tečajeve koje je korisnik upisao (za polaznika) ili koje je kreirao (za predavača) \\ \hline					
 				\end{longtabu}
 			
 			\textbf{Categories} \text    Ovaj entitet sadržava sve važne informacije o tečajevima koji su dostupni na aplikaciji. Sadrži atribut name te kolekciju za svaku razinu tečaja (beginner, intermediate, advanced) koja će sadržavati dodatne informacije o pojedinom tečaju. Za svaku kategoriju tečaja kreiran je dokument u bazi podataka, a za svaki tečaj kreira se dokument unutar kolekcije za odrabranu razinu i kategoriju tečaja. 
@@ -110,9 +110,9 @@
 			\end{longtabu}
 		
 		
-				\textbf{Beginner/Advanced/Intermediate} \text    Ove kolekcije sadrže informaciju o težini kreiranog tečaja te kolekciju koja će sadržavati sve dodatne sadržaje spomenutog tečaja. 
+				\textbf{Beginner/Advanced/Intermediate} \text    Ove kolekcije sadrže informacije o tečaju koje su nužne za njegovo kreiranje. 
 			
-			\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+			\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
 				
 				\hline \multicolumn{3}{|c|}{\textbf{Beginner/Advanced/Intermediate}}	 \\[3pt] \hline
 				\endfirsthead
@@ -123,11 +123,39 @@
 				\hline 
 				\endlastfoot
 				
-				Difficulty & string & informacija o težini tečaja \\ \hline
-				Courses & kolekcija & dodatni sadržaji i informacije o pojedinom tečaju \\ \hline				
+				CourseInfo & string & kratki opis tečaja (do 1000 riječi) \\ \hline
+				CourseMail & string & e-mail adresa vlasnika tečaja \\ \hline
+				CourseMaterials & array & materijali za učenje (PDF format do 50 MB ukupno) \\ \hline
+				CourseName & string & naziv tečaja \\ \hline
+				CoursePrice & number & cijena tečaja \\ \hline
+				Keywords & array & ključne riječi po kojima je moguće pronaći tečaj \\ \hline
+								
 				
 			\end{longtabu}
+		\eject
+		
+			\textbf{Meetings} \text    Ovaj entitet sadržava sve važne informacije o zatraženim konzultacijama. 
 			
+			\begin{longtabu} to \textwidth {|X[9, l]|X[6, l]|X[20, l]|}
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Meetings}}	 \\[3pt] \hline
+				\endfirsthead
+				
+				\hline \multicolumn{3}{|c|}{\textbf{Meetings}}	 \\[3pt] \hline
+				\endhead
+				
+				\hline 
+				\endlastfoot
+				
+				CourseID & string & ID dokumenta u bazi podataka za odabrani tečaj  \\ \hline
+				LecturerConfirm & boolean & oznaka da je predavač potvrdio termin konzultacija \\ \hline
+				LecturerMail & string & e-mail predavača \\ \hline
+				ReqDate & string & traženi datum konzultacija \\ \hline
+				StudentConfirm & boolean & oznaka da je polaznik potvrdio termin konzultacija \\ \hline
+				StudentMail & string & e-mail polaznika koji je zatražio konzultacije \\ \hline				
+				
+			\end{longtabu}
+			\pagebreak
 			
 			\subsection{Dijagram baze podataka}
 				\begin{figure}[H]
