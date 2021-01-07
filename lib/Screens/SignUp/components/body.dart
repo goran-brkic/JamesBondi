@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
@@ -67,8 +69,8 @@ class _Body extends State<Body> {
                   _ibanController.text,
                   _aboutYController.text,
                   imageURL)
-              .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => LProfileScreen(user.email))));
+              .then((value) => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SignInScreen())));
         } else {
           UserInfoDB.addStudent(
                   _usernameController.text,
@@ -78,8 +80,8 @@ class _Body extends State<Body> {
                   _creditcardController.text,
                   _expirationDateController.text,
                   _secCodeController.text)
-              .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => SProfileScreen(user.email))));
+              .then((value) => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SignInScreen())));
         }
       });
     } else {
