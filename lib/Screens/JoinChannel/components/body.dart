@@ -18,24 +18,12 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  /// create a channelController to retrieve text value
-  TextEditingController _channelController = TextEditingController();
-
   /// if channel textField is validated to have error
-  bool _validateError = false;
 
   ClientRole _role;
 
   @override
-  void dispose() {
-    // dispose input controller
-    _channelController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    _channelController.text = widget.meetID;
     _role = widget.lecturer ? ClientRole.Broadcaster : ClientRole.Audience;
     return Scaffold(
       appBar: AppBar(
@@ -50,19 +38,7 @@ class _Body extends State<Body> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Expanded(
-                      child: TextField(
-                    enabled: false,
-                    controller: _channelController,
-                    decoration: InputDecoration(
-                        errorText:
-                            _validateError ? 'Channel name is mandatory' : null,
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1, color: customPurple),
-                        ),
-                        hintText: 'Channel name',
-                        fillColor: customPurple),
-                  ))
+                  Expanded(child: Text('Channel ID: ' + widget.meetID))
                 ],
               ),
               Column(
@@ -121,26 +97,18 @@ class _Body extends State<Body> {
   }
 
   Future<void> onJoin() async {
-    // update input validation
-    setState(() {
-      _channelController.text.isEmpty
-          ? _validateError = true
-          : _validateError = false;
-    });
-    if (_channelController.text.isNotEmpty) {
-      // await for camera and mic permissions before pushing video page
-      await JoinChannel.handleCameraAndMic(Permission.camera);
-      await JoinChannel.handleCameraAndMic(Permission.microphone);
-      // push video page with given channel name
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CallPage(
-            channelName: _channelController.text,
-            role: _role,
-          ),
+    // await for camera and mic permissions before pushing video page
+    await JoinChannel.handleCameraAndMic(Permission.camera);
+    await JoinChannel.handleCameraAndMic(Permission.microphone);
+    // push video page with given channel name
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CallPage(
+          channelName: widget.meetID,
+          role: _role,
         ),
-      );
-    }
+      ),
+    );
   }
 }
