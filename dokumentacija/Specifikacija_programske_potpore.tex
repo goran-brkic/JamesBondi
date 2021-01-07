@@ -240,7 +240,7 @@
 					
 					\item \textbf{Glavni sudionik:} Polaznik
 					\item  \textbf{Cilj:} Uspješna naplata tečaja
-					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Sudionici:} Baza podataka, vanjski servis za naplatu
 					\item  \textbf{Preduvjet:} Uspješna prijava
 					\item  \textbf{Opis osnovnog tijeka:}
 					
@@ -351,10 +351,10 @@
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC12 - Odgovor na zahtjev za terminom konzultacija}}
+			\noindent \label{UC12} \underbar{\textbf{UC12 - Odgovor na zahtjev za terminom konzultacija}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač
+				\item \textbf{Glavni sudionik:} Predavač, polaznik
 				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
 				\item  \textbf{Sudionici:} Baza podataka
 				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
@@ -362,23 +362,23 @@
 				
 				\item[] \begin{packed_enum}
 					
-					\item Odobravanje primljenog zahtjeva za terminom konzultacija 
-					\item Polaznik dobiva obavijest o potvrđenom terminu
+					\item Predavač potvrđuje primljeni zahtjev za terminom konzultacija
+					\item Polaznik dobiva obavijest o terminu i potvrđuje ga
 					
 				\end{packed_enum}
 				\textbf{ili}
 			
 				\item[] \begin{packed_enum}
 					
-					\item Odbijanje termina konzultacija
-					\item Polaznik prima obavijest o odbijenom terminu
-					\item Polaznik traži novi termin \hyperref[UC11]{(UC11)}
+					\item Predavač odbija zahtjev za terminom konzulacija i predlaže novi termin
+					\item Polaznik prima obavijest o novom terminu
+					\item Polaznik potvrđuje termin ili ga odbija i šalje zahtjev za novim terminom \hyperref[UC11]{(UC11)}
 					
 				\end{packed_enum}
 				
 			\end{packed_item}
 		
-			
+			\eject
 			\noindent \label{UC13} \underbar{\textbf{UC13 - Pregled osobnih podataka}}
 			\begin{packed_item}
 				
@@ -459,7 +459,7 @@
 				\end{packed_item}
 				
 			\end{packed_item}
-					\noindent \underbar{\textbf{UC16 - Pretraživanje tečaja}}
+					\noindent \underbar{\textbf{UC16 - Pretraživanje tečajeva}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik:} Predavač, Polaznik
@@ -478,6 +478,24 @@
 					
 
 				\end{packed_item}
+			\noindent \underbar{\textbf{UC17 - Video poziv}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Održavanje konzultacija putem video poziva 
+				\item  \textbf{Sudionici:} Baza podataka, vanjski servis za video pozive
+				\item  \textbf{Preduvjet:} I polaznik i prevadač su potvrdili termin konzultacija
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač i polaznik odabiru opciju uspostave video poziva
+					\item Vanjski servis uspostavlja poziv između polaznika i predavača
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
 			\eject
 		
 				\subsubsection{Dijagrami obrazaca uporabe}
@@ -491,7 +509,7 @@
 				\eject
 					
 					\begin{figure}[h]
-						\includegraphics[scale=0.6]{dijagrami/UML_pol.PNG}
+						\includegraphics[scale=0.55]{dijagrami/UML_pol.PNG}
 						\centering
 						\caption{Dijagram obrasca uporabe, funkcionalnost polaznika tečaja}
 						\label{fig:UML_pol}
@@ -499,7 +517,7 @@
 				\eject
 				
 					\begin{figure}[h]
-						\includegraphics[scale=0.6]{dijagrami/UML_pred.PNG}
+						\includegraphics[scale=0.55]{dijagrami/UML_pred.PNG}
 						\centering
 						\caption{Dijagram obrasca uporabe, funkcionalnost predavača}
 						\label{fig:UML_pred}
