@@ -35,6 +35,154 @@ class _Body extends State<Body> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    return Column(children: <Widget>[
+      Container(
+        height: size.height * 0.2,
+        child: Stack(alignment: Alignment.center, children: <Widget>[
+          Positioned(
+            top: size.height * 0.001,
+            child: Image.asset(
+              'assets/images/top_part_courses.png',
+              width: size.width * 1,
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.15,
+            child: Image.asset(
+              'assets/images/Line 1.png',
+              width: size.width * 0.7,
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.08,
+            child: Text(
+              "Consultations",
+              style: TextStyle(
+                  fontFamily: 'RoundLight',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 34,
+                  color: Colors.white),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.16,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  pending.clear();
+                  unapproved.clear();
+                  scheduled.clear();
+                });
+              },
+              child: Text(
+                'REFRESH',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 26,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        ]),
+      ),
+      Container(
+        height: size.height * 0.6,
+        width: size.width,
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            Center(
+              child: Text(
+                'Scheduled consultations',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getSchConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return schButton(snapshot.data[index]['reqDate'],
+                                size, snapshot.data[index]['meetID']);
+                          });
+                  return children;
+                }),
+            Center(
+              child: Text(
+                'Consultations awaiting your approval',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getPendConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return pendButton(
+                                snapshot.data[index]['reqDate'],
+                                size,
+                                snapshot.data[index]['courseID'],
+                                snapshot.data[index]['meetID']);
+                          });
+                  return children;
+                }),
+            Center(
+              child: Text(
+                'Requested consultations',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getUnappConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return schButton1(
+                                snapshot.data[index]['reqDate'], size);
+                          });
+                  return children;
+                }),
+          ],
+        ),
+      ),
+    ]);
+
+    /*
     return FutureBuilder(
         future: ConsultationDB.getConsultations(
             FirebaseAuth.instance.currentUser.email),
@@ -194,6 +342,7 @@ class _Body extends State<Body> {
 
           return children;
         });
+        */
   }
 
   Widget schButton1(var date, var size) {
