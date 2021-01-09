@@ -115,4 +115,61 @@ class CoursesDB {
         .doc(courseID)
         .update({'courseMaterials': FieldValue.arrayUnion(mats)});
   }
+
+  static Future<List<Map<String, dynamic>>> createdCourses(
+      final String mail) async {
+    var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
+    var difs = ['advanced', 'beginner', 'intermediate'];
+    List<Map<String, dynamic>> returnItem = [];
+    //print('Trazim tecaj se keyword: ' + keyword);
+    for (var i in cats) {
+      for (var j in difs) {
+        await FirebaseFirestore.instance
+            .collection('courses/' + i + '/' + j)
+            .where('courseMail', isEqualTo: mail)
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+                  querySnapshot.docs.forEach((doc) {
+                    //print('Nasao sam course: ' + doc.data().toString());
+                    Map<String, dynamic> temp;
+                    temp = doc.data();
+                    temp['courseID'] = doc.id;
+                    temp['category'] = i;
+                    temp['difficulty'] = j;
+                    returnItem.add(temp);
+                  })
+                });
+      }
+    }
+    //print('Returnam: ' + returnItem.toString());
+    return Future.value(returnItem);
+  }
+
+  static Future<List<Map<String, dynamic>>> ownedCourses(final List id) async {
+    var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
+    var difs = ['advanced', 'beginner', 'intermediate'];
+    List<Map<String, dynamic>> returnItem = [];
+    //print('Trazim tecaj se keyword: ' + keyword);
+    for (var i in cats) {
+      for (var j in difs) {
+        await FirebaseFirestore.instance
+            .collection('courses/' + i + '/' + j)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            if (id.contains(doc.id)) {
+              Map<String, dynamic> temp;
+              temp = doc.data();
+              temp['courseID'] = doc.id;
+              temp['category'] = i;
+              temp['difficulty'] = j;
+              returnItem.add(temp);
+            }
+          });
+        });
+      }
+    }
+    //print('Returnam: ' + returnItem.toString());
+    return Future.value(returnItem);
+  }
 }

@@ -85,12 +85,12 @@ class _Body extends State<Body> {
       if (e.code == 'user-not-found') {
         _mailController.clear();
         _passwordController.clear();
-        print('No user found for that email.');
+        //print('No user found for that email.');
         await _showUserDialog(context);
       } else if (e.code == 'wrong-password') {
         _passwordController.clear();
         await _showPassDialog(context);
-        print('Wrong password provided for that user.');
+        //print('Wrong password provided for that user.');
       }
     }
 
