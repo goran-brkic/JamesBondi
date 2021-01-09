@@ -331,52 +331,57 @@
 				\end{packed_enum}
 				
 			\end{packed_item}	
-		
-		
-			\noindent \label{UC11} \underbar{\textbf{UC11 - Slanje zahtjeva za konzultacijama}}
+			\noindent \underbar{\textbf{UC11 - Brisanje vlastitog korisničkog računa}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Polaznik
-				\item  \textbf{Cilj:} Uspješno poslati zahtjev za terminom
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Obrisati svoj korisnički račun
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj za kojeg se traže konzultacije
+				\item  \textbf{Preduvjet:} Korisnik je prijavljen
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Odabir tečaja za kojeg se traže konzultacije
-					\item Odabir termina za konzultacije
+					\item Korisnik pregledava osobne podatke (\hyperref[UC13] {UC13})
+					\item Korisnik odabire opciju "Obriši moj račun"
+					\item Korisnički račun se briše iz baze podataka
+					\item Korisnika se usmjerava na stranicu za registraciju
 					
 				\end{packed_enum}
+				\item  \textbf{Opis mogućih odstupanja:}
+				
+				\item[] \begin{packed_item}
+					
+					\item[2.a] Korisnik mijenja svoje osobne podatke, ali ne odabire opciju "Spremi moje promjene"
+					\item[] \begin{packed_enum}
+						
+						\item Sustav obavještava korisnika da nije spremio podatke prije izlaska iz prozora
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
 				
 			\end{packed_item}
-		
-			\noindent \label{UC12} \underbar{\textbf{UC12 - Odgovor na zahtjev za terminom konzultacija}}
+			\noindent \underbar{\textbf{UC12 - Pretraživanje tečajeva}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, polaznik
-				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Pretraživanje tečajeva prema ključnim rijećima u imenima tečajeva
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
+				\item  \textbf{Preduvjet:} Postojeći račun u sustavu
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Predavač potvrđuje primljeni zahtjev za terminom konzultacija
-					\item Polaznik dobiva obavijest o terminu i potvrđuje ga
-					
-				\end{packed_enum}
-				\textbf{ili}
-			
-				\item[] \begin{packed_enum}
-					
-					\item Predavač odbija zahtjev za terminom konzulacija i predlaže novi termin
-					\item Polaznik prima obavijest o novom terminu
-					\item Polaznik potvrđuje termin ili ga odbija i šalje zahtjev za novim terminom \hyperref[UC11]{(UC11)}
+					\item Korisnik odabire opciju Search
+					\item Korisnik unosi ključnu riječ
+					\item Korisniku se prikazuju svi tečajevi koji sadrže ključnu riječ u nazivu ili opisu 
 					
 				\end{packed_enum}
 				
+				
 			\end{packed_item}
+		
 		
 			\eject
 			\noindent \label{UC13} \underbar{\textbf{UC13 - Pregled osobnih podataka}}
@@ -428,56 +433,55 @@
 				\end{packed_item}
 				
 			\end{packed_item}
-			\noindent \underbar{\textbf{UC15 - Brisanje vlastitog korisničkog računa}}
+			
+			
+			\noindent \label{UC15} \underbar{\textbf{UC15 - Slanje zahtjeva za konzultacijama}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Polaznik
-				\item  \textbf{Cilj:} Obrisati svoj korisnički račun
+				\item \textbf{Glavni sudionik:} Polaznik
+				\item  \textbf{Cilj:} Uspješno poslati zahtjev za terminom
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je prijavljen
+				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj za kojeg se traže konzultacije
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Korisnik pregledava osobne podatke (\hyperref[UC13] {UC13})
-					\item Korisnik odabire opciju "Obriši moj račun"
-					\item Korisnički račun se briše iz baze podataka
-					\item Korisnika se usmjerava na stranicu za registraciju
+					\item Odabir tečaja za kojeg se traže konzultacije
+					\item Odabir datuma za termin konzultacija
 					
 				\end{packed_enum}
-				\item  \textbf{Opis mogućih odstupanja:}
-				
-				\item[] \begin{packed_item}
-					
-					\item[2.a] Korisnik mijenja svoje osobne podatke, ali ne odabire opciju "Spremi moje promjene"
-					\item[] \begin{packed_enum}
-						
-						\item Sustav obavještava korisnika da nije spremio podatke prije izlaska iz prozora
-						
-					\end{packed_enum}
-					
-				\end{packed_item}
 				
 			\end{packed_item}
-					\noindent \underbar{\textbf{UC16 - Pretraživanje tečajeva}}
-				\begin{packed_item}
+		\eject
+			
+			\noindent \label{UC16} \underbar{\textbf{UC16 - Odgovor na zahtjev za terminom konzultacija}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, polaznik
+				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
 					
-					\item \textbf{Glavni sudionik:} Predavač, Polaznik
-					\item  \textbf{Cilj:} Pretraživanje tečajeva prema ključnim rijećima u imenima tečajeva
-					\item  \textbf{Sudionici:} Baza podataka
-					\item  \textbf{Preduvjet:} Postojeći račun u sustavu
-					\item  \textbf{Opis osnovnog tijeka:}
+					\item Predavač potvrđuje primljeni zahtjev za terminom konzultacija
+					\item Polaznik dobiva obavijest o terminu i potvrđuje ga
 					
-					\item[] \begin{packed_enum}
-						
-						\item Korisnik odabire opciju Search
-						\item Korisnik unosi ključnu riječ
-						\item Korisniku se prikazuju svi tečajevi koji sadrže ključnu riječ u nazivu ili opisu 
-						
-					\end{packed_enum}
+				\end{packed_enum}
+				\textbf{ili}
+				
+				\item[] \begin{packed_enum}
 					
-
-				\end{packed_item}
+					\item Predavač odbija zahtjev za terminom konzulacija i predlaže novi termin
+					\item Polaznik prima obavijest o novom terminu
+					\item Polaznik potvrđuje termin ili ga odbija i šalje zahtjev za novim terminom \hyperref[UC15]{(UC15)}
+					
+				\end{packed_enum}
+				
+			\end{packed_item}
+			
+			
 			\noindent \underbar{\textbf{UC17 - Video poziv}}
 			\begin{packed_item}
 				
