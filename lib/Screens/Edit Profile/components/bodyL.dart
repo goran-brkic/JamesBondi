@@ -28,15 +28,13 @@ class _Body extends State<BodyL> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _ibanController = TextEditingController();
   final TextEditingController _aboutYController = TextEditingController();
   String imageURL;
 
   void _register() async {
     UserInfoDB.updateLecturer(
-            _emailController.text,
+            widget.emailAddressInput,
             _firstNameController.text,
             _lastNameController.text,
             _ibanController.text,
@@ -49,8 +47,6 @@ class _Body extends State<BodyL> {
     var map = await UserInfoDB.getUserInfo(mail);
     _firstNameController.text = map['firstName'];
     _lastNameController.text = map['lastName'];
-    _emailController.text = mail;
-    _usernameController.text = map['username'];
     _ibanController.text = map['iban'];
     _aboutYController.text = map['about'];
     imageURL = map['image'];
@@ -60,12 +56,6 @@ class _Body extends State<BodyL> {
   initState() {
     getUser(widget.emailAddressInput);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
   }
 
   File _image;
@@ -109,14 +99,13 @@ class _Body extends State<BodyL> {
 
   @override
   Widget build(BuildContext context) {
-    _emailController.text = widget.emailAddressInput;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: Form(
       key: _formKey,
       child: SingleChildScrollView(
         child: Container(
-          height: size.height * 1.4,
+          height: size.height * 1.145,
           width: double.infinity,
           child: Stack(
             alignment: Alignment.center,
@@ -156,30 +145,15 @@ class _Body extends State<BodyL> {
                 colorValue: isLastNameEmpty ? Colors.red : customPurple,
               ),
               InputField(
-                title: "Email",
-                topValue: 0.44,
-                controller: _emailController,
-                enabledField: false,
-                colorValue: customPurple,
-              ),
-              InputField(
-                title: "Username",
-                topValue: 0.56,
-                controller: _usernameController,
-                enabledField: false,
-                colorValue: customPurple,
-              ),
-
-              InputField(
                 title: "IBAN",
-                topValue: 0.69,
+                topValue: 0.44,
                 controller: _ibanController,
                 enabledField: true,
                 colorValue: isIbanEmpty ? Colors.red : customPurple,
               ),
               Positioned(
                 left: size.width * 0.12,
-                top: size.height * (0.8 - 0.035),
+                top: size.height * (0.56 - 0.035),
                 child: Text(
                   "Image",
                   style: TextStyle(
@@ -191,7 +165,7 @@ class _Body extends State<BodyL> {
                 ),
               ),
               Positioned(
-                top: size.height * 0.81,
+                top: size.height * 0.56,
                 left: size.height * 0.07,
                 child: Container(
                   decoration: BoxDecoration(
@@ -241,7 +215,7 @@ class _Body extends State<BodyL> {
 
               // About me
               Positioned(
-                top: size.height * 1.0,
+                top: size.height * 0.75,
                 left: size.width * 0.12,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
@@ -272,7 +246,7 @@ class _Body extends State<BodyL> {
               ),
               Positioned(
                 left: size.width * 0.12,
-                top: size.height * (1.0 - 0.035),
+                top: size.height * (0.75 - 0.035),
                 child: Text(
                   "About yourself",
                   style: TextStyle(
@@ -284,7 +258,7 @@ class _Body extends State<BodyL> {
                 ),
               ),
               Positioned(
-                top: size.height * 1.275,
+                top: size.height * 1.03,
                 child: FlatButton(
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),

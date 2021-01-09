@@ -160,7 +160,7 @@ class _Body extends State<BodyS> {
             key: _formKey,
             child: SingleChildScrollView(
               child: Container(
-                height: size.height * 1.05,
+                height: size.height,
                 width: double.infinity,
                 child: Stack(
                   alignment: Alignment.center,
@@ -187,41 +187,27 @@ class _Body extends State<BodyS> {
                     ),
                     InputField(
                       title: "First name",
-                      topValue: 0.25,
+                      topValue: 0.20,
                       controller: _firstNameController,
                       enabledField: true,
                       colorValue: isFirstNameEmpty ? Colors.red : customPurple,
                     ),
                     InputField(
                       title: "Last name",
-                      topValue: 0.37,
+                      topValue: 0.32,
                       controller: _lastNameController,
                       enabledField: true,
                       colorValue: isLastNameEmpty ? Colors.red : customPurple,
                     ),
                     InputField(
-                      title: "Email",
-                      topValue: 0.49,
-                      controller: _emailController,
-                      enabledField: false,
-                      colorValue: customPurple,
-                    ),
-                    InputField(
-                      title: "Username",
-                      topValue: 0.61,
-                      controller: _usernameController,
-                      enabledField: false,
-                      colorValue: customPurple,
-                    ),
-                    InputField(
                       title: "Credit card",
-                      topValue: 0.73,
+                      topValue: 0.44,
                       controller: _creditcardController,
                       enabledField: true,
                       colorValue: isCreditCardEmpty ? Colors.red : customPurple,
                     ),
                     Positioned(
-                      top: size.height * 0.85,
+                      top: size.height * 0.56,
                       left: size.width * 0.12,
                       child: Container(
                         padding:
@@ -256,7 +242,7 @@ class _Body extends State<BodyS> {
                     ),
                     Positioned(
                       left: size.width * 0.12,
-                      top: size.height * (0.85 - 0.035),
+                      top: size.height * (0.56 - 0.035),
                       child: Text(
                         "Expiration date",
                         style: TextStyle(
@@ -268,7 +254,7 @@ class _Body extends State<BodyS> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.85,
+                      top: size.height * 0.56,
                       left: size.width * 0.42,
                       child: Container(
                         padding:
@@ -303,7 +289,7 @@ class _Body extends State<BodyS> {
                     ),
                     Positioned(
                       left: size.width * 0.42,
-                      top: size.height * (0.85 - 0.035),
+                      top: size.height * (0.56 - 0.035),
                       child: Text(
                         "Security code",
                         style: TextStyle(
@@ -315,7 +301,7 @@ class _Body extends State<BodyS> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.94,
+                      top: size.height * 0.64,
                       child: FlatButton(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: size.width * 0.07),
