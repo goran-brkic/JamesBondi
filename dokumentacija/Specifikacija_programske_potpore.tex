@@ -183,11 +183,11 @@
 						\end{packed_item}
 					\end{packed_item}
 		
-				\noindent \underbar{\textbf{UC4 - Pregled tečajeva}}
+				\noindent \underbar{\textbf{UC4 - Pregled svih tečajeva}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik:} Polaznik, Predavač
-					\item  \textbf{Cilj:} Uspješan prikaz dostupnih tečajeva
+					\item  \textbf{Cilj:} Uspješan prikaz svih kreiranih tečajeva
 					\item  \textbf{Sudionici:} Baza podataka
 					\item  \textbf{Preduvjet:} Uspješna prijava
 					\item  \textbf{Opis osnovnog tijeka:}
@@ -488,13 +488,70 @@
 				\item \textbf{Glavni sudionik:} Predavač, Polaznik
 				\item  \textbf{Cilj:} Održavanje konzultacija putem video poziva 
 				\item  \textbf{Sudionici:} Baza podataka, vanjski servis za video pozive
-				\item  \textbf{Preduvjet:} I polaznik i prevadač su potvrdili termin konzultacija
+				\item  \textbf{Preduvjet:} Uspješna prijava, i polaznik i prevadač su potvrdili termin konzultacija
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
 					\item Predavač i polaznik odabiru opciju uspostave video poziva
 					\item Vanjski servis uspostavlja poziv između polaznika i predavača
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+		
+			\noindent \underbar{\textbf{UC18 - Pregled kreiranih tečajeva}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač
+				\item  \textbf{Cilj:} Pregledati sve tečajeve koje je predavač kreirao
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač odabire opciju Prikaži moje tečajeve (Show your courses)
+					\item Predavač je usmjeren na stranicu sa svim njegovim tečajevima
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+		\eject
+		
+			\noindent \underbar{\textbf{UC19 - Pregled upisanih tečajeva}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Polaznik
+				\item  \textbf{Cilj:} Pregledati sve tečajeve koje je polaznik upisao
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Polaznik odabire opciju Prikaži moje tečajeve (Show my courses)
+					\item Polaznik je usmjeren na stranicu sa svim tečajevima koje je uspješno upisao
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+			\noindent \underbar{\textbf{UC20 - Odjava}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Uspješno se odjaviti iz sustava
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Korisnik odabire opciju Odjave (Log out)
+					\item Sustav usmjerava korisnika na stranicu za prijavu
 					
 				\end{packed_enum}
 				
