@@ -41,7 +41,7 @@ class _BodyState extends State<Body> {
                     DrawerHeader(
                       child: Text(
                         'Actions',
-                        style: TextStyle(fontSize: 24),
+                        style: TextStyle(fontSize: 24, color: Colors.white),
                       ),
                       decoration: BoxDecoration(
                         color: customPurple,
@@ -116,7 +116,7 @@ class _BodyState extends State<Body> {
                             _drawerKey.currentState.openEndDrawer();
                           },
                           child: Image.asset(
-                            'assets/images/pencil.png',
+                            'assets/icons/menu_icon.jpg',
                             height: size.height * 0.04,
                           ),
                         ),
