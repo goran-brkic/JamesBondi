@@ -330,38 +330,25 @@
 					
 				\end{packed_enum}
 				
-			\end{packed_item}	
-			\noindent \underbar{\textbf{UC11 - Brisanje vlastitog korisničkog računa}}
+			\end{packed_item}
+			\noindent \underbar{\textbf{UC11 - Odjava}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Predavač, Polaznik
-				\item  \textbf{Cilj:} Obrisati svoj korisnički račun
+				\item  \textbf{Cilj:} Uspješno se odjaviti iz sustava
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je prijavljen
+				\item  \textbf{Preduvjet:} Uspješna prijava
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Korisnik pregledava osobne podatke (\hyperref[UC13] {UC13})
-					\item Korisnik odabire opciju "Obriši moj račun"
-					\item Korisnički račun se briše iz baze podataka
-					\item Korisnika se usmjerava na stranicu za registraciju
+					\item Korisnik odabire opciju Odjave (Log out)
+					\item Sustav usmjerava korisnika na stranicu za prijavu
 					
 				\end{packed_enum}
-				\item  \textbf{Opis mogućih odstupanja:}
 				
-				\item[] \begin{packed_item}
-					
-					\item[2.a] Korisnik mijenja svoje osobne podatke, ali ne odabire opciju "Spremi moje promjene"
-					\item[] \begin{packed_enum}
-						
-						\item Sustav obavještava korisnika da nije spremio podatke prije izlaska iz prozora
-						
-					\end{packed_enum}
-					
-				\end{packed_item}
 				
-			\end{packed_item}
+			\end{packed_item}	
 			\noindent \underbar{\textbf{UC12 - Pretraživanje tečajeva}}
 			\begin{packed_item}
 				
@@ -539,24 +526,7 @@
 				
 				
 			\end{packed_item}
-			\noindent \underbar{\textbf{UC20 - Odjava}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Predavač, Polaznik
-				\item  \textbf{Cilj:} Uspješno se odjaviti iz sustava
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Korisnik odabire opciju Odjave (Log out)
-					\item Sustav usmjerava korisnika na stranicu za prijavu
-					
-				\end{packed_enum}
-				
-				
-			\end{packed_item}
+			
 			\eject
 		
 				\subsubsection{Dijagrami obrazaca uporabe}
