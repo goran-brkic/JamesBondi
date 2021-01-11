@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }
@@ -52,7 +53,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return _initialized
         ? MaterialApp(
-            debugShowCheckedModeBanner: false,
             title: 'Welcome',
             theme: ThemeData(
               backgroundColor: bgColor,
