@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Checkout/checkout_screen.dart';
 import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Request%20Consultations/request_consulations.dart';
 import 'package:jamesbondi/components/Course.dart';
@@ -81,8 +82,8 @@ class _BodyU extends State<BodyFresh> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                LProfileScreen(snapshot.data['courseMail'])));
+                            builder: (context) => LViewProfileScreen(
+                                snapshot.data['courseMail'])));
                       },
                       child: Text(
                         snapshot.hasData
