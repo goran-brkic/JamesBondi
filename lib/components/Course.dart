@@ -24,7 +24,7 @@ class CoursesDB {
           'keywords': keywords
         })
         .then((value) => true)
-        .catchError(throw Exception('Failed to add course'));
+        .catchError((error) => throw Exception('Failed to add course $error'));
   }
 
   static Future<List> getCourses(
@@ -110,7 +110,7 @@ class CoursesDB {
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
         .update({'courseMaterials': FieldValue.arrayRemove(mats)}).catchError(
-            throw Exception('Failed to remove materials'));
+            (error) => throw Exception('Failed to remove materials'));
   }
 
   static Future<void> addMaterials(final String category,
@@ -120,7 +120,7 @@ class CoursesDB {
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
         .update({'courseMaterials': FieldValue.arrayUnion(mats)}).catchError(
-            throw Exception('Failed to add materials'));
+            (error) => throw Exception('Failed to add materials'));
   }
 
   static Future<List<Map<String, dynamic>>> createdCourses(
@@ -146,7 +146,8 @@ class CoursesDB {
                     returnItem.add(temp);
                   })
                 })
-            .catchError(throw Exception('Failed to get created courses'));
+            .catchError(
+                (error) => throw Exception('Failed to get created courses'));
       }
     }
     //print('Returnam: ' + returnItem.toString());
@@ -174,7 +175,8 @@ class CoursesDB {
               returnItem.add(temp);
             }
           });
-        }).catchError(throw Exception('Failed to get owned courses'));
+        }).catchError(
+                (error) => throw Exception('Failed to get owned courses'));
       }
     }
     //print('Returnam: ' + returnItem.toString());

@@ -366,7 +366,7 @@ class _Body extends State<Body> {
       ),
       Container(
         child: Text(
-          DateFormat('dd.MM  H:m').format(date.toDate()),
+          DateFormat('dd.MM  HH:mm').format(date.toDate()),
           style: TextStyle(
               fontFamily: 'datum',
               fontWeight: FontWeight.normal,
@@ -403,7 +403,7 @@ class _Body extends State<Body> {
         ),
         Container(
           child: Text(
-            DateFormat('dd.MM  H:m').format(date.toDate()),
+            DateFormat('dd.MM  HH:mm').format(date.toDate()),
             style: TextStyle(
                 fontFamily: 'datum',
                 fontWeight: FontWeight.normal,
@@ -438,7 +438,7 @@ class _Body extends State<Body> {
         width: size.width / 3 - 50,
         child: Text(
           //date for consultation from database
-          DateFormat('dd.MM  H:m').format(date.toDate()),
+          DateFormat('dd.MM  HH:mm').format(date.toDate()),
           style: TextStyle(
               fontFamily: 'datum',
               fontWeight: FontWeight.normal,

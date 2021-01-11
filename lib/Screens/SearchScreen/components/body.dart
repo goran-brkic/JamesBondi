@@ -43,6 +43,7 @@ class _Body extends State<Body> {
                   border: Border.all(
                       width: 1, color: Colors.white, style: BorderStyle.solid)),
               child: TextField(
+                key: Key('SearchInput'),
                 controller: _textController,
                 decoration: InputDecoration(
                     hintText: 'Search',

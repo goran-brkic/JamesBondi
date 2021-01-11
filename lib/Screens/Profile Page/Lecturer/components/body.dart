@@ -48,6 +48,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     ListTile(
+                      key: Key('edit-profile'),
                       title: Text('Edit your profile'),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -109,6 +110,7 @@ class _BodyState extends State<Body> {
 
                       // Edit icon
                       Positioned(
+                        key: Key('menu-icon'),
                         top: size.height * 0.05,
                         right: size.width * 0.05,
                         child: GestureDetector(
@@ -168,6 +170,7 @@ class _BodyState extends State<Body> {
                             fontSize: 22,
                             color: customPurple,
                           ),
+                          key: Key('firstLast'),
                         ),
                       ),
 
@@ -213,6 +216,7 @@ class _BodyState extends State<Body> {
                             border: Border.all(color: customPurple),
                           ),
                           child: TextFormField(
+                            key: Key('aboutCheck'),
                             enabled: false,
                             //initialValue: snapshot.data['about'],
                             controller: _aboutYController,

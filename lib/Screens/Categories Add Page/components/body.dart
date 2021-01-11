@@ -61,6 +61,7 @@ class _Body extends State<Body> {
 
             // IT Courses
             Positioned(
+              key: Key('category'),
               top: size.height * 0.31,
               left: size.width * 0.05,
               child: new GestureDetector(
@@ -122,7 +123,7 @@ class _Body extends State<Body> {
             // Other Courses
             Positioned(
               top: size.height * 0.81,
-              left: size.width * 0.05,
+              left: size.width * 0.3,
               child: new GestureDetector(
                 onTap: () {
                   chooseDifficulty(context, size, "Other");
@@ -196,6 +197,7 @@ class _Body extends State<Body> {
                       children: <Widget>[
                         /////////
                         FlatButton(
+                          key: Key('difficulty'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => AddCourseScreen(

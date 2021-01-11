@@ -104,6 +104,7 @@ class _Body extends State<BodyL> {
         body: Form(
       key: _formKey,
       child: SingleChildScrollView(
+        key: Key('edit-scroll'),
         child: Container(
           height: size.height * 1.145,
           width: double.infinity,
@@ -130,19 +131,107 @@ class _Body extends State<BodyL> {
                   width: size.width * 0.7,
                 ),
               ),
-              InputField(
-                title: "First name",
-                topValue: 0.2,
-                controller: _firstNameController,
-                enabledField: true,
-                colorValue: isFirstNameEmpty ? Colors.red : customPurple,
+              Container(
+                child: new Stack(
+                  children: <Widget>[
+                    Positioned(
+                      top: size.height * 0.2,
+                      left: size.width * 0.12,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        height: size.height * 0.06,
+                        width: size.width * 0.77,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF3F3F3),
+                          borderRadius: BorderRadius.circular(29),
+                          border: Border.all(
+                              color:
+                                  isFirstNameEmpty ? Colors.red : customPurple),
+                        ),
+                        child: TextFormField(
+                          key: Key('first-name'),
+                          enabled: true,
+                          controller: _firstNameController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: size.width * 0.12,
+                      top: size.height * (0.2 - 0.035),
+                      child: Text(
+                        'First name',
+                        style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              InputField(
-                title: "Last name",
-                topValue: 0.32,
-                controller: _lastNameController,
-                enabledField: true,
-                colorValue: isLastNameEmpty ? Colors.red : customPurple,
+              Container(
+                child: new Stack(
+                  children: <Widget>[
+                    Positioned(
+                      top: size.height * 0.32,
+                      left: size.width * 0.12,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        height: size.height * 0.06,
+                        width: size.width * 0.77,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF3F3F3),
+                          borderRadius: BorderRadius.circular(29),
+                          border: Border.all(
+                              color:
+                                  isLastNameEmpty ? Colors.red : customPurple),
+                        ),
+                        child: TextFormField(
+                          key: Key('last-name'),
+                          enabled: true,
+                          controller: _lastNameController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: size.width * 0.12,
+                      top: size.height * (0.32 - 0.035),
+                      child: Text(
+                        "Last name",
+                        style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               InputField(
                 title: "IBAN",
@@ -227,6 +316,7 @@ class _Body extends State<BodyL> {
                     border: Border.all(color: customPurple),
                   ),
                   child: TextFormField(
+                    key: Key('about-input'),
                     controller: _aboutYController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -260,6 +350,7 @@ class _Body extends State<BodyL> {
               Positioned(
                 top: size.height * 1.03,
                 child: FlatButton(
+                    key: Key('update-button'),
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),
                     onPressed: () {

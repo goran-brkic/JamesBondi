@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/uploadFile.dart';
@@ -24,6 +25,7 @@ class _Body extends State<Body> {
       TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   bool isCourseNameEmpty = false;
+  bool isPriceEmpty = false;
   String _path = '-';
   List<String> listaLinkova = new List<String>();
   List<String> listaImena = new List<String>();
@@ -42,6 +44,7 @@ class _Body extends State<Body> {
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
+                key: Key('add-scroll'),
                 scrollDirection: Axis.vertical,
                 child: Container(
                   height: size.height * 1.34,
@@ -69,6 +72,59 @@ class _Body extends State<Body> {
                           width: size.width * 0.7,
                         ),
                       ),
+                      Container(
+                        child: new Stack(
+                          children: <Widget>[
+                            Positioned(
+                              top: size.height * 0.25,
+                              left: size.width * 0.12,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 8),
+                                height: size.height * 0.06,
+                                width: size.width * 0.77,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFF3F3F3),
+                                  borderRadius: BorderRadius.circular(29),
+                                  border: Border.all(
+                                      color: isCourseNameEmpty
+                                          ? Colors.red
+                                          : customPurple),
+                                ),
+                                child: TextFormField(
+                                  key: Key('course-name'),
+                                  enabled: true,
+                                  controller: _courseNameController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                  ),
+                                  style: TextStyle(
+                                    fontFamily: 'RoundLight',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: size.width * 0.12,
+                              top: size.height * (0.25 - 0.035),
+                              child: Text(
+                                'Course name',
+                                style: TextStyle(
+                                  fontFamily: 'RoundLight',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15,
+                                  color: Colors.grey[800],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      /*
                       InputField(
                         title: 'Course name',
                         topValue: 0.25,
@@ -77,6 +133,7 @@ class _Body extends State<Body> {
                         colorValue:
                             isCourseNameEmpty ? Colors.red : customPurple,
                       ),
+                      */
                       Positioned(
                         left: size.width * 0.12,
                         top: size.height * (0.39 - 0.035),
@@ -104,6 +161,7 @@ class _Body extends State<Body> {
                             border: Border.all(color: customPurple),
                           ),
                           child: TextFormField(
+                            key: Key('short-desc'),
                             controller: _shortDescriptionController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -145,9 +203,12 @@ class _Body extends State<Body> {
                             decoration: BoxDecoration(
                               color: Color(0xFFF3F3F3),
                               borderRadius: BorderRadius.circular(29),
-                              border: Border.all(color: customPurple),
+                              border: Border.all(
+                                  color:
+                                      isPriceEmpty ? Colors.red : customPurple),
                             ),
                             child: TextFormField(
+                              key: Key('price'),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                               ),
@@ -249,22 +310,35 @@ class _Body extends State<Body> {
                         height: 50,
                         width: 300,
                         child: FlatButton(
+                            key: Key('add-button'),
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: size.width * 0.07),
                             onPressed: () async {
                               List<String> linkovi = [];
-                              for (var i in listaPuteva) {
-                                linkovi.add(await uploadFile(File(i)));
-                              }
+                              isCourseNameEmpty =
+                                  _courseNameController.text.isEmpty;
+                              isPriceEmpty = _priceController.text.isEmpty;
+                              if (isCourseNameEmpty || isPriceEmpty) {
+                                setState(() {});
+                              } else {
+                                for (var i in listaPuteva) {
+                                  linkovi.add(await uploadFile(File(i)));
+                                }
 
-                              await CoursesDB.addCourse(
-                                  widget.category,
-                                  widget.difficulty,
-                                  _courseNameController.text,
-                                  _shortDescriptionController.text,
-                                  FirebaseAuth.instance.currentUser.email,
-                                  double.parse(_priceController.text),
-                                  linkovi);
+                                await CoursesDB.addCourse(
+                                    widget.category,
+                                    widget.difficulty,
+                                    _courseNameController.text,
+                                    _shortDescriptionController.text,
+                                    FirebaseAuth.instance.currentUser.email,
+                                    double.parse(_priceController.text),
+                                    linkovi);
+
+                                await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CategoriesScreen()));
+                              }
                             },
                             color: customPurple,
                             shape: RoundedRectangleBorder(
