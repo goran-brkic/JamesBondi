@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
+import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/Result.dart';
@@ -161,8 +162,8 @@ class _BodyLec extends State<BodyLec> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  LProfileScreen(snapshot.data['courseMail'])));
+                              builder: (context) => LViewProfileScreen(
+                                  snapshot.data['courseMail'])));
                         },
                         child: Text(
                           snapshot.hasData
