@@ -170,20 +170,19 @@
 			
 		\section{Dijagram razreda}
 		
-			Na slici \ref{fig:ViewModel} su prikazani razredi koji pripadaju \textit{backend} dijelu MVVM arhitekture. Funkcije implementirane u razredu UserInfoDB manipuliraju podacima u bazi podataka koja predstavlja Model komponentu arhitekture. Sve funkcije koje manipuliraju podacima u bazi podataka (i općenito rade s Firebase metodama) su tipa Future, što znači da su te funkcije asinkrone zbog vremenski zahtjevnih procedura.
+			Na slici \ref{fig:ViewModel} su prikazani razredi koji pripadaju \textit{backend} dijelu MVVM arhitekture. Funkcije implementirane u razredima ConsultationDB, CoursesDB i UserInfoDB manipuliraju podacima u bazi podataka koja predstavlja Model komponentu arhitekture. Sve funkcije koje manipuliraju podacima u bazi podataka (i općenito rade s Firebase metodama) su tipa Future, što znači da su te funkcije asinkrone zbog vremenski zahtjevnih procedura.
 			
-			Funkcije addLecturer, addStudent, checkEmailAddress i checkUser vraćaju boolean koji služi za provjeru uspješnosti akcije. Funkcija getUserInfo vraća mapu koja sadrži podatke o korisniku. Funkcija getTypeOfUser vraća string koji sadrži tip korisnika.
 			
 			\begin{figure}[h]
-				\includegraphics[scale=1]{dijagrami/ViewModel.PNG}
+				\includegraphics[scale=0.8]{dijagrami/ViewModel.PNG}
 				\centering
 				\caption{Dijagram razreda - dio ViewModel}
 				\label{fig:ViewModel}
 			\end{figure}
 			
-			Na slici \ref{fig:View2} su prikazani razredi koji pripadaju \textit{frontend} dijelu MVVM arhitekture. View razredi služe za prikaz podataka korisniku. Svi View razredi su implementirani kao State, što znači da se njihov prikaz osvježava sa svakom promjenom stanja razreda.
+			Na slici \ref{fig:View3} su prikazani razredi koji pripadaju \textit{frontend} dijelu MVVM arhitekture. View razredi služe za prikaz podataka korisniku. Svi View razredi su implementirani kao State, što znači da se njihov prikaz osvježava sa svakom promjenom stanja razreda.
 			
-			Zbog lakšeg prikaza, dijagram razreda View komponente je podijeljen na dva dijela, koji su prikazani jedan ispod drugog.
+			Zbog lakšeg prikaza, dijagram razreda View komponente je podijeljen na tri dijela, koji su prikazani jedan ispod drugog.
 			
 			\eject
 			\begin{figure}[h]
@@ -191,11 +190,16 @@
 				\centering
 			\end{figure}
 			
+			\begin{figure}[h]
+				\includegraphics[scale=0.44]{dijagrami/View2.PNG}
+				\centering
+			\end{figure}
+			
 			\begin{figure}[hbt!]
-				\includegraphics[scale=0.47]{dijagrami/View2.PNG}
+				\includegraphics[scale=0.4]{dijagrami/View3.PNG}
 				\centering
 				\caption{Dijagram razreda - dio View}
-				\label{fig:View2}
+				\label{fig:View3}
 			\end{figure}
 			
 			\eject
