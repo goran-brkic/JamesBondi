@@ -85,13 +85,13 @@ class UserInfoDB {
 
   static Future<Map<String, dynamic>> getUserInfo(String inputMail) {
     var returnList = Map<String, dynamic>();
+    print('Trazim usera sa mailom: ' + inputMail);
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: inputMail)
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
-                //print(doc['mail']);
                 returnList['firstName'] = doc['firstName'];
                 returnList['iban'] = doc['iban'];
                 returnList['lastName'] = doc['lastName'];
@@ -103,8 +103,9 @@ class UserInfoDB {
                 returnList['username'] = doc['username'];
                 returnList['image'] = doc['image'];
                 returnList['about'] = doc['about'];
-                returnList['courses'] = doc['courses'];
-                //print('PRINTAM ' + returnList['firstName']);
+                if (doc['lecturer'] == false)
+                  returnList['courses'] = doc['courses'];
+                print('PRINTAM ' + returnList['about']);
                 //returnList = new Map<String, dynamic>.from(doc.data());
               })
             })

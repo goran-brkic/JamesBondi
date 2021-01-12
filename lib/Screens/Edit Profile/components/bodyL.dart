@@ -104,7 +104,7 @@ class _Body extends State<BodyL> {
         body: Form(
       key: _formKey,
       child: SingleChildScrollView(
-        key: Key('edit-scroll'),
+        //key: Key('edit-scroll'),
         child: Container(
           height: size.height * 1.145,
           width: double.infinity,
@@ -150,7 +150,7 @@ class _Body extends State<BodyL> {
                                   isFirstNameEmpty ? Colors.red : customPurple),
                         ),
                         child: TextFormField(
-                          key: Key('first-name'),
+                          // key: Key('first-name'),
                           enabled: true,
                           controller: _firstNameController,
                           obscureText: false,
@@ -201,7 +201,7 @@ class _Body extends State<BodyL> {
                                   isLastNameEmpty ? Colors.red : customPurple),
                         ),
                         child: TextFormField(
-                          key: Key('last-name'),
+                          //key: Key('last-name'),
                           enabled: true,
                           controller: _lastNameController,
                           obscureText: false,
@@ -316,7 +316,7 @@ class _Body extends State<BodyL> {
                     border: Border.all(color: customPurple),
                   ),
                   child: TextFormField(
-                    key: Key('about-input'),
+                    // key: Key('about-input'),
                     controller: _aboutYController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -350,7 +350,7 @@ class _Body extends State<BodyL> {
               Positioned(
                 top: size.height * 1.03,
                 child: FlatButton(
-                    key: Key('update-button'),
+                    //key: Key('update-button'),
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),
                     onPressed: () {

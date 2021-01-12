@@ -191,13 +191,10 @@ class _Body extends State<Body> {
                             color: _emptyMail ? Colors.red : customPurple),
                       ),
                       child: TextFormField(
-                        key: Key('mail-input'),
+                        //key: Key('mail-input'),
                         enabled: true,
                         controller: _mailController,
-                        obscureText: (_emailReturn() == 'Password' ||
-                                _emailReturn() == 'Enter a password!')
-                            ? true
-                            : false,
+                        obscureText: false,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -244,13 +241,10 @@ class _Body extends State<Body> {
                             color: _emptyMail ? Colors.red : customPurple),
                       ),
                       child: TextFormField(
-                        key: Key('pass-input'),
+                        //key: Key('pass-input'),
                         enabled: true,
                         controller: _passwordController,
-                        obscureText: (_passReturn() == 'Password' ||
-                                _passReturn() == 'Enter a password!')
-                            ? true
-                            : false,
+                        obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                         ),
@@ -300,7 +294,7 @@ class _Body extends State<Body> {
             Positioned(
                 top: size.height * 0.84,
                 child: FlatButton(
-                    key: Key('signInButton'),
+                    //key: Key('signInButton'),
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),
                     onPressed: () {

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
-import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/components/uploadFile.dart';
@@ -147,9 +146,7 @@ class _BodyLec extends State<BodyLec> {
                     Positioned(
                       top: size.height * 0.08,
                       child: Text(
-                        snapshot.hasData
-                            ? snapshot.data['courseName']
-                            : 'LOADING',
+                        snapshot.data['courseName'],
                         style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
@@ -166,9 +163,7 @@ class _BodyLec extends State<BodyLec> {
                                   snapshot.data['courseMail'])));
                         },
                         child: Text(
-                          snapshot.hasData
-                              ? snapshot.data['courseMail']
-                              : 'LOADING',
+                          snapshot.data['courseMail'],
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
@@ -194,8 +189,7 @@ class _BodyLec extends State<BodyLec> {
                         ),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 15, right: 15),
-                        child: Text(
-                            snapshot.hasData ? snapshot.data['courseInfo'] : '',
+                        child: Text(snapshot.data['courseInfo'],
                             style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,

@@ -47,30 +47,27 @@ class CoursesDB {
 
   static Future<String> getCourseName(final String courseID) {
     String returnItem;
-    FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection('courses')
         .doc(courseID)
         .get()
         .then((DocumentSnapshot docSnapshot) {
       returnItem = docSnapshot.id;
-    });
-
-    return Future.value(returnItem);
+    }).then((value) => returnItem);
   }
 
   static Future<Map<String, dynamic>> getCourse(
       final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
-    FirebaseFirestore.instance
+    print('Trazim course pod: ' + category + '/' + difficulty + '/' + courseID);
+    return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
         .get()
         .then((DocumentSnapshot docSnapshot) {
       returnItem = docSnapshot.data();
       returnItem['courseID'] = docSnapshot.id;
-    });
-
-    return Future.value(returnItem);
+    }).then((value) => returnItem);
   }
 
   static Future<List<Map<String, dynamic>>> searchCourses(
@@ -78,7 +75,7 @@ class CoursesDB {
     var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
     var difs = ['advanced', 'beginner', 'intermediate'];
     List<Map<String, dynamic>> returnItem = [];
-    //print('Trazim tecaj se keyword: ' + keyword);
+    // print('Trazim tecaj se keyword: ' + keyword);
     for (var i in cats) {
       for (var j in difs) {
         await FirebaseFirestore.instance
@@ -96,7 +93,7 @@ class CoursesDB {
                     returnItem.add(temp);
                   })
                 })
-            .catchError(throw Exception('Failed to search courses'));
+            .catchError((error) => throw Exception('Failed to search courses'));
       }
     }
     //print('Returnam: ' + returnItem.toString());

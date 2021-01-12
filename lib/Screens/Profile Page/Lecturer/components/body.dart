@@ -7,9 +7,7 @@ import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 
 class Body extends StatefulWidget {
-  final String loggedUser;
-
-  Body(this.loggedUser);
+  Body();
   _BodyState createState() => _BodyState();
 }
 
@@ -19,12 +17,9 @@ class _BodyState extends State<Body> {
   final TextEditingController _aboutYController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    String loggedUser = widget.loggedUser;
-    //Map<String, dynamic> userInfo;
-
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
-        future: UserInfoDB.getUserInfo(loggedUser),
+        future: UserInfoDB.getUserInfo(FirebaseAuth.instance.currentUser.email),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
           Widget children;
@@ -48,12 +43,12 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     ListTile(
-                      key: Key('edit-profile'),
+                      //key: Key('edit-profile'),
                       title: Text('Edit your profile'),
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                EditLecturerScreen(loggedUser)));
+                            builder: (context) => EditLecturerScreen(
+                                FirebaseAuth.instance.currentUser.email)));
                       },
                     ),
                     ListTile(
@@ -110,7 +105,7 @@ class _BodyState extends State<Body> {
 
                       // Edit icon
                       Positioned(
-                        key: Key('menu-icon'),
+                        //key: Key('menu-icon'),
                         top: size.height * 0.05,
                         right: size.width * 0.05,
                         child: GestureDetector(
@@ -170,7 +165,7 @@ class _BodyState extends State<Body> {
                             fontSize: 22,
                             color: customPurple,
                           ),
-                          key: Key('firstLast'),
+                          //key: Key('firstLast'),
                         ),
                       ),
 
@@ -216,7 +211,7 @@ class _BodyState extends State<Body> {
                             border: Border.all(color: customPurple),
                           ),
                           child: TextFormField(
-                            key: Key('aboutCheck'),
+                            //key: Key('aboutCheck'),
                             enabled: false,
                             //initialValue: snapshot.data['about'],
                             controller: _aboutYController,

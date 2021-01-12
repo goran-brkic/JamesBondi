@@ -22,7 +22,7 @@ class _Body extends State<BodyLec> {
     SearchScreen(),
     ConsultationScreen(),
     //SProfileScreen(FirebaseAuth.instance.currentUser.email),
-    LProfileScreen(FirebaseAuth.instance.currentUser.email)
+    LProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -50,12 +50,12 @@ class _Body extends State<BodyLec> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        key: Key('lec-start'),
+        //key: Key('lec-start'),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         floatingActionButton: FloatingActionButton(
-          key: Key('add-course-button'),
+          //key: Key('add-course-button'),
           child: Icon(Icons.add),
           backgroundColor: Colors.orange[800],
           onPressed: () {
@@ -75,7 +75,7 @@ class _Body extends State<BodyLec> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     MaterialButton(
-                        key: Key('categories'),
+                        //key: Key('categories'),
                         minWidth: 30,
                         onPressed: () {
                           _onItemTapped(0);
@@ -117,7 +117,7 @@ class _Body extends State<BodyLec> {
                           ],
                         )),
                     MaterialButton(
-                        key: Key('profile-button'),
+                        //key: Key('profile-button'),
                         minWidth: 30,
                         onPressed: () {
                           _onItemTapped(3);
