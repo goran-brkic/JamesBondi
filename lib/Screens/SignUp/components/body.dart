@@ -260,16 +260,18 @@ class _Body extends State<Body> {
               ),
               Positioned(
                 top: size.height * 0.13,
+                left: size.width * 0.01,
                 child: Row(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(20),
+                      padding:
+                          EdgeInsets.fromLTRB(7, 0, 10, 0), //EdgeInsets.all(20)
                       child: Text(
                         'Are you a lecturer or student?',
                         style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 15,
+                          fontSize: size.width * 0.035, //15
                           color: customPurple,
                         ),
                       ),
@@ -279,7 +281,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035, //15
                         color: Colors.grey[800],
                       ),
                     ),
@@ -297,7 +299,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035, //15
                         color: Colors.grey[800],
                       ),
                     ),
@@ -403,7 +405,7 @@ class _Body extends State<Body> {
                 ),
                 Positioned(
                   top: size.height * 0.97,
-                  left: size.width * 0.42,
+                  left: size.width * 0.44,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                     height: size.height * 0.06,
@@ -434,7 +436,7 @@ class _Body extends State<Body> {
                   ),
                 ),
                 Positioned(
-                  left: size.width * 0.42,
+                  left: size.width * 0.44, // 0.42
                   top: size.height * (0.97 - 0.035),
                   child: Text(
                     "Security code",
@@ -524,7 +526,7 @@ class _Body extends State<Body> {
                   ),
                 ),
                 Positioned(
-                  top: size.height * 0.99,
+                  top: size.height * 0.98, //0.99
                   left: size.height * 0.07,
                   child: Container(
                     decoration: BoxDecoration(

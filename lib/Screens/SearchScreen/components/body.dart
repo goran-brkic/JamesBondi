@@ -46,7 +46,7 @@ class _Body extends State<Body> {
                 controller: _textController,
                 decoration: InputDecoration(
                     hintText: 'Search',
-                    contentPadding: EdgeInsets.fromLTRB(15, 4, 15, 15),
+                    contentPadding: EdgeInsets.fromLTRB(15, 4, 15, 15), //15
                     border: InputBorder.none),
                 onChanged: (value) {},
               ),

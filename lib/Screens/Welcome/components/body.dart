@@ -143,25 +143,25 @@ class _Body extends State<Body> {
                     style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 20,
+                        fontSize: size.width * 0.05, //20
                         color: Colors.white),
                   )),
             ),
             Positioned(
               top: size.height * 0.88,
-              left: size.width * 0.24,
+              left: size.width * 0.24, //0.24
               child: Text(
                 "Already have an account?",
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: size.width * 0.035, // 14
                     color: customPurple),
               ),
             ),
             Positioned(
               top: size.height * 0.88,
-              left: size.width * 0.63,
+              left: size.width * 0.64, //0.63
               child: new GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
@@ -173,7 +173,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      fontSize: 14,
+                      fontSize: size.width * 0.035, //14
                       color: customPurple),
                 ),
               ),

@@ -176,7 +176,7 @@ class _Body extends State<Body> {
               title: _passReturn(),
             ),
             Positioned(
-                top: size.height * 0.84,
+                top: size.height * 0.83,
                 child: FlatButton(
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),
@@ -205,7 +205,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 20,
+                          fontSize: size.width * 0.05, //20
                           color: Colors.white),
                     ))),
             Positioned(
@@ -216,7 +216,7 @@ class _Body extends State<Body> {
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: size.width * 0.035, //14
                     color: customPurple),
               ),
             ),
@@ -234,7 +234,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      fontSize: 14,
+                      fontSize: size.width * 0.035, //14
                       color: customPurple),
                 ),
               ),
