@@ -69,7 +69,7 @@ class _Body extends State<BodyCourses> {
                       color: Colors.white),
                 ),
                 Text(
-                  course['coursePrice'].toString() + ' €',
+                  course['coursePrice'].toString() + ' HRK',
                   style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
