@@ -59,7 +59,7 @@ class CoursesDB {
   static Future<Map<String, dynamic>> getCourse(
       final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
-    print('Trazim course pod: ' + category + '/' + difficulty + '/' + courseID);
+    //print('Trazim course pod: ' + category + '/' + difficulty + '/' + courseID);
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
@@ -102,7 +102,7 @@ class CoursesDB {
 
   static Future<void> removeMaterials(final String category,
       final String difficulty, final String courseID, List mats) {
-    print('BRISEM MATERIJALE');
+    //print('BRISEM MATERIJALE');
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
@@ -112,7 +112,7 @@ class CoursesDB {
 
   static Future<void> addMaterials(final String category,
       final String difficulty, final String courseID, List mats) {
-    print('DODAJEM MATERIALE');
+    //print('DODAJEM MATERIALE');
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)

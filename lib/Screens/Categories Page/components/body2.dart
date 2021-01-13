@@ -38,7 +38,7 @@ class CategoriesScreen2 extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
-                    fontSize: 34,
+                    fontSize: size.width * 0.08,
                     color: Colors.white),
               ),
             ),
@@ -49,7 +49,7 @@ class CategoriesScreen2 extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
-                    fontSize: 25,
+                    fontSize: size.width * 0.062,
                     color: customPurple),
               ),
             ),
@@ -139,43 +139,43 @@ chooseDifficulty(context, size, category) {
   return showDialog(
       context: context,
       builder: (context) {
-        return Center(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      size.width * 0.08, size.height * 0.4, 0, 0),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Choose a difficulty',
-                        style: TextStyle(
-                          fontFamily: 'RoundLight',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
+        return Material(
+          type: MaterialType.transparency,
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Choose a difficulty',
+                      style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: size.width * 0.05,
+                        color: Colors.white,
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
-                          width: size.width * 0.45,
-                          height: size.height * 0.25,
-                          color: customPurple,
-                        ),
+                    ),
+                    // ljubicasti kvadrat
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Container(
+                        width: size.width * 0.45,
+                        height: size.height * 0.25,
+                        color: customPurple,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      size.width * 0.14, size.height * 0.45, 0, 0),
-                  child: Column(
-                    children: <Widget>[
-                      /////////
-                      FlatButton(
+              ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding:
+                          EdgeInsets.fromLTRB(0, size.height * 0.035, 0, 0),
+                      child: FlatButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
@@ -190,53 +190,53 @@ chooseDifficulty(context, size, category) {
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                              color: customPurple),
-                        ),
-                      ), //////////
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  ListCoursesScreen("intermediate", category)));
-                        },
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          "Intermediate",
-                          style: TextStyle(
-                              fontFamily: 'RoundLight',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
+                              fontSize: size.width * 0.05,
                               color: customPurple),
                         ),
                       ),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  ListCoursesScreen("advanced", category)));
-                        },
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          "Advanced",
-                          style: TextStyle(
-                              fontFamily: 'RoundLight',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                              color: customPurple),
-                        ),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                ListCoursesScreen("intermediate", category)));
+                      },
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                    ],
-                  ),
+                      child: Text(
+                        "Intermediate",
+                        style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.normal,
+                            fontSize: size.width * 0.05,
+                            color: customPurple),
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                ListCoursesScreen("advanced", category)));
+                      },
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Text(
+                        "Advanced",
+                        style: TextStyle(
+                            fontFamily: 'RoundLight',
+                            fontWeight: FontWeight.normal,
+                            fontSize: size.width * 0.05,
+                            color: customPurple),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       });

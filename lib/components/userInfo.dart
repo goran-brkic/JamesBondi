@@ -85,28 +85,31 @@ class UserInfoDB {
 
   static Future<Map<String, dynamic>> getUserInfo(String inputMail) {
     var returnList = Map<String, dynamic>();
-    print('Trazim usera sa mailom: ' + inputMail);
+    //print('Trazim usera sa mailom: ' + inputMail);
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: inputMail)
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
+                /*
+                returnList['lecturer'] = doc['lecturer'];
                 returnList['firstName'] = doc['firstName'];
-                returnList['iban'] = doc['iban'];
+                if (doc['lecturer']) returnList['iban'] = doc['iban'];
                 returnList['lastName'] = doc['lastName'];
-                returnList['lecturer'] = doc['lecturer'];
-                returnList['creditCard'] = doc['creditCard'];
-                returnList['cardExp'] = doc['cardExp'];
-                returnList['lecturer'] = doc['lecturer'];
-                returnList['secCode'] = doc['secCode'];
+                if (!doc['lecturer'])
+                  returnList['creditCard'] = doc['creditCard'];
+                if (!doc['lecturer']) returnList['cardExp'] = doc['cardExp'];
+                if (!doc['lecturer']) returnList['secCode'] = doc['secCode'];
                 returnList['username'] = doc['username'];
-                returnList['image'] = doc['image'];
-                returnList['about'] = doc['about'];
+                if (doc['lecturer']) returnList['image'] = doc['image'];
+                if (doc['lecturer']) returnList['about'] = doc['about'];
                 if (doc['lecturer'] == false)
                   returnList['courses'] = doc['courses'];
-                print('PRINTAM ' + returnList['about']);
-                //returnList = new Map<String, dynamic>.from(doc.data());
+                  */
+                //print(doc.data());
+
+                returnList = new Map<String, dynamic>.from(doc.data());
               })
             })
         .then((value) => returnList);

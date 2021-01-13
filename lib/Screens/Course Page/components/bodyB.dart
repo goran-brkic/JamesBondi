@@ -61,14 +61,14 @@ class _Body extends State<BodyBought> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.15,
+                      top: size.height * 0.14,
                       child: Image.asset(
                         'assets/images/Line 1.png',
                         width: size.width * 0.7,
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.08,
+                      top: size.height * 0.07,
                       child: Text(
                         snapshot.hasData
                             ? snapshot.data['courseName']
@@ -81,7 +81,7 @@ class _Body extends State<BodyBought> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.165,
+                      top: size.height * 0.15,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

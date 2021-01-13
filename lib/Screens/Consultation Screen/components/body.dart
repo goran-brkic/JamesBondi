@@ -103,6 +103,16 @@ class _Body extends State<Body> {
                     color: customPurple),
               ),
             ),
+            Center(
+              child: Text(
+                'Press consultations to enter video call',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: customPurple),
+              ),
+            ),
             FutureBuilder(
                 future: ConsultationDB.getSchConsultations(
                     FirebaseAuth.instance.currentUser.email, lec),
@@ -122,7 +132,7 @@ class _Body extends State<Body> {
                 }),
             Center(
               child: Text(
-                'Consultations awaiting your approval',
+                'Consultations awaiting approval',
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.bold,
@@ -383,35 +393,47 @@ class _Body extends State<Body> {
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => JoinScreen(meetID, lec)));
       },
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Container(
-          width: size.width / 2 - 56,
-          child: Text(
-            //name of consultations from database
-            'Consultations',
-            style: TextStyle(
-                fontFamily: 'RoundLight',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: Colors.black),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[150],
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          border: Border(
+            top: BorderSide(width: 1.0, color: customPurple),
+            left: BorderSide(width: 1.0, color: customPurple),
+            right: BorderSide(width: 1.0, color: customPurple),
+            bottom: BorderSide(width: 1.0, color: customPurple),
           ),
         ),
-        Container(
-          width: 2,
-          height: 25,
-          color: customPurple,
-        ),
-        Container(
-          child: Text(
-            DateFormat('dd.MM  HH:mm').format(date.toDate()),
-            style: TextStyle(
-                fontFamily: 'datum',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: Colors.black),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Container(
+            width: size.width / 2 - 56,
+            child: Text(
+              //name of consultations from database
+              'Consultations',
+              style: TextStyle(
+                  fontFamily: 'RoundLight',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: Colors.black),
+            ),
           ),
-        ),
-      ]),
+          Container(
+            width: 2,
+            height: 25,
+            color: customPurple,
+          ),
+          Container(
+            child: Text(
+              DateFormat('dd.MM  HH:mm').format(date.toDate()),
+              style: TextStyle(
+                  fontFamily: 'datum',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: Colors.black),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 

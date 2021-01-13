@@ -169,7 +169,7 @@ class _Body extends State<Body> {
                     // decoration: TextDecoration.underline,
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
-                    fontSize: 25,
+                    fontSize: size.width * 0.05,
                     color: customPurple),
               ),
             ),
@@ -201,7 +201,7 @@ class _Body extends State<Body> {
                         style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 15,
+                          fontSize: size.width * 0.035,
                           color: Colors.black87,
                         ),
                       ),
@@ -215,7 +215,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035,
                         color: Colors.grey[800],
                       ),
                     ),
@@ -251,7 +251,7 @@ class _Body extends State<Body> {
                         style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 15,
+                          fontSize: size.width * 0.035,
                           color: Colors.black87,
                         ),
                       ),
@@ -265,7 +265,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035,
                         color: Colors.grey[800],
                       ),
                     ),
@@ -322,7 +322,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 20,
+                          fontSize: size.width * 0.05,
                           color: Colors.white),
                     ))),
             Positioned(
@@ -333,7 +333,7 @@ class _Body extends State<Body> {
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: size.width * 0.03,
                     color: customPurple),
               ),
             ),
@@ -351,7 +351,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      fontSize: 14,
+                      fontSize: size.width * 0.03,
                       color: customPurple),
                 ),
               ),

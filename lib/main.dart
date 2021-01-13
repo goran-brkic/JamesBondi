@@ -10,8 +10,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,6 +51,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return _initialized
         ? MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Welcome',
             theme: ThemeData(
               backgroundColor: bgColor,
