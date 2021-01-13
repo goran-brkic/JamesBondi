@@ -199,7 +199,7 @@ class _Body extends State<Body> {
   Widget schButton1(var date, var size) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       Container(
-        width: size.width / 2 - 56,
+        width: size.width / 3,
         child: Text(
           //name of consultations from database
           'Consultations',
@@ -236,7 +236,7 @@ class _Body extends State<Body> {
       },
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Container(
-          width: size.width / 2 - 56,
+          width: size.width / 3,
           child: Text(
             //name of consultations from database
             'Consultations',
@@ -286,7 +286,7 @@ class _Body extends State<Body> {
         color: customPurple,
       ),
       Container(
-        width: size.width / 3 - 50,
+        width: size.width / 4,
         child: Text(
           //date for consultation from database
           DateFormat('dd.MM  H:m').format(date.toDate()),
