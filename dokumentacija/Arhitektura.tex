@@ -227,11 +227,17 @@
 		
 		\section{Dijagram aktivnosti}
 			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
-			
+			\text Dijagram aktivnosti primjenjuje se za opis modela toka upravljanja ili toka podataka. Ne upotrebljava se za modeliranje događajima poticanog ponašanja. U modeliranju toka upravljanja svaki novi korak poduzima se nakon završenog prethodnog, a naglasak je na jednostavnosti. Na dijagramu aktivnosti \ref{fig:Dijagram_aktivnosti} prikazan je proces dogovaranja konzultacija putem video poziva. Polaznik se prijavi u sustav te na stranici tečaja odabire datum konzultacija koji bi on htio. Zatim predavač ima opciju potvrditi taj termin ili ga odbiti uz ponudu novog termina. Polaznik zatim dobiva obavijest o potvrđenom terminu ili zahtjev za potvrđivanjem ili odbijanjem novoponuđenog termina od strane predavača.
 			\eject
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.35]{dijagrami/Dijagram_aktivnosti.PNG}
+				\centering
+				\caption{Dijagram aktivnosti}
+				\label{fig:Dijagram_aktivnosti}
+			\end{figure}
+		\eject
+			
 		\section{Dijagram komponenti}
 		
 			Dijagram komponenti prikazuje odnos komponenti u sustavu. Na slici \ref{fig:Dijagram_komponenti} prikazana je struktura cijele aplikacije. Podaci potrebni za rad aplikacije nalaze se u NoSQL bazi podataka pohranjenoj u oblaku, kojoj se pristupa preko sučelja koje nudi Firebase. ViewModel je središnja komponenta sustava koja u sebi sadrži mapu 'components'. ViewModel koristi Flutter API, te Agora SDK za uslugu uspostavljanja videopoziva. Razredi koji služe za prikaz podataka korisniku nalaze se u mapi Screens.
