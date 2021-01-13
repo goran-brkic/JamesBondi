@@ -67,15 +67,15 @@ class _Body extends State<BodyOwned> {
                   style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 20,
+                      fontSize: size.width * 0.05,
                       color: Colors.white),
                 ),
                 Text(
-                  course['coursePrice'].toString() + ' €',
+                  course['coursePrice'].toString() + ' HRK',
                   style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 20,
+                      fontSize: size.width * 0.05,
                       color: Colors.white),
                 ),
               ],
@@ -113,7 +113,7 @@ class _Body extends State<BodyOwned> {
                     style: TextStyle(
                         fontFamily: 'Quiglet',
                         fontWeight: FontWeight.normal,
-                        fontSize: 34,
+                        fontSize: size.width * 0.065,
                         color: Colors.white),
                   ),
                 ),
@@ -132,102 +132,6 @@ class _Body extends State<BodyOwned> {
                             : loadingBar()))
               ],
             ),
-            /*
-              floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
-                backgroundColor: Colors.orange[800],
-                onPressed: () {},
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
-              bottomNavigationBar: BottomAppBar(
-                shape: CircularNotchedRectangle(),
-                child: Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          MaterialButton(
-                              minWidth: 30,
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => CategoriesScreen()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.category),
-                                  Text('Categories')
-                                ],
-                              )),
-                          MaterialButton(
-                              minWidth: 30,
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SearchScreen()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.search),
-                                  Text('Search')
-                                ],
-                              )),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          MaterialButton(
-                              minWidth: 30,
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        ConsultationScreen()));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.ring_volume),
-                                  Text('Consultation')
-                                ],
-                              )),
-                          MaterialButton(
-                              minWidth: 30,
-                              onPressed: () {
-                                lec
-                                    ? Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LProfileScreen(FirebaseAuth
-                                                    .instance
-                                                    .currentUser
-                                                    .email)))
-                                    : Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SProfileScreen(FirebaseAuth
-                                                    .instance
-                                                    .currentUser
-                                                    .email)));
-                              },
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.group_outlined),
-                                  Text('Profile')
-                                ],
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                //key: _formKey,
-              */
           );
           return children;
         });
