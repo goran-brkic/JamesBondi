@@ -20,14 +20,11 @@ class Body extends StatefulWidget {
 class _Body extends State<Body> {
   /// if channel textField is validated to have error
 
-  ClientRole _role;
-
   @override
   Widget build(BuildContext context) {
-    _role = widget.lecturer ? ClientRole.Broadcaster : ClientRole.Audience;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Konzultacije'),
+        title: Text('Consultations'),
         backgroundColor: customPurple,
       ),
       body: Center(
@@ -39,39 +36,6 @@ class _Body extends State<Body> {
               Row(
                 children: <Widget>[
                   Expanded(child: Text('Channel ID: ' + widget.meetID))
-                ],
-              ),
-              Column(
-                children: [
-                  ListTile(
-                    title: Text('Predavac'),
-                    enabled: false,
-                    leading: Radio(
-                      activeColor: customPurple,
-                      value: ClientRole.Broadcaster,
-                      toggleable: false,
-                      groupValue: _role,
-                      onChanged: (ClientRole value) {
-                        setState(() {
-                          _role = value;
-                        });
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    title: Text('Student'),
-                    enabled: false,
-                    leading: Radio(
-                      value: ClientRole.Audience,
-                      groupValue: _role,
-                      toggleable: false,
-                      onChanged: (ClientRole value) {
-                        setState(() {
-                          _role = value;
-                        });
-                      },
-                    ),
-                  )
                 ],
               ),
               Padding(
@@ -106,7 +70,7 @@ class _Body extends State<Body> {
       MaterialPageRoute(
         builder: (context) => CallPage(
           channelName: widget.meetID,
-          role: _role,
+          role: ClientRole.Broadcaster,
         ),
       ),
     );

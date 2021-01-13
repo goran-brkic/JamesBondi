@@ -174,7 +174,6 @@ class _Body extends State<Body> {
 
   /// Toolbar layout
   Widget _toolbar() {
-    if (widget.role == ClientRole.Audience) return Container();
     return Container(
       alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.symmetric(vertical: 48),
@@ -291,7 +290,7 @@ class _Body extends State<Body> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Poziv'),
+        title: Text('Call'),
         backgroundColor: customPurple,
       ),
       backgroundColor: Colors.black,
@@ -299,7 +298,6 @@ class _Body extends State<Body> {
         child: Stack(
           children: <Widget>[
             _viewRows(),
-            _panel(),
             _toolbar(),
           ],
         ),
