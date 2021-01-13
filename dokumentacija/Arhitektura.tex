@@ -234,6 +234,11 @@
 			\eject
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+			Dijagram komponenti prikazuje odnos komponenti u sustavu. Na slici \ref{fig:Dijagram_komponenti} prikazana je struktura cijele aplikacije. Podaci potrebni za rad aplikacije nalaze se u NoSQL bazi podataka pohranjenoj u oblaku, kojoj se pristupa preko sučelja koje nudi Firebase. ViewModel je središnja komponenta sustava koja u sebi sadrži mapu 'components'. ViewModel koristi Flutter API, te Agora SDK za uslugu uspostavljanja videopoziva. Razredi koji služe za prikaz podataka korisniku nalaze se u mapi Screens.
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.6]{dijagrami/Dijagram_komponenti.PNG}
+				\centering
+				\caption{Dijagram komponenti}
+				\label{fig:Dijagram_komponenti}
+			\end{figure}
