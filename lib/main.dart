@@ -3,6 +3,8 @@ import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'Screens/Courses Page/courses_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -57,7 +59,8 @@ class _HomeState extends State<Home> {
               scaffoldBackgroundColor: bgColor,
             ),
 //      home: WelcomeScreen(),
-            home: SignInScreen(),
+            //home: SignInScreen(),
+            home: CoursesScreen(),
           )
         : Container();
   }
