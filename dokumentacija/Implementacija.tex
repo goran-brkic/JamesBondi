@@ -9,6 +9,8 @@
 			
 			Aplikacija je napisana korištenjem softera Flutter\footnote{\url{https://flutter.dev/}} i programskog jezika Dart\footnote{\url{https://dart.dev/}}. Flutter je softver za razvoj korisničkog sučelja otvorenog koda, razvijen od tvrtke Google. Omogućava višeplatformski razvoj korištenjem jednog koda te jedostavnost izrade aplikacija. Flutter koristi programski jezik Dart, kojim je realiziran i frontend i backend.
 			
+			Kako bi unutar aplikacije bili omogućeni video pozivi, korišten je Agora RTC\footnote{\url{https://www.agora.io/en/}} servis koji nudi opcije video poziva, glasovnih poziva, live audio i video streaming te slanje poruka.
+			
 			Baza podataka nalazi se na poslužitelju u oblaku Firestore\footnote{\url{https://firebase.google.com/docs/firestore}}. 
 			
 			
@@ -186,12 +188,47 @@
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
+			\begin{flushleft}
+				\textbf{Postavljanje baze podataka} 
+			\end{flushleft}
+			
+			\text Potrebno je kreirati Firebase račun preko kojega je moguće upravljati svime što je povezano uz bazu podataka. Nakon toga, treba se kreirati Firebase projekt. Kada je stvoren, potrebno je unutar aplikacije spojiti Firebase API preko API ključa i unijeti ID projekta, nakon čega je aplikacija povezana s bazom podataka. 
+			
+			Nakon toga, potrebno je postaviti Firebase authentication, odnosno omogućiti i postaviti metode za prijavu korisnika. U našem slučaju, jedini mogući način prijave jest putem maila.
+			Idući korak u postavljanju naše baze podataka jest inicijalizacija baze podataka na Firestore servisu. Nakon toga, stvara se hijerarhija koja se može vidjeti prethodno u dokumentaciji (slika \ref{fig:ER}).
+			
+			Zadnji korak je prilagođavanje pravila privatnosti svih Firebase servisa, kako bismo osigurali osjetljive podatke koji će se nalaziti u bazi podataka.
+			
+			\begin{flushleft}
+				\textbf{Postavljanje Agora RTE servisa} 
+			\end{flushleft}
 		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+			\text Kako bi ostvarili mogućnost uspostavljanja video poziva unutar aplikacije, potrebno je bilo kreirati račun na servisu Agora. Nakon stvaranja računa, stvoren je novi projekt te je tako dobiven poseban AppID koji smo povezali s našom aplikacijom.  
 			
+			\begin{flushleft}
+				\textbf{Izgradnja Android aplikacije} 
+			\end{flushleft}
 			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			\text Za izgradnju Android aplikacije u Flutteru, prvo je potrebno promijeniti ikonu. Nakon toga, potrebno je digitalno potpisati aplikaciju, odnosno generirati ključ kojeg zatim treba referencirati u posebnoj datoteka. Idući korak jest uređivanje build.gradle datoteke kako bi konfigurirali digitalni potpis aplikacije. Nakon toga, potrebno je App Manifest datoteku i build.gradle datoteku prilagoditi sukladno uputama na \textit{\href{https://flutter.dev/docs/deployment/android}{poveznici}} te  zatim kreirati APK datoteku. 
 			
+			\begin{flushleft}
+				\textbf{Puštanje Android aplikacije u pogon} 
+			\end{flushleft}
+			
+			\text Za puštanje naše aplikacije u pogon, odabrali smo servis \href{https://developer.getjar.mobi/}{Getjar}. Kao i za prethodne servise, i za ovaj je bilo potrebno stvoriti račun. Nakon toga, bilo je potrebno uz APK datoteku priložiti i ime aplikacije, detaljan opis, snimke zaslona i tome slično, kako bi aplikacija prošla pregled od strane servisa. Aplikacija također submitana na Amazon App trgovinu. 
+			\eject
+			\begin{figure}[h]
+				\includegraphics[scale=0.3]{slike/Getjar.PNG}
+				\centering
+				\caption{Status aplikacije na Getjar servisu}
+				\label{fig:Getjar}
+			\end{figure}
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.2]{slike/Amazon.JPEG}
+				\centering
+				\caption{Status aplikacije na Amazon App trgovini}
+				\label{fig:Amazon}
+			\end{figure}
 			
 			\eject 
