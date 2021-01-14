@@ -6,14 +6,14 @@ class InputField extends StatelessWidget {
   final TextEditingController controller;
   final bool enabledField;
   final Color colorValue;
+  final Key key;
   const InputField(
-      {Key key,
+      {this.key,
       this.title,
       this.topValue,
       this.controller,
       this.enabledField,
-      this.colorValue})
-      : super(key: key);
+      this.colorValue});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,13 @@ class InputField extends StatelessWidget {
                 border: Border.all(color: colorValue),
               ),
               child: TextFormField(
+                key: key,
                 enabled: enabledField,
                 controller: controller,
-                obscureText: (title == "Password") ? true : false,
+                obscureText:
+                    (title == 'Password' || title == 'Enter a password!')
+                        ? true
+                        : false,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                 ),

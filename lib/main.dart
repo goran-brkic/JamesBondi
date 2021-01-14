@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
+import 'package:jamesbondi/Screens/SearchScreen/search_screen.dart';
 import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,11 +10,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }
@@ -56,7 +57,6 @@ class _HomeState extends State<Home> {
               backgroundColor: bgColor,
               scaffoldBackgroundColor: bgColor,
             ),
-//      home: WelcomeScreen(),
             home: SignInScreen(),
           )
         : Container();

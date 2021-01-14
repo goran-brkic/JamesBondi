@@ -121,7 +121,7 @@ class _Body extends State<Body> {
                           _usernameController.clear();
                         });
                       } else {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        await Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SignUpScreen(
                                   emailAddressInput: _emailController.text,
                                   usernameInput: _usernameController.text,
@@ -143,7 +143,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 20,
+                        fontSize: size.width * 0.05,
                         color: Colors.white),
                   )),
             ),
@@ -155,7 +155,7 @@ class _Body extends State<Body> {
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: size.width * 0.035,
                     color: customPurple),
               ),
             ),
@@ -173,7 +173,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      fontSize: 14,
+                      fontSize: size.width * 0.035,
                       color: customPurple),
                 ),
               ),
