@@ -22,7 +22,7 @@ class _Body extends State<BodyLec> {
     SearchScreen(),
     ConsultationScreen(),
     //SProfileScreen(FirebaseAuth.instance.currentUser.email),
-    LProfileScreen(FirebaseAuth.instance.currentUser.email)
+    LProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -31,29 +31,16 @@ class _Body extends State<BodyLec> {
     });
   }
 
-  /*
-
-  bool lec;
-  void getType() async {
-    lec = await SharedPreferences.getInstance()
-        .then((value) => value.getBool('lecturer'));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getType();
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        //key: Key('lec-start'),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         floatingActionButton: FloatingActionButton(
+          //key: Key('add-course-button'),
           child: Icon(Icons.add),
           backgroundColor: Colors.orange[800],
           onPressed: () {
@@ -72,9 +59,9 @@ class _Body extends State<BodyLec> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     MaterialButton(
+                        //key: Key('categories'),
                         onPressed: () {
                           _onItemTapped(0);
                         },
@@ -102,7 +89,6 @@ class _Body extends State<BodyLec> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     MaterialButton(
                       minWidth: 2,
@@ -140,113 +126,3 @@ class _Body extends State<BodyLec> {
         ));
   }
 }
-//chooseDiff je u body2.dart
-/*
-  chooseDifficulty(context, size, category) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: Material(
-              type: MaterialType.transparency,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.08, size.height * 0.4, 0, 0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Choose a difficulty',
-                          style: TextStyle(
-                            fontFamily: 'RoundLight',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Container(
-                            width: size.width * 0.45,
-                            height: size.height * 0.25,
-                            color: customPurple,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.14, size.height * 0.45, 0, 0),
-                    child: Column(
-                      children: <Widget>[
-                        /////////
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ListCoursesScreen("beginner", category)));
-                          },
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            "Begginer",
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 20,
-                                color: customPurple),
-                          ),
-                        ), //////////
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ListCoursesScreen(
-                                    "intermediate", category)));
-                          },
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            "Intermediate",
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 20,
-                                color: customPurple),
-                          ),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ListCoursesScreen("advanced", category)));
-                          },
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            "Advanced",
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 20,
-                                color: customPurple),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
-}
-*/

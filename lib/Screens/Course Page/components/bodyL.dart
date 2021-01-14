@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
-import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
+import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/components/Course.dart';
 import 'package:jamesbondi/components/Result.dart';
 import 'package:jamesbondi/components/uploadFile.dart';
@@ -137,18 +138,16 @@ class _BodyLec extends State<BodyLec> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.15,
+                      top: size.height * 0.14,
                       child: Image.asset(
                         'assets/images/Line 1.png',
                         width: size.width * 0.7,
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.08,
+                      top: size.height * 0.07,
                       child: Text(
-                        snapshot.hasData
-                            ? snapshot.data['courseName']
-                            : 'LOADING',
+                        snapshot.data['courseName'],
                         style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
@@ -157,17 +156,15 @@ class _BodyLec extends State<BodyLec> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.165,
+                      top: size.height * 0.15,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  LProfileScreen(snapshot.data['courseMail'])));
+                              builder: (context) => LViewProfileScreen(
+                                  snapshot.data['courseMail'])));
                         },
                         child: Text(
-                          snapshot.hasData
-                              ? snapshot.data['courseMail']
-                              : 'LOADING',
+                          snapshot.data['courseMail'],
                           style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
@@ -193,8 +190,7 @@ class _BodyLec extends State<BodyLec> {
                         ),
                         padding: EdgeInsets.only(
                             top: 10, bottom: 10, left: 15, right: 15),
-                        child: Text(
-                            snapshot.hasData ? snapshot.data['courseInfo'] : '',
+                        child: Text(snapshot.data['courseInfo'],
                             style: TextStyle(
                               fontFamily: 'RoundLight',
                               fontWeight: FontWeight.normal,
@@ -284,35 +280,39 @@ class _BodyLec extends State<BodyLec> {
                           )),
                     ),
 
-                    Positioned(
-                      top: size.height * 0.88,
-                      height: 50,
-                      width: 300,
-                      child: FlatButton(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: size.width * 0.07),
-                          onPressed: () async {
-                            if (edit) {
-                              await _showConfirmDialog(context);
-                            }
+                    snapshot.data['courseMail'] ==
+                            FirebaseAuth.instance.currentUser.email
+                        ? Positioned(
+                            top: size.height * 0.88,
+                            height: 50,
+                            width: 300,
+                            child: FlatButton(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: size.width * 0.07),
+                                onPressed: () async {
+                                  if (edit) {
+                                    await _showConfirmDialog(context);
+                                  }
 
-                            setState(() {
-                              edit = !edit;
-                            });
-                          },
-                          color: customPurple,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            !edit ? 'Edit course' : 'Finish editing',
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.white),
-                          )),
-                    ),
+                                  setState(() {
+                                    edit = !edit;
+                                  });
+                                },
+                                color: customPurple,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Text(
+                                  !edit ? 'Edit course' : 'Finish editing',
+                                  style: TextStyle(
+                                      fontFamily: 'RoundLight',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.white),
+                                )),
+                          )
+                        : Container()
                     //zavrsava dio gdje je korisnik ulogiran
                   ],
                 ),

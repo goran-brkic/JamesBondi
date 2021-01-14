@@ -85,26 +85,31 @@ class UserInfoDB {
 
   static Future<Map<String, dynamic>> getUserInfo(String inputMail) {
     var returnList = Map<String, dynamic>();
+    //print('Trazim usera sa mailom: ' + inputMail);
     return FirebaseFirestore.instance
         .collection('users')
         .where('mail', isEqualTo: inputMail)
         .get()
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
-                //print(doc['mail']);
+                /*
+                returnList['lecturer'] = doc['lecturer'];
                 returnList['firstName'] = doc['firstName'];
-                returnList['iban'] = doc['iban'];
+                if (doc['lecturer']) returnList['iban'] = doc['iban'];
                 returnList['lastName'] = doc['lastName'];
-                returnList['lecturer'] = doc['lecturer'];
-                returnList['creditCard'] = doc['creditCard'];
-                returnList['cardExp'] = doc['cardExp'];
-                returnList['lecturer'] = doc['lecturer'];
-                returnList['secCode'] = doc['secCode'];
+                if (!doc['lecturer'])
+                  returnList['creditCard'] = doc['creditCard'];
+                if (!doc['lecturer']) returnList['cardExp'] = doc['cardExp'];
+                if (!doc['lecturer']) returnList['secCode'] = doc['secCode'];
                 returnList['username'] = doc['username'];
-                returnList['image'] = doc['image'];
-                returnList['about'] = doc['about'];
-                //print('PRINTAM ' + returnList['firstName']);
-                //returnList = new Map<String, dynamic>.from(doc.data());
+                if (doc['lecturer']) returnList['image'] = doc['image'];
+                if (doc['lecturer']) returnList['about'] = doc['about'];
+                if (doc['lecturer'] == false)
+                  returnList['courses'] = doc['courses'];
+                  */
+                //print(doc.data());
+
+                returnList = new Map<String, dynamic>.from(doc.data());
               })
             })
         .then((value) => returnList);
@@ -152,5 +157,71 @@ class UserInfoDB {
         .then((QuerySnapshot querySnapshot) =>
             querySnapshot.size > 0 ? true : false)
         .catchError((value) => false);
+  }
+
+  static Future<List> getCourses(String mail) {
+    var retList;
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                retList = doc.data()['courses'];
+              })
+            })
+        .then((value) => retList);
+  }
+
+  static Future<bool> updateStudent(
+      final String mail,
+      final String firstName,
+      final String lastName,
+      final String creditCard,
+      final String cardExp,
+      final String secCode) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                doc.reference.update({
+                  'firstName': firstName,
+                  'lastName': lastName,
+                  'creditCard': creditCard,
+                  'cardExp': cardExp,
+                  'secCode': secCode
+                });
+              })
+            })
+        .then((value) => true)
+        .catchError((error) => print('Failed to add user: $error'));
+  }
+
+  static Future<bool> updateLecturer(
+      final String mail,
+      final String firstName,
+      final String lastName,
+      final String iban,
+      final String aboutY,
+      final String image) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .where('mail', isEqualTo: mail)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                doc.reference.update({
+                  'firstName': firstName,
+                  'lastName': lastName,
+                  'iban': iban,
+                  'about': aboutY,
+                  'image': image
+                });
+              })
+            })
+        .then((value) => true)
+        .catchError((error) => print('Failed to add user: $error'));
   }
 }

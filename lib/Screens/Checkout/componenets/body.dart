@@ -205,8 +205,7 @@ class _Body extends State<Body> {
                         top: size.height * 0.46,
                         left: size.width * 0.15,
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(
-                              size.width * 0.06, size.width * 0.03, 0, 9),
+                          padding: EdgeInsets.fromLTRB(24, 10, 0, 9),
                           height: size.height * 0.06,
                           width: size.width * 0.55,
                           decoration: BoxDecoration(

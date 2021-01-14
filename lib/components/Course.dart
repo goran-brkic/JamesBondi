@@ -24,7 +24,7 @@ class CoursesDB {
           'keywords': keywords
         })
         .then((value) => true)
-        .catchError((error) => print('Failed to add course: $error'));
+        .catchError((error) => throw Exception('Failed to add course $error'));
   }
 
   static Future<List> getCourses(
@@ -59,6 +59,7 @@ class CoursesDB {
   static Future<Map<String, dynamic>> getCourse(
       final String category, final String difficulty, final String courseID) {
     Map<String, dynamic> returnItem;
+    //print('Trazim course pod: ' + category + '/' + difficulty + '/' + courseID);
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
@@ -74,7 +75,7 @@ class CoursesDB {
     var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
     var difs = ['advanced', 'beginner', 'intermediate'];
     List<Map<String, dynamic>> returnItem = [];
-    //print('Trazim tecaj se keyword: ' + keyword);
+    // print('Trazim tecaj se keyword: ' + keyword);
     for (var i in cats) {
       for (var j in difs) {
         await FirebaseFirestore.instance
@@ -91,7 +92,8 @@ class CoursesDB {
                     temp['difficulty'] = j;
                     returnItem.add(temp);
                   })
-                });
+                })
+            .catchError((error) => throw Exception('Failed to search courses'));
       }
     }
     //print('Returnam: ' + returnItem.toString());
@@ -100,19 +102,81 @@ class CoursesDB {
 
   static Future<void> removeMaterials(final String category,
       final String difficulty, final String courseID, List mats) {
-    print('BRISEM MATERIJALE');
+    //print('BRISEM MATERIJALE');
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
-        .update({'courseMaterials': FieldValue.arrayRemove(mats)});
+        .update({'courseMaterials': FieldValue.arrayRemove(mats)}).catchError(
+            (error) => throw Exception('Failed to remove materials'));
   }
 
   static Future<void> addMaterials(final String category,
       final String difficulty, final String courseID, List mats) {
-    print('DODAJEM MATERIALE');
+    //print('DODAJEM MATERIALE');
     return FirebaseFirestore.instance
         .collection('courses/' + category + '/' + difficulty)
         .doc(courseID)
-        .update({'courseMaterials': FieldValue.arrayUnion(mats)});
+        .update({'courseMaterials': FieldValue.arrayUnion(mats)}).catchError(
+            (error) => throw Exception('Failed to add materials'));
+  }
+
+  static Future<List<Map<String, dynamic>>> createdCourses(
+      final String mail) async {
+    var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
+    var difs = ['advanced', 'beginner', 'intermediate'];
+    List<Map<String, dynamic>> returnItem = [];
+    //print('Trazim tecaj se keyword: ' + keyword);
+    for (var i in cats) {
+      for (var j in difs) {
+        await FirebaseFirestore.instance
+            .collection('courses/' + i + '/' + j)
+            .where('courseMail', isEqualTo: mail)
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+                  querySnapshot.docs.forEach((doc) {
+                    //print('Nasao sam course: ' + doc.data().toString());
+                    Map<String, dynamic> temp;
+                    temp = doc.data();
+                    temp['courseID'] = doc.id;
+                    temp['category'] = i;
+                    temp['difficulty'] = j;
+                    returnItem.add(temp);
+                  })
+                })
+            .catchError(
+                (error) => throw Exception('Failed to get created courses'));
+      }
+    }
+    //print('Returnam: ' + returnItem.toString());
+    return Future.value(returnItem);
+  }
+
+  static Future<List<Map<String, dynamic>>> ownedCourses(final List id) async {
+    var cats = ['IT', 'cooking', 'garden', 'makeup', 'random'];
+    var difs = ['advanced', 'beginner', 'intermediate'];
+    List<Map<String, dynamic>> returnItem = [];
+    //print('Trazim tecaj se keyword: ' + keyword);
+    for (var i in cats) {
+      for (var j in difs) {
+        await FirebaseFirestore.instance
+            .collection('courses/' + i + '/' + j)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            if (id.contains(doc.id)) {
+              Map<String, dynamic> temp;
+              temp = doc.data();
+              temp['courseID'] = doc.id;
+              temp['category'] = i;
+              temp['difficulty'] = j;
+              returnItem.add(temp);
+            }
+          });
+        }).catchError(
+                (error) => throw Exception('Failed to get owned courses'));
+      }
+    }
+    //print('Returnam: ' + returnItem.toString());
+    return Future.value(returnItem);
   }
 }

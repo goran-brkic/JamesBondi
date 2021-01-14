@@ -27,9 +27,11 @@ class _Body extends State<Body> {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
+            key: Key('wrong-password'),
             title: Text('Wrong password!'),
             actions: [
               FlatButton(
+                  key: Key('wrong-password-ok'),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -63,9 +65,11 @@ class _Body extends State<Body> {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
+            key: Key('inv-mail-window'),
             title: Text('Please enter a valid email address!'),
             actions: [
               FlatButton(
+                  key: Key('inv-mail-ok'),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -85,12 +89,12 @@ class _Body extends State<Body> {
       if (e.code == 'user-not-found') {
         _mailController.clear();
         _passwordController.clear();
-        print('No user found for that email.');
+        //print('No user found for that email.');
         await _showUserDialog(context);
       } else if (e.code == 'wrong-password') {
         _passwordController.clear();
         await _showPassDialog(context);
-        print('Wrong password provided for that user.');
+        //print('Wrong password provided for that user.');
       }
     }
 
@@ -127,6 +131,12 @@ class _Body extends State<Body> {
   }
 
   @override
+  void initState() {
+    FirebaseAuth.instance.signOut();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
@@ -159,25 +169,132 @@ class _Body extends State<Body> {
                     // decoration: TextDecoration.underline,
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
-                    fontSize: 25,
+                    fontSize: size.width * 0.05,
                     color: customPurple),
               ),
             ),
+            Container(
+              child: new Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: size.height * 0.62,
+                    left: size.width * 0.12,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      height: size.height * 0.06,
+                      width: size.width * 0.77,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF3F3F3),
+                        borderRadius: BorderRadius.circular(29),
+                        border: Border.all(
+                            color: _emptyMail ? Colors.red : customPurple),
+                      ),
+                      child: TextFormField(
+                        //key: Key('mail-input'),
+                        enabled: true,
+                        controller: _mailController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: size.width * 0.035,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: size.width * 0.12,
+                    top: size.height * (0.62 - 0.035),
+                    child: Text(
+                      _emailReturn(),
+                      style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: size.width * 0.035,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: new Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: size.height * 0.73,
+                    left: size.width * 0.12,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      height: size.height * 0.06,
+                      width: size.width * 0.77,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF3F3F3),
+                        borderRadius: BorderRadius.circular(29),
+                        border: Border.all(
+                            color: _emptyMail ? Colors.red : customPurple),
+                      ),
+                      child: TextFormField(
+                        //key: Key('pass-input'),
+                        enabled: true,
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: size.width * 0.035,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: size.width * 0.12,
+                    top: size.height * (0.73 - 0.035),
+                    child: Text(
+                      _passReturn(),
+                      style: TextStyle(
+                        fontFamily: 'RoundLight',
+                        fontWeight: FontWeight.normal,
+                        fontSize: size.width * 0.035,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            /*
             InputField(
+              key: Key('mail-input'),
               topValue: 0.62,
               colorValue: _emptyMail ? Colors.red : customPurple,
               controller: _mailController,
               title: _emailReturn(),
             ),
+            */
+            /*
             InputField(
+              key: Key('passInput'),
               topValue: 0.73,
               colorValue: _emptyPass ? Colors.red : customPurple,
               controller: _passwordController,
               title: _passReturn(),
             ),
+            */
             Positioned(
                 top: size.height * 0.84,
                 child: FlatButton(
+                    //key: Key('signInButton'),
                     padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: size.width * 0.07),
                     onPressed: () {
@@ -205,7 +322,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 20,
+                          fontSize: size.width * 0.05,
                           color: Colors.white),
                     ))),
             Positioned(
@@ -216,7 +333,7 @@ class _Body extends State<Body> {
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: size.width * 0.03,
                     color: customPurple),
               ),
             ),
@@ -234,7 +351,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-                      fontSize: 14,
+                      fontSize: size.width * 0.03,
                       color: customPurple),
                 ),
               ),

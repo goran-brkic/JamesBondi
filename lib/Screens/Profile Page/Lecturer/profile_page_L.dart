@@ -3,21 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Profile Page/Lecturer/components/body.dart';
 
 class LProfileScreen extends StatelessWidget {
-  final String loggedUser;
-
-  LProfileScreen(this.loggedUser);
+  LProfileScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LProfileScreenStateful(loggedUser),
+      body: LProfileScreenStateful(),
     );
   }
 }
 
 class LProfileScreenStateful extends StatefulWidget {
-  final String loggedUser;
-
-  LProfileScreenStateful(this.loggedUser);
+  LProfileScreenStateful();
   @override
   _LProfileScreen createState() => _LProfileScreen();
 }
@@ -26,7 +22,7 @@ class _LProfileScreen extends State<LProfileScreenStateful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(widget.loggedUser),
+      body: Body(),
     );
   }
 }

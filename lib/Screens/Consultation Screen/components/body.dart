@@ -35,6 +35,164 @@ class _Body extends State<Body> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    return Column(children: <Widget>[
+      Container(
+        height: size.height * 0.2,
+        child: Stack(alignment: Alignment.center, children: <Widget>[
+          Positioned(
+            top: size.height * 0.001,
+            child: Image.asset(
+              'assets/images/top_part_courses.png',
+              width: size.width * 1,
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.15,
+            child: Image.asset(
+              'assets/images/Line 1.png',
+              width: size.width * 0.7,
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.08,
+            child: Text(
+              "Consultations",
+              style: TextStyle(
+                  fontFamily: 'RoundLight',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 34,
+                  color: Colors.white),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.16,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  pending.clear();
+                  unapproved.clear();
+                  scheduled.clear();
+                });
+              },
+              child: Text(
+                'REFRESH',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 26,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        ]),
+      ),
+      Container(
+        height: size.height * 0.6,
+        width: size.width,
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            Center(
+              child: Text(
+                'Scheduled consultations',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            Center(
+              child: Text(
+                'Press consultations to enter video call',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getSchConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return schButton(snapshot.data[index]['reqDate'],
+                                size, snapshot.data[index]['meetID']);
+                          });
+                  return children;
+                }),
+            Center(
+              child: Text(
+                'Consultations awaiting approval',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getPendConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return pendButton(
+                                snapshot.data[index]['reqDate'],
+                                size,
+                                snapshot.data[index]['courseID'],
+                                snapshot.data[index]['meetID']);
+                          });
+                  return children;
+                }),
+            Center(
+              child: Text(
+                'Requested consultations',
+                style: TextStyle(
+                    fontFamily: 'RoundLight',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: customPurple),
+              ),
+            ),
+            FutureBuilder(
+                future: ConsultationDB.getUnappConsultations(
+                    FirebaseAuth.instance.currentUser.email, lec),
+                builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                  Widget children;
+                  !snapshot.hasData
+                      ? children = Text('')
+                      : children = ListView.builder(
+                          padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return schButton1(
+                                snapshot.data[index]['reqDate'], size);
+                          });
+                  return children;
+                }),
+          ],
+        ),
+      ),
+    ]);
+
+    /*
     return FutureBuilder(
         future: ConsultationDB.getConsultations(
             FirebaseAuth.instance.currentUser.email),
@@ -194,6 +352,7 @@ class _Body extends State<Body> {
 
           return children;
         });
+        */
   }
 
   Widget schButton1(var date, var size) {
@@ -217,7 +376,7 @@ class _Body extends State<Body> {
       ),
       Container(
         child: Text(
-          DateFormat('dd.MM  H:m').format(date.toDate()),
+          DateFormat('dd.MM  HH:mm').format(date.toDate()),
           style: TextStyle(
               fontFamily: 'datum',
               fontWeight: FontWeight.normal,
@@ -234,35 +393,47 @@ class _Body extends State<Body> {
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => JoinScreen(meetID, lec)));
       },
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Container(
-          width: size.width / 2 - 56,
-          child: Text(
-            //name of consultations from database
-            'Consultations',
-            style: TextStyle(
-                fontFamily: 'RoundLight',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: Colors.black),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[150],
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          border: Border(
+            top: BorderSide(width: 1.0, color: customPurple),
+            left: BorderSide(width: 1.0, color: customPurple),
+            right: BorderSide(width: 1.0, color: customPurple),
+            bottom: BorderSide(width: 1.0, color: customPurple),
           ),
         ),
-        Container(
-          width: 2,
-          height: 25,
-          color: customPurple,
-        ),
-        Container(
-          child: Text(
-            DateFormat('dd.MM  H:m').format(date.toDate()),
-            style: TextStyle(
-                fontFamily: 'datum',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: Colors.black),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Container(
+            width: size.width / 2 - 56,
+            child: Text(
+              //name of consultations from database
+              'Consultations',
+              style: TextStyle(
+                  fontFamily: 'RoundLight',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: Colors.black),
+            ),
           ),
-        ),
-      ]),
+          Container(
+            width: 2,
+            height: 25,
+            color: customPurple,
+          ),
+          Container(
+            child: Text(
+              DateFormat('dd.MM  HH:mm').format(date.toDate()),
+              style: TextStyle(
+                  fontFamily: 'datum',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: Colors.black),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 
@@ -289,7 +460,7 @@ class _Body extends State<Body> {
         width: size.width / 3 - 50,
         child: Text(
           //date for consultation from database
-          DateFormat('dd.MM  H:m').format(date.toDate()),
+          DateFormat('dd.MM  HH:mm').format(date.toDate()),
           style: TextStyle(
               fontFamily: 'datum',
               fontWeight: FontWeight.normal,

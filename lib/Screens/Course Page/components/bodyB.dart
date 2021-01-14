@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Request%20Consultations/request_consulations.dart';
 import 'package:jamesbondi/components/Course.dart';
@@ -60,14 +61,14 @@ class _Body extends State<BodyBought> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.15,
+                      top: size.height * 0.14,
                       child: Image.asset(
                         'assets/images/Line 1.png',
                         width: size.width * 0.7,
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.08,
+                      top: size.height * 0.07,
                       child: Text(
                         snapshot.hasData
                             ? snapshot.data['courseName']
@@ -80,12 +81,12 @@ class _Body extends State<BodyBought> {
                       ),
                     ),
                     Positioned(
-                      top: size.height * 0.165,
+                      top: size.height * 0.15,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  LProfileScreen(snapshot.data['courseMail'])));
+                              builder: (context) => LViewProfileScreen(
+                                  snapshot.data['courseMail'])));
                         },
                         child: Text(
                           snapshot.hasData
@@ -99,74 +100,6 @@ class _Body extends State<BodyBought> {
                         ),
                       ),
                     ),
-                    /*
-                  Positioned(
-                    top: size.height * 0.24,
-                    child: Text(
-                      snapshot.hasData
-                          ? snapshot.data['coursePrice'].toString() + " HRK"
-                          : "",
-                      style: TextStyle(
-                          fontFamily: 'RoundLight',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 30,
-                          color: customPurple),
-                    ),
-                  ),
-                  */
-
-                    //User nije kupio tecaj  ->>cijeli zakomentirani, treba stavit if pa onda jedno il drugo
-                    /*
-                  Positioned(
-                    top: size.height * 0.3,
-                    child: Container(
-                      //color: Colors.grey[800],
-                      width: size.width - 10,
-                      height: size.height / 2,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[150],
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        border: Border(
-                          top: BorderSide(width: 1.0, color: customPurple),
-                          left: BorderSide(width: 1.0, color: customPurple),
-                          right: BorderSide(width: 1.0, color: customPurple),
-                          bottom: BorderSide(width: 1.0, color: customPurple),
-                        ),
-                      ),
-                      padding: EdgeInsets.only(
-                          top: 10, bottom: 10, left: 15, right: 15),
-                      child: Text(
-                          snapshot.hasData ? snapshot.data['courseInfo'] : "",
-                          style: TextStyle(
-                            fontFamily: 'RoundLight',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
-                            color: Colors.black,
-                          )),
-                    ),
-                  ),
-                  Positioned(
-                    top: size.height * 0.83,
-                    height: 50,
-                    width: 200,
-                    child: FlatButton(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: size.width * 0.07),
-                        onPressed: () {},
-                        color: customPurple,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          snapshot.hasData ? "BUY" : "LOADING",
-                          style: TextStyle(
-                              fontFamily: 'RoundLight',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.white),
-                        )),
-                  ),
-                   */
 
                     //ako user je vec kupio tecaj
                     Positioned(

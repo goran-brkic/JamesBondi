@@ -32,7 +32,7 @@ class _BodyNew extends State<BodyNew> {
         initialDate: selectedDate,
         initialDatePickerMode: DatePickerMode.day,
         firstDate: DateTime(2020),
-        lastDate: DateTime(2021));
+        lastDate: DateTime(2022));
     if (picked != null) {
       setState(() {
         selectedDate = picked;
@@ -161,6 +161,7 @@ class _BodyNew extends State<BodyNew> {
                               selectedTime.hour,
                               selectedTime.minute),
                           lec);
+                      Navigator.of(context).pop();
                     }
                   },
                   color: customPurple,

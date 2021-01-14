@@ -30,21 +30,6 @@ class _Body extends State<BodyS> {
     });
   }
 
-  /*
-
-  bool lec;
-  void getType() async {
-    lec = await SharedPreferences.getInstance()
-        .then((value) => value.getBool('lecturer'));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getType();
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -121,6 +106,7 @@ class _Body extends State<BodyS> {
     );
   }
 }
+
 //chooseDiff je u body2.dart
 /*
   chooseDifficulty(context, size, category) {

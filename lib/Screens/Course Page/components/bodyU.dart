@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:jamesbondi/Screens/Checkout/checkout_screen.dart';
 import 'package:jamesbondi/Screens/List%20Courses%20Page/list_courses_screen.dart';
+import 'package:jamesbondi/Screens/Profile%20Page%20View/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Request%20Consultations/request_consulations.dart';
 import 'package:jamesbondi/components/Course.dart';
@@ -57,14 +58,14 @@ class _BodyU extends State<BodyFresh> {
                     ),
                   ),
                   Positioned(
-                    top: size.height * 0.15,
+                    top: size.height * 0.14,
                     child: Image.asset(
                       'assets/images/Line 1.png',
                       width: size.width * 0.7,
                     ),
                   ),
                   Positioned(
-                    top: size.height * 0.08,
+                    top: size.height * 0.07,
                     child: Text(
                       snapshot.hasData
                           ? snapshot.data['courseName']
@@ -77,12 +78,12 @@ class _BodyU extends State<BodyFresh> {
                     ),
                   ),
                   Positioned(
-                    top: size.height * 0.165,
+                    top: size.height * 0.15,
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                LProfileScreen(snapshot.data['courseMail'])));
+                            builder: (context) => LViewProfileScreen(
+                                snapshot.data['courseMail'])));
                       },
                       child: Text(
                         snapshot.hasData

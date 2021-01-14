@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class CallScreen extends StatelessWidget {
+class CallPage extends StatelessWidget {
   ClientRole role;
   String channelName;
 
-  CallScreen({this.channelName, this.role});
+  CallPage({this.channelName, this.role});
 
   @override
   Widget build(BuildContext context) {

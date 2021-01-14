@@ -61,6 +61,7 @@ class _Body extends State<Body> {
 
             // IT Courses
             Positioned(
+              key: Key('category'),
               top: size.height * 0.31,
               left: size.width * 0.05,
               child: new GestureDetector(
@@ -122,7 +123,7 @@ class _Body extends State<Body> {
             // Other Courses
             Positioned(
               top: size.height * 0.81,
-              left: size.width * 0.05,
+              left: size.width * 0.3,
               child: new GestureDetector(
                 onTap: () {
                   chooseDifficulty(context, size, "Other");
@@ -159,43 +160,43 @@ class _Body extends State<Body> {
     return showDialog(
         context: context,
         builder: (context) {
-          return Center(
-            child: Material(
-              type: MaterialType.transparency,
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.09, size.height * 0.4, 0, 0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Choose a difficulty',
-                          style: TextStyle(
-                            fontFamily: 'RoundLight',
-                            fontWeight: FontWeight.normal,
-                            fontSize: size.width * 0.06,
-                            color: Colors.white,
-                          ),
+          return Material(
+            type: MaterialType.transparency,
+            child: Stack(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Choose a difficulty',
+                        style: TextStyle(
+                          fontFamily: 'RoundLight',
+                          fontWeight: FontWeight.normal,
+                          fontSize: size.width * 0.05,
+                          color: Colors.white,
                         ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Container(
-                            width: size.width * 0.45,
-                            height: size.height * 0.25,
-                            color: customPurple,
-                          ),
+                      ),
+                      // ljubicasti kvadrat
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Container(
+                          width: size.width * 0.45,
+                          height: size.height * 0.25,
+                          color: customPurple,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        size.width * 0.14, size.height * 0.44, 0, 0),
-                    child: Column(
-                      children: <Widget>[
-                        /////////
-                        FlatButton(
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.fromLTRB(0, size.height * 0.035, 0, 0),
+                        child: FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => AddCourseScreen(
@@ -214,50 +215,49 @@ class _Body extends State<Body> {
                                 color: customPurple),
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AddCourseScreen(
-                                    translateString(category),
-                                    "intermediate")));
-                          },
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            "Intermediate",
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.normal,
-                                fontSize: size.width * 0.05,
-                                color: customPurple),
-                          ),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AddCourseScreen(
+                                  translateString(category), "intermediate")));
+                        },
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AddCourseScreen(
-                                    translateString(category), "advanced")));
-                          },
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Text(
-                            "Advanced",
-                            style: TextStyle(
-                                fontFamily: 'RoundLight',
-                                fontWeight: FontWeight.normal,
-                                fontSize: size.width * 0.05,
-                                color: customPurple),
-                          ),
+                        child: Text(
+                          "Intermediate",
+                          style: TextStyle(
+                              fontFamily: 'RoundLight',
+                              fontWeight: FontWeight.normal,
+                              fontSize: size.width * 0.05,
+                              color: customPurple),
                         ),
-                      ],
-                    ),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AddCourseScreen(
+                                  translateString(category), "advanced")));
+                        },
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "Advanced",
+                          style: TextStyle(
+                              fontFamily: 'RoundLight',
+                              fontWeight: FontWeight.normal,
+                              fontSize: size.width * 0.05,
+                              color: customPurple),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         });

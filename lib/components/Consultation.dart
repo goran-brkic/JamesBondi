@@ -75,4 +75,67 @@ class ConsultationDB {
     return FirebaseFirestore.instance.collection('meetings').doc(meetID).update(
         {'studentConfirm': !lec, 'lecturerConfirm': lec, 'reqDate': reqDate});
   }
+
+  static Future<List> getSchConsultations(final String mail, bool lec) async {
+    List returnList = new List();
+    return FirebaseFirestore.instance
+        .collection('meetings')
+        .where(!lec ? 'studentMail' : 'lecturerMail', isEqualTo: mail)
+        .where('lecturerConfirm', isEqualTo: true)
+        .where('studentConfirm', isEqualTo: true)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                Map<String, dynamic> temp;
+                temp = doc.data();
+                temp['meetID'] = doc.id;
+                // print('DOCUMENT ID:' + doc.id);
+                returnList.add(temp);
+              })
+            })
+        .then((value) => returnList)
+        .catchError((error) => print('Failed to get consultations: $error'));
+  }
+
+  static Future<List> getUnappConsultations(final String mail, bool lec) async {
+    List returnList = new List();
+    return FirebaseFirestore.instance
+        .collection('meetings')
+        .where(!lec ? 'studentMail' : 'lecturerMail', isEqualTo: mail)
+        .where('lecturerConfirm', isEqualTo: lec)
+        .where('studentConfirm', isEqualTo: !lec)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                Map<String, dynamic> temp;
+                temp = doc.data();
+                temp['meetID'] = doc.id;
+                // print('DOCUMENT ID:' + doc.id);
+                returnList.add(temp);
+              })
+            })
+        .then((value) => returnList)
+        .catchError((error) => print('Failed to get consultations: $error'));
+  }
+
+  static Future<List> getPendConsultations(final String mail, bool lec) async {
+    List returnList = new List();
+    return FirebaseFirestore.instance
+        .collection('meetings')
+        .where(!lec ? 'studentMail' : 'lecturerMail', isEqualTo: mail)
+        .where('lecturerConfirm', isEqualTo: !lec)
+        .where('studentConfirm', isEqualTo: lec)
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                Map<String, dynamic> temp;
+                temp = doc.data();
+                temp['meetID'] = doc.id;
+                // print('DOCUMENT ID:' + doc.id);
+                returnList.add(temp);
+              })
+            })
+        .then((value) => returnList)
+        .catchError((error) => print('Failed to get consultations: $error'));
+  }
 }
