@@ -1,0 +1,270 @@
+@startuml
+set namespaceSeparator ::
+
+class "Main::_HomeState" {
+  -bool _initialized
+  -bool _error
+  +void initializeFlutterFire()
+  +void initState()
+  +Widget build()
+}
+
+"State<T>" <|-- "Main::_HomeState"
+
+class "AddCourse::_Body" {
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _courseNameController
+  -TextEditingController _shortDescriptionController
+  -TextEditingController _priceController
+  +bool isCourseNameEmpty
+  +bool isPriceEmpty
+  -dynamic _path
+  +List listaLinkova
+  +List listaImena
+  +List listaPuteva
+  +int documentCount
+  +FlutterDocumentPickerParams params
+  +Widget build()
+}
+
+"State<T>" <|-- "AddCourse::_Body"
+
+class "Call Screen::_Body" {
+  -List<int> _users
+  -List _infoStrings
+  +bool muted
+  -dynamic _engine
+  +void dispose()
+  +void initState()
+  +Future initialize()
+  -Future _initAgoraRtcEngine()
+  -void _addAgoraEventHandlers()
+  -List _getRenderViews()
+  -Widget _videoView()
+  -Widget _expandedVideoRow()
+  -Widget _viewRows()
+  -Widget _toolbar()
+  -Widget _panel()
+  -void _onCallEnd()
+  -void _onToggleMute()
+  -void _onSwitchCamera()
+  +Widget build()
+}
+
+"State<T>" <|-- "Call Screen::_Body"
+
+class "Checkout::_Body" {
+  -Future _showConfirmDialog()
+  -Future _showFailedDialog()
+  +Widget build()
+}
+
+"State<T>" <|-- "Checkout::_Body"
+
+class "Consultation Screen::_Body" {
+  +List<Map> pending
+  +List<Map> scheduled
+  +List<Map> unapproved
+  +void initState()
+  +Widget build()
+  +Widget schButton1()
+  +Widget schButton()
+  +Widget pendButton()
+}
+
+"State<T>" <|-- "Consultation Screen::_Body"
+
+class "Course Page::_BodyLec" {
+  +dynamic courseID
+  +dynamic courseCat
+  +dynamic courseDif
+  -dynamic _path
+  +List listaLinkova
+  +List listaImena
+  +List listaPuteva
+  +int documentCount
+  +FlutterDocumentPickerParams params
+  -GlobalKey<FormState> _formKey
+  +bool edit
+  -List _deleteList
+  -Future _showConfirmDialog()
+  -Future _showEraseDialog()
+  +Widget build()
+  +Widget matButton()
+  +GestureDetector newMatButton()
+}
+
+"Course Page::_BodyLec" o-- "flutter_document_picker::FlutterDocumentPickerParams"
+"Course Page::_BodyLec" o-- "GlobalKey<FormState>"
+"State<T>" <|-- "Course Page::_BodyLec"
+
+class "Edit Profile::_Body" {
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _firstNameController
+  -TextEditingController _lastNameController
+  -TextEditingController _ibanController
+  -TextEditingController _aboutYController
+  +dynamic imageURL
+  -File _image
+  +ImagePicker picker
+  +bool isFirstNameEmpty
+  +bool isLastNameEmpty
+  +bool isIbanEmpty
+  -void _register()
+  +Future getUser()
+  +void initState()
+  +Future getImage()
+  -Future _showIBANDialog()
+  +Widget build()
+}
+
+"Edit Profile::_Body" o-- "GlobalKey<FormState>"
+"Edit Profile::_Body" o-- "dart::io::File"
+"Edit Profile::_Body" o-- "image_picker::image_picker::ImagePicker"
+"State<T>" <|-- "Edit Profile::_Body"
+
+class "Edit Profile::_Body" {
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _firstNameController
+  -TextEditingController _lastNameController
+  -TextEditingController _emailController
+  -TextEditingController _usernameController
+  -TextEditingController _passwordController
+  -TextEditingController _creditcardController
+  -TextEditingController _expirationDateController
+  -TextEditingController _secCodeController
+  -File _image
+  -dynamic _uploadedFileURL
+  +ImagePicker picker
+  +bool isFirstNameEmpty
+  +bool isLastNameEmpty
+  +bool isCreditCardEmpty
+  +bool isSecCodeEmpty
+  +bool isExpDateEmpty
+  +Future getUser()
+  +void initState()
+  -void _register()
+  +void dispose()
+  +Future getImage()
+  -Future _showCreditCardDialog()
+  -Future _showCCVDialog()
+  -Future _showExpDateDialog()
+  +Widget build()
+}
+
+"Edit Profile::_Body" o-- "GlobalKey<FormState>"
+"Edit Profile::_Body" o-- "dart::io::File"
+"Edit Profile::_Body" o-- "image_picker::ImagePicker"
+"State<T>" <|-- "Edit Profile::_Body"
+
+class "Request Consultations::_Body" {
+  -dynamic _setTime
+  -dynamic _setDate
+  -dynamic _hour
+  -dynamic _minute
+  -dynamic _time
+  +dynamic dateTime
+  +DateTime selectedDate
+  +TimeOfDay selectedTime
+  -TextEditingController _dateController
+  -TextEditingController _timeController
+  -Future _selectDate()
+  -Future _selectTime()
+  +void initState()
+  -Future _showDialog()
+  +Widget build()
+}
+
+"Request Consultations::_Body" o-- "flutter::TimeOfDay"
+"State<T>" <|-- "Request Consultations::_Body"
+
+class "SearchScreen::_Body" {
+  -TextEditingController _textController
+  +List<Map> courses
+  +bool ready
+  +Widget build()
+  +Padding button()
+}
+
+"State<T>" <|-- "SearchScreen::_Body"
+
+class "SignIn::_Body" {
+  -TextEditingController _mailController
+  -TextEditingController _passwordController
+  +FirebaseAuth auth
+  -bool _emptyMail
+  -bool _emptyPass
+  -Future _showPassDialog()
+  -Future _showUserDialog()
+  -Future _showInvalidDialog()
+  -void _login()
+  -dynamic _emailReturn()
+  -dynamic _passReturn()
+  +void initState()
+  +Widget build()
+}
+
+"SignIn::_Body" o-- "FirebaseAuth"
+"State<T>" <|-- "SignIn::_Body"
+
+class "SignUp::_Body" {
+  +bool lecturer
+  -Person _radioValue1
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _firstNameController
+  -TextEditingController _lastNameController
+  -TextEditingController _emailController
+  -TextEditingController _usernameController
+  -TextEditingController _passwordController
+  -TextEditingController _creditcardController
+  -TextEditingController _expirationDateController
+  -TextEditingController _secCodeController
+  -TextEditingController _ibanController
+  -TextEditingController _aboutYController
+  +dynamic imageURL
+  -bool _success
+  -dynamic _userEmail
+  -File _image
+  -dynamic _uploadedFileURL
+  +ImagePicker picker
+  +bool isFirstNameEmpty
+  +bool isLastNameEmpty
+  +bool isPasswordEmpty
+  +bool isIbanEmpty
+  +bool isCreditCardEmpty
+  +bool isSecCodeEmpty
+  +bool isExpDateEmpty
+  -void _register()
+  +void dispose()
+  +Future getImage()
+  -Future _showCreditCardDialog()
+  -Future _showCCVDialog()
+  -Future _showExpDateDialog()
+  -Future _showIBANDialog()
+  -Future _showPasswordDialog()
+  +Widget build()
+}
+
+"SignUp::_Body" o-- "GlobalKey<FormState>"
+"SignUp::_Body" o-- "dart::io::File"
+"SignUp::_Body" o-- "image_picker::ImagePicker"
+"State<T>" <|-- "SignUp::_Body"
+
+class "Welcome::_Body" {
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _emailController
+  -TextEditingController _usernameController
+  -bool _invalidInput
+  -bool _emptyEmail
+  -bool _emptyUsername
+  -bool _usedEmail
+  -bool _usedUsername
+  -dynamic _emailReturn()
+  -dynamic _usernameReturn()
+  +Widget build()
+}
+
+"Welcome::_Body" o-- "GlobalKey<FormState>"
+"State<T>" <|-- "Welcome::_Body"
+
+@enduml

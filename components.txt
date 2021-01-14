@@ -1,0 +1,41 @@
+@startuml
+
+class "ConsultationDB" {
+  {static} +Future createConsRequest()
+  {static} +Future getConsultations()
+  {static} +Future confirmConsultationsLecturer()
+  {static} +Future confirmConsultationsStudent()
+  {static} +Future getConsultation()
+  {static} +Future updateConsultation()
+  {static} +Future getSchConsultations()
+  {static} +Future getUnappConsultations()
+  {static} +Future getPendConsultations()
+}
+
+class "CoursesDB" {
+  {static} +Future addCourse()
+  {static} +Future getCourses()
+  {static} +Future getCourseName()
+  {static} +Future getCourse()
+  {static} +Future searchCourses()
+  {static} +Future removeMaterials()
+  {static} +Future addMaterials()
+  {static} +Future createdCourses()
+  {static} +Future ownedCourses()
+}
+
+class "UserInfoDB" {
+  {static} +Future addLecturer()
+  {static} +Future addStudent()
+  {static} +Future checkEmailAddress()
+  {static} +Future checkUser()
+  {static} +Future getUserInfo()
+  {static} +Future getTypeOfUser()
+  {static} +Future addCourse()
+  {static} +Future searchCourse()
+  {static} +Future getCourses()
+  {static} +Future updateStudent()
+  {static} +Future updateLecturer()
+}
+
+@enduml

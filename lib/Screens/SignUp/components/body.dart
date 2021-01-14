@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jamesbondi/Screens/Categories%20Page/categories_screen.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Lecturer/profile_page_L.dart';
 import 'package:jamesbondi/Screens/Profile%20Page/Student/profile_page_S.dart';
+import 'package:jamesbondi/Screens/SignIn/signin_screen.dart';
 import 'package:jamesbondi/components/InputField.dart';
 import 'package:jamesbondi/components/userInfo.dart';
 import 'package:jamesbondi/constants.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../components/uploadImage.dart';
+import '../../../components/uploadFile.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 bool signed = false;
@@ -18,8 +20,8 @@ RegExp expDateRegex = RegExp(r'^[0,1]?\d{1}\/(([0-2]?\d{1}/))');
 enum Person { lecturer, student }
 
 class Body extends StatefulWidget {
-  String emailAddressInput;
-  String usernameInput;
+  final String emailAddressInput;
+  final String usernameInput;
 
   Body({@required this.emailAddressInput, @required this.usernameInput});
 
@@ -67,8 +69,8 @@ class _Body extends State<Body> {
                   _ibanController.text,
                   _aboutYController.text,
                   imageURL)
-              .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => LProfileScreen(user))));
+              .then((value) => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SignInScreen())));
         } else {
           UserInfoDB.addStudent(
                   _usernameController.text,
@@ -78,8 +80,8 @@ class _Body extends State<Body> {
                   _creditcardController.text,
                   _expirationDateController.text,
                   _secCodeController.text)
-              .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => SProfileScreen(user))));
+              .then((value) => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => SignInScreen())));
         }
       });
     } else {
@@ -113,6 +115,106 @@ class _Body extends State<Body> {
     });
   }
 
+  Future<void> _showCreditCardDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title:
+                Text('Credit card number seems fishy, check it again please!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    _creditcardController.clear();
+                    setState(() {});
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Future<void> _showCCVDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('CCV invalid, check it again please!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    _secCodeController.clear();
+                    setState(() {});
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Future<void> _showExpDateDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('That isn\'t a valid expiration date!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    _expirationDateController.clear();
+                    setState(() {});
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Future<void> _showIBANDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('You seem to be a few numbers off your IBAN!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    _ibanController.clear();
+                    setState(() {});
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Future<void> _showPasswordDialog(var context) {
+    return showDialog<bool>(
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Password has to be longer than 6 characters!'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    _passwordController.clear();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          );
+        },
+        context: context);
+  }
+
   bool isFirstNameEmpty = false;
   bool isLastNameEmpty = false;
   bool isPasswordEmpty = false;
@@ -144,7 +246,7 @@ class _Body extends State<Body> {
                     // decoration: TextDecoration.underline,
                     fontFamily: 'Quiglet',
                     fontWeight: FontWeight.normal,
-                    fontSize: 25,
+                    fontSize: size.width * 0.065,
                     color: customPurple,
                   ),
                 ),
@@ -167,7 +269,7 @@ class _Body extends State<Body> {
                         style: TextStyle(
                           fontFamily: 'RoundLight',
                           fontWeight: FontWeight.normal,
-                          fontSize: 15,
+                          fontSize: size.width * 0.035,
                           color: customPurple,
                         ),
                       ),
@@ -177,7 +279,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035,
                         color: Colors.grey[800],
                       ),
                     ),
@@ -195,7 +297,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 15,
+                        fontSize: size.width * 0.035,
                         color: Colors.grey[800],
                       ),
                     ),
@@ -280,7 +382,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 17,
+                        fontSize: size.width * 0.039,
                         color: Colors.black87,
                       ),
                     ),
@@ -294,7 +396,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 15,
+                      fontSize: size.width * 0.035,
                       color: Colors.grey[800],
                     ),
                   ),
@@ -325,7 +427,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 17,
+                        fontSize: size.width * 0.039,
                         color: Colors.black87,
                       ),
                     ),
@@ -339,7 +441,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 15,
+                      fontSize: size.width * 0.035,
                       color: Colors.grey[800],
                     ),
                   ),
@@ -362,14 +464,21 @@ class _Body extends State<Body> {
                             isLastNameEmpty ||
                             isPasswordEmpty ||
                             isSecCodeEmpty) {
-                          setState(() {
-                            isFirstNameEmpty = isFirstNameEmpty;
-                            isCreditCardEmpty = isCreditCardEmpty;
-                            isExpDateEmpty = isExpDateEmpty;
-                            isLastNameEmpty = isLastNameEmpty;
-                            isPasswordEmpty = isPasswordEmpty;
-                            isSecCodeEmpty = isSecCodeEmpty;
-                          });
+                          setState(() {});
+                        } else if (!lecturer &&
+                            (_creditcardController.text.length != 16 ||
+                                _creditcardController.text
+                                    .contains(new RegExp(r'([^0-9])')))) {
+                          _showCreditCardDialog(context);
+                        } else if (_secCodeController.text.length != 3 ||
+                            _secCodeController.text
+                                .contains(new RegExp(r'([^0-9])'))) {
+                          _showCCVDialog(context);
+                        } else if (!_expirationDateController.text.contains(
+                            new RegExp(r'^(0[1-9]|1[0-2])\/?(2[1-9])$'))) {
+                          _showExpDateDialog(context);
+                        } else if (_passwordController.text.length < 6) {
+                          _showPasswordDialog(context);
                         } else if (_formKey.currentState.validate()) {
                           _register();
                         }
@@ -388,7 +497,7 @@ class _Body extends State<Body> {
                         style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 20,
+                            fontSize: size.width * 0.05,
                             color: Colors.white),
                       )),
                 ),
@@ -409,7 +518,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 15,
+                      fontSize: size.width * 0.035,
                       color: Colors.grey[800],
                     ),
                   ),
@@ -424,7 +533,7 @@ class _Body extends State<Body> {
                     child: RawMaterialButton(
                       onPressed: () async {
                         await getImage();
-                        imageURL = await uploadFile(_image);
+                        imageURL = await uploadImage(_image);
                         print(imageURL);
                       },
                       elevation: 0,
@@ -488,7 +597,7 @@ class _Body extends State<Body> {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-                        fontSize: 17,
+                        fontSize: size.width * 0.039,
                         color: Colors.black87,
                       ),
                     ),
@@ -502,7 +611,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
-                      fontSize: 15,
+                      fontSize: size.width * 0.035,
                       color: Colors.grey[800],
                     ),
                   ),
@@ -522,12 +631,12 @@ class _Body extends State<Body> {
                             isIbanEmpty ||
                             isLastNameEmpty ||
                             isPasswordEmpty) {
-                          setState(() {
-                            isFirstNameEmpty = isFirstNameEmpty;
-                            isIbanEmpty = isIbanEmpty;
-                            isLastNameEmpty = isLastNameEmpty;
-                            isPasswordEmpty = isPasswordEmpty;
-                          });
+                          setState(() {});
+                        } else if (_ibanController.text.length != 21 ||
+                            _ibanController.text.contains(r'([^0-9])')) {
+                          _showIBANDialog(context);
+                        } else if (_passwordController.text.length < 6) {
+                          _showPasswordDialog(context);
                         } else if (_formKey.currentState.validate()) {
                           _register();
                         }
@@ -547,7 +656,7 @@ class _Body extends State<Body> {
                         style: TextStyle(
                             fontFamily: 'RoundLight',
                             fontWeight: FontWeight.normal,
-                            fontSize: 20,
+                            fontSize: size.width * 0.05,
                             color: Colors.white),
                       )),
                 ),
