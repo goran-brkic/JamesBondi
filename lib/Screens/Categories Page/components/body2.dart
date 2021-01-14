@@ -152,7 +152,11 @@ chooseDifficulty(context, size, category) {
                       style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
+<<<<<<< HEAD
                         fontSize: size.width * 0.05,
+=======
+                        fontSize: 20,
+>>>>>>> 804032750c002cf01a2382262f61999d733748c6
                         color: Colors.white,
                       ),
                     ),

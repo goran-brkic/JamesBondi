@@ -143,25 +143,33 @@ class _Body extends State<Body> {
                     style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
+<<<<<<< HEAD
                         fontSize: size.width * 0.05,
+=======
+                        fontSize: size.width * 0.05, //20
+>>>>>>> 804032750c002cf01a2382262f61999d733748c6
                         color: Colors.white),
                   )),
             ),
             Positioned(
               top: size.height * 0.88,
-              left: size.width * 0.24,
+              left: size.width * 0.24, //0.24
               child: Text(
                 "Already have an account?",
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
+<<<<<<< HEAD
                     fontSize: size.width * 0.035,
+=======
+                    fontSize: size.width * 0.035, // 14
+>>>>>>> 804032750c002cf01a2382262f61999d733748c6
                     color: customPurple),
               ),
             ),
             Positioned(
               top: size.height * 0.88,
-              left: size.width * 0.63,
+              left: size.width * 0.64, //0.63
               child: new GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
@@ -173,7 +181,11 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
+<<<<<<< HEAD
                       fontSize: size.width * 0.035,
+=======
+                      fontSize: size.width * 0.035, //14
+>>>>>>> 804032750c002cf01a2382262f61999d733748c6
                       color: customPurple),
                 ),
               ),
