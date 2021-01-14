@@ -46,6 +46,7 @@ class _Body extends State<BodyOwned> {
   //GlobalKey<FormState>(debugLabel: '_ListCoursesKey');
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     Padding button(Map<String, dynamic> course) {
       return Padding(
         padding: const EdgeInsets.all(15),
@@ -83,7 +84,6 @@ class _Body extends State<BodyOwned> {
       );
     }
 
-    Size size = MediaQuery.of(context).size;
     return FutureBuilder(
         future: CoursesDB.ownedCourses(widget.courses),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
