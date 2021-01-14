@@ -11,8 +11,7 @@
 					
 					\item Polaznik
 					\item Predavač	
-				\end{packed_enum}
-				\item Administrator			
+				\end{packed_enum}		
 				\item Razvojni tim
 				
 			\end{packed_enum}
@@ -43,7 +42,6 @@
 					\item pretraživati ponuđene tečajeve
 					\item dodati, urediti i obrisati tečaj
 					\item pregledati polaznike svojih tečajeva
-					\item pregledati i odgovoriti na recenzije
 					\item prihvatiti ili odbiti termin konzultacija
 					
 				\end{packed_enum}
@@ -60,24 +58,9 @@
 					\item pristupiti plaćenom tečaju
 					\item preuzimati materijale upisanog tečaja
 					\item poslati zahtjev za konzultacijama
-					\item pregledati recenzije svih tečajeva
-					\item objaviti recenziju na upisanom tečaju
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Administrator (inicijator) može:}
-				
-				\begin{packed_enum}
-					
-					\item vidjeti popis svih registriranih korisnika aplikacije
-					\item brisati korisnike
-					\item urediti i obrisati tečaj
-					\item dodati i obrisati kategoriju tečaja
-					\item pregledati i odgovoriti na recenzije
-					\item obrisati recenzije koje su u suprotnosti s pravilima korištenja aplikacije
-					\item pristupiti statistici
-					
-				\end{packed_enum}
 			
 				\item  \underbar{Baza podataka (sudionik):}
 				
@@ -200,11 +183,11 @@
 						\end{packed_item}
 					\end{packed_item}
 		
-				\noindent \underbar{\textbf{UC4 - Pregled tečajeva}}
+				\noindent \underbar{\textbf{UC4 - Pregled svih tečajeva}}
 				\begin{packed_item}
 					
-					\item \textbf{Glavni sudionik:} Polaznik, Predavač, Administrator
-					\item  \textbf{Cilj:} Uspješan prikaz dostupnih tečajeva
+					\item \textbf{Glavni sudionik:} Polaznik, Predavač
+					\item  \textbf{Cilj:} Uspješan prikaz svih kreiranih tečajeva
 					\item  \textbf{Sudionici:} Baza podataka
 					\item  \textbf{Preduvjet:} Uspješna prijava
 					\item  \textbf{Opis osnovnog tijeka:}
@@ -220,10 +203,10 @@
 				\noindent \underbar{\textbf{UC5 - Pristup tečaju}}
 				\begin{packed_item}
 					
-					\item \textbf{Glavni sudionik:} Polaznik, Administrator
+					\item \textbf{Glavni sudionik:} Polaznik
 					\item  \textbf{Cilj:} Pristup sadržaju tečaja
 					\item  \textbf{Sudionici:} Baza podataka
-					\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj kojem se pristupa ili dodijeljena prava administratora
+					\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj kojem se pristupa
 					\item  \textbf{Opis osnovnog tijeka:}
 					
 					\item[] \begin{packed_enum}
@@ -251,13 +234,13 @@
 					\end{packed_enum}
 					
 				\end{packed_item}
-			
+			\eject
 				\noindent \underbar{\textbf{UC7 - Naplata tečaja}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik:} Polaznik
 					\item  \textbf{Cilj:} Uspješna naplata tečaja
-					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Sudionici:} Baza podataka, vanjski servis za naplatu
 					\item  \textbf{Preduvjet:} Uspješna prijava
 					\item  \textbf{Opis osnovnog tijeka:}
 					
@@ -303,10 +286,10 @@
 			\noindent \underbar{\textbf{UC9 - Brisanje tečaja}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Administrator
+				\item \textbf{Glavni sudionik:} Predavač
 				\item  \textbf{Cilj:} Uspješno ukloniti tečaj
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja ili dodijeljena prava administratora
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
@@ -330,14 +313,14 @@
 				\end{packed_item}
 				
 			\end{packed_item}
-				
+				\eject
 			\noindent \underbar{\textbf{UC10 - Uređivanje tečaja}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Administrator
+				\item \textbf{Glavni sudionik:} Predavač
 				\item  \textbf{Cilj:} Promjena opisa i/ili materijala tečaja
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja ili dodijeljena prava administratora
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
  				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
@@ -347,214 +330,48 @@
 					
 				\end{packed_enum}
 				
-			\end{packed_item}	
-		
-			\noindent \underbar{\textbf{UC11 - Objava recenzije}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Polaznik
-				\item  \textbf{Cilj:} Objava recenzije na stranici tečaja i profilu predavača
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj na kojem se recenzija objavljuje
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Polaznik unosi recenziju
-					\item Recenzija se dodaje na stranicu tečaja
-					
-				\end{packed_enum}
-				
 			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC12 - Pregled recenzija}}
+			\noindent \underbar{\textbf{UC11 - Odjava}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Administrator, Polaznik
-				\item  \textbf{Cilj:} Pregled recenzija
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Uspješno se odjaviti iz sustava
 				\item  \textbf{Sudionici:} Baza podataka
 				\item  \textbf{Preduvjet:} Uspješna prijava
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Prikaz recenzije odabranog predavača ili tečaja
+					\item Korisnik odabire opciju Odjave (Log out)
+					\item Sustav usmjerava korisnika na stranicu za prijavu
 					
 				\end{packed_enum}
 				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC13 - Odgovaranje na recenziju}}
+				
+			\end{packed_item}	
+			\noindent \underbar{\textbf{UC12 - Pretraživanje tečajeva}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Administrator
-				\item  \textbf{Cilj:} Objava odgovora na recenziju
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Pretraživanje tečajeva prema ključnim rijećima u imenima tečajeva
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja ili dodijeljena prava administratora
+				\item  \textbf{Preduvjet:} Postojeći račun u sustavu
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Predavač odabire recenziju na koju želi odgovoriti
-					\item Predavač objavljuje svoj odgovor na željenu recenziju
-					
-				\end{packed_enum}
-			
-			\end{packed_item}
-			\noindent \underbar{\textbf{UC14 - Brisanje recenzije}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uklanjanje recenzije sa stranice tečaja ili profila predavača
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odabir recenzije koju je potrebno ukloniti
-					\item Uklanjanje recenzije sa stranice tečaja ili profila predavača
-					
-				\end{packed_enum}
-
-			\end{packed_item}
-		
-			\noindent \label{UC15} \underbar{\textbf{UC15 - Slanje zahtjeva za konzultacijama}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Polaznik
-				\item  \textbf{Cilj:} Uspješno poslati zahtjev za terminom
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj za kojeg se traže konzultacije
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odabir tečaja za kojeg se traže konzultacije
-					\item Odabir termina za konzultacije
+					\item Korisnik odabire opciju Search
+					\item Korisnik unosi ključnu riječ
+					\item Korisniku se prikazuju svi tečajevi koji sadrže ključnu riječ u nazivu ili opisu 
 					
 				\end{packed_enum}
 				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC16 - Odgovor na zahtjev za terminom konzultacija}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Predavač
-				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odobravanje primljenog zahtjeva za terminom konzultacija 
-					\item Polaznik dobiva obavijest o potvrđenom terminu
-					
-				\end{packed_enum}
-				\textbf{ili}
-			
-				\item[] \begin{packed_enum}
-					
-					\item Odbijanje termina konzultacija
-					\item Polaznik prima obavijest o odbijenom terminu
-					\item Polaznik traži novi termin \hyperref[UC15]{(UC15)}
-					
-				\end{packed_enum}
 				
 			\end{packed_item}
 		
 		
-			\noindent \underbar{\textbf{UC17 - Brisanje korisnika}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uspješno ukloniti korisnika iz sustava
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odabir korisnika čiji se račun uklanja
-					\item Ukoliko je korisnik predavač, sustav uklanja njegov profil i sve njegove tečajeve iz baze podataka. Ukoliko je korisnik polaznik, sustav ga uklanja s upisanih tečajeva te njegov profil iz baze podataka
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC18 - Pregled statistike}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uspješno prikazati statistiku korisnika na aplikaciji
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Prikaz statistike korištenja aplikacije i statistike njenih korisnika
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC19 - Dodavanje kategorije}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uspješno dodana nova kategorija tečajeva
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Unos podataka o kategoriji tečaja
-					\item Unos mogućih razina kategorije tečaja
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-		
-			\noindent \underbar{\textbf{UC20 - Brisanje kategorije}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uspješno ukloniti kategoriju tečaja
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odabir kategorije koju se želi ukloniti
-					\item Svi tečajevi pod odabranom kategorijom uklonjeni iz baze podataka
-					\item Kategorija je uklonjena iz baze podataka
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-		
-		
-			\noindent \underbar{\textbf{UC21 - Pregled korisnika}}
-			\begin{packed_item}
-				
-				\item \textbf{Glavni sudionik:} Administrator
-				\item  \textbf{Cilj:} Uspješno dohvatiti popis korisnika aplikacije
-				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je registriran i dodijeljena su mu prava administratora
-				\item  \textbf{Opis osnovnog tijeka:}
-				
-				\item[] \begin{packed_enum}
-					
-					\item Odabir prikaza popisa korisnika aplikacije
-					
-				\end{packed_enum}
-				
-			\end{packed_item}
-			\noindent \label{UC22} \underbar{\textbf{UC22 - Pregled osobnih podataka}}
+			\eject
+			\noindent \label{UC13} \underbar{\textbf{UC13 - Pregled osobnih podataka}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Predavač, Polaznik
@@ -572,7 +389,7 @@
 				
 			\end{packed_item}
 		
-			\noindent \underbar{\textbf{UC23 - Promjena osobnih podataka}}
+			\noindent \underbar{\textbf{UC14 - Promjena osobnih podataka}}
 			\begin{packed_item}
 				
 				\item \textbf{Glavni sudionik:} Predavač, Polaznik
@@ -603,38 +420,114 @@
 				\end{packed_item}
 				
 			\end{packed_item}
-			\noindent \underbar{\textbf{UC24 - Brisanje vlastitog korisničkog računa}}
+			
+			
+			\noindent \label{UC15} \underbar{\textbf{UC15 - Slanje zahtjeva za konzultacijama}}
 			\begin{packed_item}
 				
-				\item \textbf{Glavni sudionik:} Predavač, Polaznik
-				\item  \textbf{Cilj:} Obrisati svoj korisnički račun
+				\item \textbf{Glavni sudionik:} Polaznik
+				\item  \textbf{Cilj:} Uspješno poslati zahtjev za terminom
 				\item  \textbf{Sudionici:} Baza podataka
-				\item  \textbf{Preduvjet:} Korisnik je prijavljen
+				\item  \textbf{Preduvjet:} Uspješna prijava i plaćen tečaj za kojeg se traže konzultacije
 				\item  \textbf{Opis osnovnog tijeka:}
 				
 				\item[] \begin{packed_enum}
 					
-					\item Korisnik pregledava osobne podatke (\hyperref[UC22] {UC22})
-					\item Korisnik odabire opciju "Obriši moj račun"
-					\item Korisnički račun se briše iz baze podataka
-					\item Korisnika se usmjerava na stranicu za registraciju
+					\item Odabir tečaja za kojeg se traže konzultacije
+					\item Odabir datuma za termin konzultacija
 					
 				\end{packed_enum}
-				\item  \textbf{Opis mogućih odstupanja:}
-				
-				\item[] \begin{packed_item}
-					
-					\item[2.a] Korisnik mijenja svoje osobne podatke, ali ne odabire opciju "Spremi moje promjene"
-					\item[] \begin{packed_enum}
-						
-						\item Sustav obavještava korisnika da nije spremio podatke prije izlaska iz prozora
-						
-					\end{packed_enum}
-					
-				\end{packed_item}
-			\eject
 				
 			\end{packed_item}
+		\eject
+			
+			\noindent \label{UC16} \underbar{\textbf{UC16 - Odgovor na zahtjev za terminom konzultacija}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, polaznik
+				\item  \textbf{Cilj:} Odgovoriti na zahtjev za terminom konzultacija
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava i vlasništvo tečaja
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač potvrđuje primljeni zahtjev za terminom konzultacija
+					\item Polaznik dobiva obavijest o potvrđenom terminu
+					
+				\end{packed_enum}
+				\textbf{ili}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač odbija zahtjev za terminom konzulacija i predlaže novi termin
+					\item Polaznik prima obavijest o novom terminu
+					\item Polaznik potvrđuje termin ili ga odbija i šalje novi zahtjev \hyperref[UC15]{(UC15)}
+					
+				\end{packed_enum}
+				
+			\end{packed_item}
+			
+			
+			\noindent \underbar{\textbf{UC17 - Video poziv}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač, Polaznik
+				\item  \textbf{Cilj:} Održavanje konzultacija putem video poziva 
+				\item  \textbf{Sudionici:} Baza podataka, vanjski servis za video pozive
+				\item  \textbf{Preduvjet:} Uspješna prijava, i polaznik i prevadač su potvrdili termin konzultacija
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač i polaznik odabiru opciju uspostave video poziva
+					\item Vanjski servis uspostavlja poziv između polaznika i predavača
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+		
+			\noindent \underbar{\textbf{UC18 - Pregled kreiranih tečajeva}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Predavač
+				\item  \textbf{Cilj:} Pregledati sve tečajeve koje je predavač kreirao
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Predavač odabire opciju Prikaži moje tečajeve (Show your courses)
+					\item Predavač je usmjeren na stranicu sa svim njegovim tečajevima
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+		\eject
+		
+			\noindent \underbar{\textbf{UC19 - Pregled upisanih tečajeva}}
+			\begin{packed_item}
+				
+				\item \textbf{Glavni sudionik:} Polaznik
+				\item  \textbf{Cilj:} Pregledati sve tečajeve koje je polaznik upisao
+				\item  \textbf{Sudionici:} Baza podataka
+				\item  \textbf{Preduvjet:} Uspješna prijava
+				\item  \textbf{Opis osnovnog tijeka:}
+				
+				\item[] \begin{packed_enum}
+					
+					\item Polaznik odabire opciju Prikaži moje tečajeve (Show my courses)
+					\item Polaznik je usmjeren na stranicu sa svim tečajevima koje je uspješno upisao
+					
+				\end{packed_enum}
+				
+				
+			\end{packed_item}
+			
+			\eject
 		
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
@@ -647,7 +540,7 @@
 				\eject
 					
 					\begin{figure}[h]
-						\includegraphics[scale=0.6]{dijagrami/UML_pol.PNG}
+						\includegraphics[scale=0.55]{dijagrami/UML_pol.PNG}
 						\centering
 						\caption{Dijagram obrasca uporabe, funkcionalnost polaznika tečaja}
 						\label{fig:UML_pol}
@@ -655,19 +548,12 @@
 				\eject
 				
 					\begin{figure}[h]
-						\includegraphics[scale=0.6]{dijagrami/UML_pred.PNG}
+						\includegraphics[scale=0.55]{dijagrami/UML_pred.PNG}
 						\centering
 						\caption{Dijagram obrasca uporabe, funkcionalnost predavača}
 						\label{fig:UML_pred}
 					\end{figure}
-				\eject	
-					\begin{figure}[h]
-						\includegraphics[scale=0.5]{dijagrami/UML_ad.PNG}
-						\centering
-						\caption{Dijagram obrasca uporabe, funkcionalnost administratora aplikacije}
-						\label{fig:UML_ad}
-					\end{figure}
-				\eject		
+				\eject			
 				
 			\subsection{Sekvencijski dijagrami}
 				
