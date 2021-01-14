@@ -143,11 +143,7 @@ class _Body extends State<Body> {
                     style: TextStyle(
                         fontFamily: 'RoundLight',
                         fontWeight: FontWeight.normal,
-<<<<<<< HEAD
                         fontSize: size.width * 0.05,
-=======
-                        fontSize: size.width * 0.05, //20
->>>>>>> 804032750c002cf01a2382262f61999d733748c6
                         color: Colors.white),
                   )),
             ),
@@ -159,11 +155,7 @@ class _Body extends State<Body> {
                 style: TextStyle(
                     fontFamily: 'RoundLight',
                     fontWeight: FontWeight.normal,
-<<<<<<< HEAD
                     fontSize: size.width * 0.035,
-=======
-                    fontSize: size.width * 0.035, // 14
->>>>>>> 804032750c002cf01a2382262f61999d733748c6
                     color: customPurple),
               ),
             ),
@@ -181,11 +173,7 @@ class _Body extends State<Body> {
                       fontFamily: 'RoundLight',
                       fontWeight: FontWeight.normal,
                       decoration: TextDecoration.underline,
-<<<<<<< HEAD
                       fontSize: size.width * 0.035,
-=======
-                      fontSize: size.width * 0.035, //14
->>>>>>> 804032750c002cf01a2382262f61999d733748c6
                       color: customPurple),
                 ),
               ),

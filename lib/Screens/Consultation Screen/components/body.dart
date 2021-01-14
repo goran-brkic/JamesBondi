@@ -393,7 +393,6 @@ class _Body extends State<Body> {
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => JoinScreen(meetID, lec)));
       },
-<<<<<<< HEAD
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey[150],
@@ -403,19 +402,6 @@ class _Body extends State<Body> {
             left: BorderSide(width: 1.0, color: customPurple),
             right: BorderSide(width: 1.0, color: customPurple),
             bottom: BorderSide(width: 1.0, color: customPurple),
-=======
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Container(
-          width: size.width / 3,
-          child: Text(
-            //name of consultations from database
-            'Consultations',
-            style: TextStyle(
-                fontFamily: 'RoundLight',
-                fontWeight: FontWeight.normal,
-                fontSize: 15,
-                color: Colors.black),
->>>>>>> 804032750c002cf01a2382262f61999d733748c6
           ),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
